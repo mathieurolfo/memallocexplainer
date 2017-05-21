@@ -35,13 +35,13 @@ window.onload = function() {
 }
 
 function init() {
-	window.canvas = new fabric.StaticCanvas('current-train');
-	window.rect = new fabric.Rect({top: 100, left: 30, width: 10, height: 10, fill: 'black'});
+	window.carcanvas = new fabric.StaticCanvas('current-train');
+	window.traincar = new fabric.Rect({top: 100, left: 30, width: 10, height: 10, fill: 'black'});
 	window.wheel1 = new fabric.Circle({top: 108, left: 30, radius:5, fill: 'black'})
 	window.wheel2 = new fabric.Circle({top: 108, left: 30, radius:5, fill: 'black'})
 	window.cargo = new fabric.Rect({top:60, left: 30, width: 10, height: 40, fill: 'red'});
 
-	window.canvas.add(window.rect, window.wheel1, window.wheel2, window.cargo);
+	window.carcanvas.add(window.traincar, window.wheel1, window.wheel2, window.cargo);
 	refresh();
 }
 
@@ -90,17 +90,17 @@ function updateTrainCar() {
 	console.log(trainSize, remainingSpace, filledSpace)
 
 
-	window.rect.set({width: trainSize*25});
-	window.rect.centerH();
+	window.traincar.set({width: trainSize*25});
+	window.traincar.centerH();
 
-	var cargoPosition = window.rect.left;
+	var cargoPosition = window.traincar.left;
 	window.cargo.set({width: filledSpace*25, left: cargoPosition});
 
-	var wheel1Position = window.rect.left;
-	var wheel2Position = window.rect.left + window.rect.width - 2*window.wheel2.radius;
+	var wheel1Position = window.traincar.left;
+	var wheel2Position = window.traincar.left + window.traincar.width - 2*window.wheel2.radius;
 	window.wheel1.set({left: wheel1Position});
 	window.wheel2.set({left: wheel2Position});
-	canvas.renderAll();
+	window.carcanvas.renderAll();
 	
 
 }
