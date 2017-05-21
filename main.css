@@ -22,6 +22,17 @@ span, div {
 	border: 1px solid;
 }
 
+#cargo-box {
+	margin-top: 20px;
+	width: 50px;
+	height: 50px;
+	box-shadow: 5px;
+
+	line-height: 45px;
+	background-color: red;
+	color: black;
+}
+
 .display-header {
 	margin-left: auto;
 	margin-right: auto;
@@ -43,7 +54,7 @@ span, div {
 #cargo-current-size {
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 5px;
+	margin-top: 30px;
 	font-size: 20px;
 	color: black;
 	text-align: center;
@@ -83,7 +94,7 @@ span, div {
 	vertical-align: middle;
 	width: 200px;
 	height: 200px;
-	background-color: red;
+	/*background-color: red;*/
 }
 
 #car-capacity {

@@ -14,10 +14,6 @@ window.onload = function() {
 		
 	};
 
-	
-
-	
-
 	window.currentState = {
 		cargoLeft: cargoLeft,
 		currentCar: currentCar,
@@ -30,20 +26,69 @@ window.onload = function() {
 }
 
 function init() {
-	
+	window.canvas = new fabric.StaticCanvas('current-train');
+	window.rect = new fabric.Rect({top: 100, left: 30, width: 10, height: 10, fill: 'black'});
+	window.wheel1 = new fabric.Circle({top: 108, left: 30, radius:5, fill: 'black'})
+	window.wheel2 = new fabric.Circle({top: 108, left: 30, radius:5, fill: 'black'})
+	window.cargo = new fabric.Rect({top:60, left: 30, width: 10, height: 40, fill: 'red'});
+
+	window.canvas.add(window.rect, window.wheel1, window.wheel2, window.cargo);
 	refresh();
 }
 
 function refresh() {
+	if (stageCompleted()) {
+		//TODO: clear up the display
+		alert("You've finished this exercise! Continue scrolling to learn more.");
+	}
+
 	var capacity = window.currentState.remainingCapacity[window.currentState.currentCar];
 	var maxCapacity = window.initialGame.cars[window.currentState.currentCar];
 	$('#car-capacity').html("Remaining capacity: " + capacity + " of " + maxCapacity);
 	
-	$('#cargo-display-header').html("Cargo left to load: " + window.currentState.cargoLeft);
-	$('#cargo-current-size').html("Current cargo size: " + window.initialGame.cargo[window.currentState.currentCargoIndex]);
+	$('#cargo-display-header').html("Cargo loads remaining: " + window.currentState.cargoLeft);
+	$('#cargo-current-size').html("Current cargo:"); //" size: " + window.initialGame.cargo[window.currentState.currentCargoIndex]);
 	
 	$('#car-display-header').html("Current Car: " 
 		+ window.currentState.currentCar + " of " + window.initialGame.numCars);
+
+	updateCargoBox();
+	updateTrainCar();
+}
+
+function updateCargoBox() {
+	var cargoSize = window.initialGame.cargo[window.currentState.currentCargoIndex]
+	cargoSize *= 30
+	$('#cargo-box').css("width", cargoSize);
+	console.log(cargoSize);
+	$('#cargo-box').html(window.initialGame.cargo[window.currentState.currentCargoIndex]);
+
+}
+
+function updateTrainCar() {
+	var trainSize = window.initialGame.cars[window.currentState.currentCar];
+	var remainingSpace = window.currentState.remainingCapacity[window.currentState.currentCar];
+	var filledSpace = trainSize - remainingSpace
+	console.log(trainSize, remainingSpace, filledSpace)
+
+
+	window.rect.set({width: trainSize*25});
+	window.rect.centerH();
+
+	var cargoPosition = window.rect.left;
+	window.cargo.set({width: filledSpace*25, left: cargoPosition});
+
+	var wheel1Position = window.rect.left;
+	var wheel2Position = window.rect.left + window.rect.width - 2*window.wheel2.radius;
+	window.wheel1.set({left: wheel1Position});
+	window.wheel2.set({left: wheel2Position});
+	canvas.renderAll();
+	
+
+}
+
+function stageCompleted() {
+	if (window.currentState.cargoLeft == 0) return true;
 
 }
 
@@ -51,7 +96,6 @@ function leftClicked() {
 	$('#message-box').html("");
 	
 	if (window.currentState.currentCar > 1) {
-		console.log("moving back")
 		window.currentState.currentCar -= 1;
 		refresh();
 	} else {
@@ -75,7 +119,6 @@ function rightClicked() {
 }
 
 function loadClicked() {
-	console.log("load clicked");
 	if (window.initialGame.cargo[window.currentState.currentCargoIndex] <= window.currentState.remainingCapacity[window.currentState.currentCar]) {
 		//load the cargo
 		window.currentState.remainingCapacity[window.currentState.currentCar] -= window.initialGame.cargo[window.currentState.currentCargoIndex]
