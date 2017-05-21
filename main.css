@@ -113,6 +113,16 @@ span, div {
 	margin-top: 20px;
 }
 
+#click-counter {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#util-counter {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
 button {
 	margin: 5px;
 }

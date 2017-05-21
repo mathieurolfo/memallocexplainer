@@ -1,7 +1,13 @@
 window.onload = function() {
 
 	var cargo = [null, 2, 3, 7, 4, "none!"];
+	
+	
 	var cars = [null, 2, 4, 3, 12];
+	var totalSpace = 0;
+	for (var x=1; x<cars.length; x++) {
+		totalSpace += cars[x];
+	}
 	var remainingCapacity = cars.slice(0); //copy the unloaded car array
 	var cargoLeft = cargo.length - 2; //adjust for 1 indexing and end message
 	var currentCargoIndex = 1;
@@ -11,6 +17,7 @@ window.onload = function() {
 		cargo: cargo,
 		cars: cars,
 		numCars: numCars,
+		totalSpace: totalSpace
 		
 	};
 
@@ -18,7 +25,9 @@ window.onload = function() {
 		cargoLeft: cargoLeft,
 		currentCar: currentCar,
 		remainingCapacity: remainingCapacity,
-		currentCargoIndex: currentCargoIndex
+		currentCargoIndex: currentCargoIndex,
+		clicks: 0,
+		utilization: 0
 	};
 
 
@@ -37,10 +46,7 @@ function init() {
 }
 
 function refresh() {
-	if (stageCompleted()) {
-		//TODO: clear up the display
-		alert("You've finished this exercise! Continue scrolling to learn more.");
-	}
+	
 
 	var capacity = window.currentState.remainingCapacity[window.currentState.currentCar];
 	var maxCapacity = window.initialGame.cars[window.currentState.currentCar];
@@ -52,8 +58,20 @@ function refresh() {
 	$('#car-display-header').html("Current Car: " 
 		+ window.currentState.currentCar + " of " + window.initialGame.numCars);
 
+	$('#clicks').html(window.currentState.clicks);
+	$('#utilization').html(window.currentState.utilization + " out of " + window.initialGame.totalSpace)
+
 	updateCargoBox();
 	updateTrainCar();
+
+	//should be done with promises: just notifies users after graphics rerendered if sim done
+	setTimeout(function() {
+		if (stageCompleted()) {
+		//TODO: clear up the display
+			alert("You've finished this exercise! Continue scrolling to learn more.");
+		}
+	}, 300);
+	
 }
 
 function updateCargoBox() {
@@ -97,6 +115,7 @@ function leftClicked() {
 	
 	if (window.currentState.currentCar > 1) {
 		window.currentState.currentCar -= 1;
+		window.currentState.clicks += 1;
 		refresh();
 	} else {
 		$('#message-box').html("You're already at the first car!");
@@ -110,8 +129,7 @@ function rightClicked() {
 
 	if (window.currentState.currentCar < window.initialGame.numCars) {
 		window.currentState.currentCar += 1;
-		window.numClicks += 1;
-		document.getElementById("counter").innerHTML = window.numClicks;
+		window.currentState.clicks += 1;
 		refresh();
 	} else {
 		$('#message-box').html("You're already at the last car!");
@@ -122,8 +140,10 @@ function loadClicked() {
 	if (window.initialGame.cargo[window.currentState.currentCargoIndex] <= window.currentState.remainingCapacity[window.currentState.currentCar]) {
 		//load the cargo
 		window.currentState.remainingCapacity[window.currentState.currentCar] -= window.initialGame.cargo[window.currentState.currentCargoIndex]
+		window.currentState.utilization += window.initialGame.cargo[window.currentState.currentCargoIndex]
 		window.currentState.currentCargoIndex += 1
 		window.currentState.cargoLeft -= 1
+
 		$('#message-box').html("Cargo successfully loaded!")
 		refresh();
 	} else {
