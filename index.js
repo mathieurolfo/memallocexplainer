@@ -42,7 +42,14 @@ function init() {
 	window.cargo = new fabric.Rect({top:60, left: 30, width: 10, height: 40, fill: 'red'});
 
 	window.carcanvas.add(window.traincar, window.wheel1, window.wheel2, window.cargo);
+
+	initWholeTrainGraphic();
+
 	refresh();
+}
+
+function initWholeTrainGraphic() {
+	window.traincanvas = new fabric.StaticCanvas('train-display');
 }
 
 function refresh() {
