@@ -81,6 +81,11 @@ span, div {
 	margin: 5px;
 }
 
+#train-display {
+	margin-left: 20px;
+	width: 700px;
+}
+
 #car-display {
 	margin-left: auto;
 	margin-right: auto;

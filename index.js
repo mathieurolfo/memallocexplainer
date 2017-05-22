@@ -1,9 +1,9 @@
 window.onload = function() {
 
-	var cargo = [null, 2, 3, 7, 4, "none!"];
+	var cargo = [null, 4, 2, 6, "none!"];
 	
 	
-	var cars = [null, 2, 4, 3, 12];
+	var cars = [null, 8, 5, 2];
 	var totalSpace = 0;
 	for (var x=1; x<cars.length; x++) {
 		totalSpace += cars[x];
@@ -50,6 +50,53 @@ function init() {
 
 function initWholeTrainGraphic() {
 	window.traincanvas = new fabric.StaticCanvas('train-display');
+	window.traincanvas.setWidth(750);
+	fabric.loadSVGFromURL('http://rol.fo/files/train.svg', function(objects, options) {
+		var obj = fabric.util.groupSVGElements(objects, options);
+		obj.set({
+			left:0,
+			top: 20,
+
+		})
+		window.traincanvas.add(obj);
+	});
+	window.leftOffset = 60;
+	var currLeft = window.leftOffset;
+	for (var j = 1; j<window.initialGame.cars.length; j++) {
+		console.log(j);
+		var wheel1 = "wheel1car" + j;
+		var wheel2 = "wheel2car" + j;
+		var car = "car" + j;
+		var loadedCargo = "cargo" + j;
+		var carWidth = window.initialGame.cars[j]*25;
+		window[wheel1] = new fabric.Circle({top: 60, left: currLeft, radius:5, fill: 'black'});
+		window[wheel2] = new fabric.Circle({top: 60, left: currLeft+carWidth-10, radius:5, fill: 'black'});
+		window[car] = new fabric.Rect({top: 50, left: currLeft, width: carWidth, height: 10, fill: 'black'});
+		window.traincanvas.add(window[wheel1], window[wheel2], window[car]);
+		
+		var cargoWidth = (window.initialGame.cars[j]-window.currentState.remainingCapacity[j])*25;
+		window[loadedCargo] = new fabric.Rect({top: 30, left: currLeft, width: cargoWidth, height: 20, fill: 'red'});
+		window.traincanvas.add(window[loadedCargo]);
+
+		currLeft += carWidth + 10;
+
+	}
+
+	
+
+
+}
+
+function redrawCargo() {
+	var currLeft = window.leftOffset;
+	for (var j = 1; j<window.initialGame.cars.length; j++) {
+		var loadedCargo = "cargo" + j;
+		var carWidth = window.initialGame.cars[j]*25
+		var cargoWidth = (window.initialGame.cars[j]-window.currentState.remainingCapacity[j])*25;
+		window[loadedCargo] = new fabric.Rect({top: 30, left: currLeft, width: cargoWidth, height: 20, fill: 'red'});
+		window.traincanvas.add(window[loadedCargo]);
+		currLeft += carWidth + 10;
+	}
 }
 
 function refresh() {
@@ -70,6 +117,7 @@ function refresh() {
 
 	updateCargoBox();
 	updateTrainCar();
+	redrawCargo();
 
 	//should be done with promises: just notifies users after graphics rerendered if sim done
 	setTimeout(function() {
@@ -94,8 +142,6 @@ function updateTrainCar() {
 	var trainSize = window.initialGame.cars[window.currentState.currentCar];
 	var remainingSpace = window.currentState.remainingCapacity[window.currentState.currentCar];
 	var filledSpace = trainSize - remainingSpace
-	console.log(trainSize, remainingSpace, filledSpace)
-
 
 	window.traincar.set({width: trainSize*25});
 	window.traincar.centerH();
