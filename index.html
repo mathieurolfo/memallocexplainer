@@ -2,7 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="main.css">
-	
+
 	<script type="text/javascript" src="index.js"></script>
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
@@ -14,12 +14,24 @@
 </head>
 <body>
 
+	<!-- Kitty -->
+<div id="intro">
+	Train is a heap ....
+</div>
+
+<div id="malloc">
+	Drag and drop cargo, this is called allocation
+</div>
+
+<!-- Matt -->
+<div id="first-fit">
+
 	<div id="header-text">Load the train by placing cargo in the first space it fits!</div>
 	<span id="cargo-display-region">
 		<div id="cargo-display-header" class="display-header"></div>
 		<div id="cargo-current-size"></div>
 		<div id="cargo-box" class="centered"></div>
-		
+
 	</span>
 
 	<span id="current-car-region">
@@ -28,18 +40,18 @@
 		<div id="car-display">
 			<button id="left-button" onclick="leftClicked()">Prev car</button>
 			<canvas id="current-train">
-				
+
 			</canvas>
 			<button id="right-button" onclick="rightClicked()">Next car</button>
 		</div>
-		
-		
+
+
 		<div class="centered">
 			<div id="car-capacity">hi</div>
 			<button id="load-button" onclick="loadClicked()">Load Cargo</button>
 			<div id="message-box"></div>
 		</div>
-		
+
 	</span>
 
 	<div id="train-display-region">
@@ -52,5 +64,26 @@
 		<canvas id="train-display"></canvas>
 	</div>
 	<button id="refresh-button" onclick="resetSimulation()">Refresh</button>
-	
+</div>
+
+
+<!-- best fit can reuse the first fit code
+ -->
+ <div id="best-fit">
+</div>
+
+ <div id="balance">
+</div>
+
+<!-- SunMi -->
+<div id="segregated-free-list">
+</div>
+
+<!-- optional, have the user play on their own
+ -->
+ <div id="play">
+</div>
+
+<div id="conclusion">
+</div>
 </body>
