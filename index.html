@@ -1,30 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="main.css">
+	<meta charset="utf-8">
+    <title>Heap Allocator</title>
 
-	<script type="text/javascript" src="index.js"></script>
+    <!-- Add Boostrap -->
+	<!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
 
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.11/fabric.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+	<!-- Add our own CSS and JS -->
+	<link href="components/main.css" rel="stylesheet" type="text/css">
+
+	<!-- Add individual sections -->
+	<link href="components/1-intro/intro.css" rel="stylesheet" type="text/css">
+    <script src="components/1-intro/intro.js" defer></script>
+    <link href="components/2-malloc/malloc.css" rel="stylesheet" type="text/css">
+    <script src="components/2-malloc/malloc.js" defer></script>
+
+    <script src="components/3-first-fit/index.js" defer></script>
+	<script type="text/javascript" src="components/3-first-fit/jquery.min.js"></script>
+	<script type="text/javascript" src="components/3-first-fit/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="components/3-first-fit/fabric.min.js"></script>
+
+    <link href="components/4-best-fit/best-fit.css" rel="stylesheet" type="text/css">
+    <script src="components/4-best-fit/best-fit.js" defer></script>
+
+    <link href="components/7-play/play.css" rel="stylesheet" type="text/css">
+    <script src="components/7-play/play.js" defer></script>
+
+    <link href="components/8-conclusion/conclusion.css" rel="stylesheet" type="text/css">
+    <script src="components/8-conclusion/conclusion.js" defer></script>
 
 
 </head>
 <body>
 
-	<!-- Kitty -->
-<div id="intro">
-	Train is a heap ....
-</div>
+	<header id="header">
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Heap Allocation</h1>
+          <p class="lead">an interactive explanation</p>
+        </div>
+      </div>
+    </header>
 
-<div id="malloc">
-	Drag and drop cargo, this is called allocation
-</div>
+	<!-- Kitty TO DO -->
+    <section id="intro">
+    	<div class="container">
+    		<div class="row">
+          		<div class="col">
+	            <h2>A train is a heap, it has lots of spaces</h2>
+	            <p>train...</p>
+	                        <img class="img-fluid img-thumbnail" id="triangle-1" src="figures/train-head.svg"></img>
 
-<!-- Matt -->
-<div id="first-fit">
+	            <button class="btn btn-primary" id="button-1">Button 1</button>
+	          </div>
+	        </div>
+    	</div>
+	</section>
+
+
+	<!-- Kitty-TO-DO -->
+	<section id="malloc">
+      <div class="container">
+        <h2>Drag</h2>
+        <div class="row">
+          <div class="col-sm-9">
+            <p>This is called allocation.</p>
+            <button class="btn btn-primary" id="button-2">Button 2</button>
+          </div>
+          <div class="col">
+          </div>
+        </div>
+      </div>
+    </section>
+
+	<!-- Matt -->
+
+    <section id="first-fit">
+    </section>
 
 	<div id="header-text">Load the train by placing cargo in the first space it fits!</div>
 	<span id="cargo-display-region">
@@ -67,23 +122,30 @@
 </div>
 
 
-<!-- best fit can reuse the first fit code
- -->
- <div id="best-fit">
-</div>
+	<!--  Matt To-Do, best fit can reuse the first fit css/js-->
+     <section id="best-fit">
+    </section>
 
- <div id="balance">
-</div>
+	<section id="balance">
+    </section>
 
-<!-- SunMi -->
-<div id="segregated-free-list">
-</div>
 
-<!-- optional, have the user play on their own
- -->
- <div id="play">
-</div>
+	<!-- SunMi TO-DO -->
+	<section id="segregated-freelist">
+    </section>
 
-<div id="conclusion">
-</div>
-</body>
+	<!-- optional, have the user play on their own -->
+	<section id="play">
+	</section>
+
+	<section id="conclusion">
+	</section>
+
+	<footer class="mt-5 pt-5 pb-5" id="footer">
+      <div class="container">
+        <p class="lead text-muted">CS 247</p>
+      </div>
+    </footer>
+
+  </body>
+</html>
