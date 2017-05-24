@@ -1,0 +1,133 @@
+span, div {
+	font-family: "Source Sans Pro", sans-serif;
+}
+
+#header-text {
+	font-size: 24px;
+	/*margin-left: auto;
+	margin-right: auto;*/
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	width: 800px;
+}
+
+#cargo-display-region {
+	display: inline-block;
+	width: 300px;
+	height: 400px;
+	/*background-color: red;*/
+	/*opacity: 0.5;*/
+	margin: 5px;
+	border: 1px solid;
+}
+
+#cargo-box {
+	margin-top: 20px;
+	width: 50px;
+	height: 50px;
+	box-shadow: 5px;
+
+	line-height: 45px;
+	background-color: red;
+	color: black;
+}
+
+.display-header {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	font-size: 20px;
+	color: black;
+	text-align: center;
+}
+
+#cargo-display-header {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	font-size: 20px;
+	color: black;
+	text-align: center;
+}
+
+#cargo-current-size {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	font-size: 20px;
+	color: black;
+	text-align: center;
+}
+
+
+#current-car-region {
+	width: 500px;
+	height: 400px;
+	/*background-color: blue;
+	opacity: 0.5;*/
+	border: 1px solid;
+	display: inline-block;
+	vertical-align: top;
+	margin: 5px;
+}
+
+#train-display-region {
+	width: 815px;
+	height: 150px;
+	/*background-color: green;
+	opacity: 0.5;*/
+	border: 1px solid;
+	margin: 5px;
+}
+
+#train-display {
+	margin-left: 20px;
+	width: 700px;
+}
+
+#car-display {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	margin-top: 15px;
+	
+}
+
+#current-train {
+	display: inline-block;
+	vertical-align: middle;
+	width: 200px;
+	height: 200px;
+	/*background-color: red;*/
+}
+
+#car-capacity {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#load-button {
+	margin-top: 20px;
+}
+
+#click-counter {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#util-counter {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+button {
+	margin: 5px;
+}
