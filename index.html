@@ -11,8 +11,11 @@
 
 	<!-- Add our own CSS and JS -->
 	<link href="components/main.css" rel="stylesheet" type="text/css">
+    <!-- <link href="components/drag-and-drop/interact.js" rel="stylesheet" type="text/css"> -->
+    <script src="components/drag-and-drop/interact.js" defer></script>
 
 	<!-- Add individual sections -->
+
 	<link href="components/1-intro/intro.css" rel="stylesheet" type="text/css">
     <script src="components/1-intro/intro.js" defer></script>
     <link href="components/2-malloc/malloc.css" rel="stylesheet" type="text/css">
@@ -47,6 +50,7 @@
 
 	<!-- Kitty TO DO -->
     <section id="intro">
+
     	<div class="container">
     		<div class="row">
           		<div class="col">
@@ -54,9 +58,12 @@
 	            <p>train...</p>
 	                        <img class="img-fluid img-thumbnail" id="triangle-1" src="figures/train-head.svg"></img>
 
+
 	            <button class="btn btn-primary" id="button-1">Button 1</button>
 	          </div>
 	        </div>
+
+
     	</div>
 	</section>
 
@@ -64,7 +71,15 @@
 	<!-- Kitty-TO-DO -->
 	<section id="malloc">
       <div class="container">
-        <h2>Drag</h2>
+        <h2>Drag Placeholder</h2>
+    <div id="no-drop" class="draggable drag-drop"> #no-drop </div>
+
+                <div id="yes-drop" class="draggable drag-drop"> #yes-drop </div>
+
+                <div id="outer-dropzone" class="dropzone">#outer-dropzone
+                  <div id="inner-dropzone" class="dropzone">#inner-dropzone</div>
+                 </div>
+
         <div class="row">
           <div class="col-sm-9">
             <p>This is called allocation.</p>
