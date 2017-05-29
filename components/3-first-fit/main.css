@@ -1,11 +1,9 @@
-span, div {
+/*span, div {
 	font-family: "Source Sans Pro", sans-serif;
 }
 
 #header-text {
 	font-size: 24px;
-	/*margin-left: auto;
-	margin-right: auto;*/
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 10px;
@@ -16,13 +14,11 @@ span, div {
 	display: inline-block;
 	width: 300px;
 	height: 400px;
-	/*background-color: red;*/
-	/*opacity: 0.5;*/
 	margin: 5px;
 	border: 1px solid;
 }
 
-#cargo-box {
+#current-cargo-box {
 	margin-top: 20px;
 	width: 50px;
 	height: 50px;
@@ -64,8 +60,6 @@ span, div {
 #current-car-region {
 	width: 500px;
 	height: 400px;
-	/*background-color: blue;
-	opacity: 0.5;*/
 	border: 1px solid;
 	display: inline-block;
 	vertical-align: top;
@@ -75,8 +69,6 @@ span, div {
 #train-display-region {
 	width: 815px;
 	height: 150px;
-	/*background-color: green;
-	opacity: 0.5;*/
 	border: 1px solid;
 	margin: 5px;
 }
@@ -99,7 +91,6 @@ span, div {
 	vertical-align: middle;
 	width: 200px;
 	height: 200px;
-	/*background-color: red;*/
 }
 
 #car-capacity {
@@ -131,3 +122,4 @@ span, div {
 button {
 	margin: 5px;
 }
+*/
