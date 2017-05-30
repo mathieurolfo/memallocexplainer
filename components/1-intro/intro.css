@@ -58,9 +58,10 @@
 }
 
 .drop-target {
-  background-color: #29e;
-  border-color: #fff;
-  border-style: solid;
+  /*background-color: #29e;*/
+  background-color: #ded;
+  /*border-color: #fff;*/
+  /*border-style: solid;*/
 }
 
 .drag-drop {
@@ -78,7 +79,11 @@
   -webkit-transform: translate(0px, 0px);
           transform: translate(0px, 0px);
 
-  transition: background-color 0.3s;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.dragging {
+  transition: none;
 }
 
 .drag-drop.can-drop {
@@ -98,4 +103,29 @@
   border-radius: 4px;
   padding: 2%;
   margin: 5%;
+}
+
+
+#train-drag-drop-example {
+  width: 600px;
+  height: 300px;
+}
+
+.train {
+  background-color: #eee;
+}
+
+.train-cart {
+  display: inline-block;
+  background-color: rgb(225, 225, 225);
+  height: 100px;
+  margin-right: 5px;
+}
+
+.train-cargo {
+  display: inline-block;
+  background-color: #dde;
+  height: 100px;
+  width: 100px;
+  margin-right: 15px;
 }
