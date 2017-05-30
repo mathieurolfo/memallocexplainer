@@ -3,13 +3,21 @@ span, div {
 }
 
 #first-fit-header-text {
-	font-size: 24px;
+	font-size: 30px;
 	/*margin-left: auto;
 	margin-right: auto;*/
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 10px;
 	width: 800px;
+}
+
+#first-fit-description-text {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 100px;
+	width: 600px;
 }
 
 #first-fit-cargo-display-region {
@@ -48,7 +56,7 @@ span, div {
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10px;
-	font-size: 20px;
+	font-size: 24px;
 	color: black;
 	text-align: center;
 }
@@ -57,7 +65,7 @@ span, div {
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10px;
-	font-size: 20px;
+	font-size: 24px;
 	color: black;
 	text-align: center;
 }
@@ -66,7 +74,7 @@ span, div {
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 30px;
-	font-size: 20px;
+	font-size: 24px;
 	color: black;
 	text-align: center;
 }
@@ -107,6 +115,10 @@ span, div {
 	
 }
 
+#first-fit-car-display-header {
+	font-size: 24px;
+}
+
 #first-fit-current-train {
 	display: inline-block;
 	vertical-align: middle;
@@ -127,11 +139,20 @@ span, div {
 	text-align: center;
 }
 
-
+#first-fit-message-box {
+	background-color: yellow;
+	white-space: nowrap;
+	display: inline;
+	margin-top: 15px;
+	/*padding: 3px;*/
+	/*display: inline-block;*/
+	font-size: 24px;
+}
 
 #first-fit-load-button {
 	margin-top: 20px;
 	background-color: lightblue;
+	margin-bottom: 30px;
 }
 
 #first-fit-click-counter {

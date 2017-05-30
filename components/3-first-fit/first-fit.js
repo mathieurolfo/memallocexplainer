@@ -43,14 +43,6 @@ function initializeParameters() {
 
     };
 
-    window.initialGame = {
-        cargo: cargo,
-        cars: cars,
-        numCars: numCars,
-        totalSpace: totalSpace
-
-    };
-
     window.firstfitcurrentState = {
         cargoLeft: cargoLeft,
         currentCar: currentCar,
@@ -60,14 +52,6 @@ function initializeParameters() {
         utilization: 0
     };
 
-    window.currentState = {
-        cargoLeft: cargoLeft,
-        currentCar: currentCar,
-        remainingCapacity: remainingCapacity,
-        currentCargoIndex: currentCargoIndex,
-        clicks: 0,
-        utilization: 0
-    };
 
 }
 
@@ -171,10 +155,13 @@ function updateCargoBox() {
     $('#first-fit-current-cargo-box').css("width", cargoSize);
     console.log(cargoSize);
     $('#first-fit-current-cargo-box').html(window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]);
-    if (window.firstfitcurrentState.cargoLeft === 2) {
+    
+    if (window.firstfitcurrentState.cargoLeft === 3) {
+		$('#first-fit-cargo2').css("display", "block");
+    	$('#first-fit-cargo3').css("display", "block");
+    } else if (window.firstfitcurrentState.cargoLeft === 2) {
     	$('#first-fit-cargo3').css("display", "none");
-    }
-    if (window.firstfitcurrentState.cargoLeft === 1) {
+    } else if (window.firstfitcurrentState.cargoLeft === 1) {
     	$('#first-fit-cargo2').css("display", "none");
     	$('#first-fit-cargo3').css("display", "none");
     }
@@ -218,7 +205,7 @@ function leftClicked() {
 
     if (window.firstfitcurrentState.currentCar > 1) {
         window.firstfitcurrentState.currentCar -= 1;
-        window.firstfitcurrentState.clicks += 1;
+        //window.firstfitcurrentState.clicks += 1; // NOT penalizing going backwards
         refresh();
     } else {
         $('#first-fit-message-box').html("You're already at the first car!");
@@ -245,7 +232,7 @@ function loadClicked() {
         window.firstfitcurrentState.utilization += window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
         window.firstfitcurrentState.currentCargoIndex += 1
         window.firstfitcurrentState.cargoLeft -= 1
-
+        window.firstfitcurrentState.currentCar = 1;
         $('#first-fit-message-box').html("Cargo successfully loaded!")
         refresh();
     } else {
