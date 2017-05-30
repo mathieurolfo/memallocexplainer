@@ -96,6 +96,7 @@ span, div {
 #first-fit-train-display {
 	margin-left: 20px;
 	width: 700px;
+	height: 150px;
 }
 
 #first-fit-car-display {
@@ -130,6 +131,7 @@ span, div {
 
 #first-fit-load-button {
 	margin-top: 20px;
+	background-color: lightblue;
 }
 
 #first-fit-click-counter {
@@ -144,7 +146,15 @@ span, div {
 
 button {
 	margin: 5px;
+
 }
 
+#first-fit-left-button {
+	background-color: lightblue;
+}
+
+#first-fit-right-button {
+	background-color: lightblue;
+}
 
 
