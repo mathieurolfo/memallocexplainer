@@ -3,13 +3,21 @@ span, div {
 }
 
 #best-fit-header-text {
-	font-size: 24px;
+	font-size: 30px;
 	/*margin-left: auto;
 	margin-right: auto;*/
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 10px;
 	width: 800px;
+}
+
+#best-fit-description-text {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 100px;
+	width: 600px;
 }
 
 #best-fit-cargo-display-region {
@@ -24,7 +32,7 @@ span, div {
 
 #best-fit-current-cargo-box {
 	margin-top: 20px;
-	width: 50px;
+	width: 0px;
 	height: 50px;
 	box-shadow: 5px;
 
@@ -33,11 +41,22 @@ span, div {
 	color: black;
 }
 
+.cargo-box {
+	margin-top: 20px;
+	width: 60px;
+	height: 50px;
+	box-shadow: 5px;
+
+	line-height: 45px;
+	background-color: gray;
+	color: black;
+}
+
 .display-header {
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10px;
-	font-size: 20px;
+	font-size: 24px;
 	color: black;
 	text-align: center;
 }
@@ -46,19 +65,20 @@ span, div {
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10px;
-	font-size: 20px;
+	font-size: 24px;
 	color: black;
 	text-align: center;
 }
 
-#best-fit-cargo-current-size {
+#best-fit-current-cargo-size {
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 30px;
-	font-size: 20px;
+	font-size: 24px;
 	color: black;
 	text-align: center;
 }
+
 
 
 #best-fit-current-car-region {
@@ -84,6 +104,7 @@ span, div {
 #best-fit-train-display {
 	margin-left: 20px;
 	width: 700px;
+	height: 150px;
 }
 
 #best-fit-car-display {
@@ -92,6 +113,10 @@ span, div {
 	text-align: center;
 	margin-top: 15px;
 	
+}
+
+#best-fit-car-display-header {
+	font-size: 24px;
 }
 
 #best-fit-current-train {
@@ -114,8 +139,20 @@ span, div {
 	text-align: center;
 }
 
+#best-fit-message-box {
+	background-color: yellow;
+	white-space: nowrap;
+	display: inline;
+	margin-top: 15px;
+	/*padding: 3px;*/
+	/*display: inline-block;*/
+	font-size: 24px;
+}
+
 #best-fit-load-button {
 	margin-top: 20px;
+	background-color: lightblue;
+	margin-bottom: 30px;
 }
 
 #best-fit-click-counter {
@@ -130,7 +167,24 @@ span, div {
 
 button {
 	margin: 5px;
+
+}
+
+#best-fit-left-button {
+	background-color: lightblue;
+}
+
+#best-fit-right-button {
+	background-color: lightblue;
 }
 
 
+#best-fit-end-text {
+	width: 600px;
+	margin-left: 100px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	height: 400px;
+	font-size: 20px;
+}
 
