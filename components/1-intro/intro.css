@@ -2,8 +2,42 @@
   height: 140px;
 }
 
-#inner-dropzone {
+#triangle-1 {
   height: 80px;
+  position: absolute;
+  bottom:0;
+}
+
+#triangle-2 {
+  position: absolute;
+  bottom: 0;
+  height: 20px;
+}
+
+#cargo-1 {
+  height: 80px;
+  width: 100px;
+}
+
+#cargo-2 {
+  height: 80px;
+  width: 200px;
+}
+
+
+#inner-dropzone {
+  height: 100px;
+  background-color: #fff;
+}
+
+#inner-dropzone-1 {
+  width: 100px;
+  background-color: #fff;
+}
+
+#inner-dropzone-2 {
+  width: 200px;
+  background-color: #ddd;
 }
 
 .dropzone {
@@ -13,6 +47,7 @@
   margin: 10px auto 30px;
   padding: 10px;
   width: 80%;
+  height: 100px;
   transition: background-color 0.3s;
 }
 
@@ -29,6 +64,9 @@
 .drag-drop {
   display: inline-block;
   min-width: 40px;
+  width: 40px;
+  max-width: 4000px;
+  height:40px ;
   padding: 2em 0.5em;
 
   color: #fff;
@@ -44,4 +82,18 @@
 .drag-drop.can-drop {
   color: #000;
   background-color: #4e4;
+}
+.drag-drop.no-drop {
+  color: #000;
+  background-color: #222;
+}
+
+#grid-snap {
+  width: 80px;
+  background-color: #29e;
+  color: #fff;
+  font-size: 1.2em;
+  border-radius: 4px;
+  padding: 2%;
+  margin: 5%;
 }
