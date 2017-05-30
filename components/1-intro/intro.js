@@ -27,7 +27,8 @@ TrainVisualization.prototype.draw = function(domId) {
   var cargoVisualization = document.createElement("div");
   cargoVisualization.setAttribute("id", "train-cargo-1");
   cargoVisualization.setAttribute("class", "train-cargo drag-drop");
-  cargoVisualization.setAttribute("data-capacity", "2");
+  cargoVisualization.setAttribute("capacity", "2");
+  cargoVisualization.style.width = (cargoVisualization.getAttribute("capacity") * 100) + "px"
 
   interact(cargoVisualization)
     .draggable({
@@ -68,7 +69,7 @@ TrainVisualization.prototype.draw = function(domId) {
         // only accept elements matching this CSS selector
         accept: '.train-cargo',
         // Require a 75% element overlap for a drop to be possible
-        overlap: 0.75,
+        overlap: 0.4,
         ondropactivate: function (event) {
           // add active dropzone feedback
           event.target.classList.add('drop-active');
@@ -76,13 +77,14 @@ TrainVisualization.prototype.draw = function(domId) {
         ondragenter: function (event) {
           var draggableElement = event.relatedTarget,
               dropzoneElement = event.target;
-          var cargoSize = draggableElement.getAttribute("data-capacity");
+          var cargoSize = draggableElement.getAttribute("capacity");
 
           // feedback the possibility of a drop
           dropzoneElement.classList.add('drop-target');
-          if (cargoSize <= cart.capacity) {
+          if (parseInt(cargoSize) == parseInt(cart.capacity)) {
             draggableElement.classList.add('can-drop');
           } else {
+            console.log(cargoSize, cart.capacity)
             draggableElement.classList.add('no-drop');
           }
       },
@@ -135,6 +137,6 @@ TrainVisualization.prototype.draw = function(domId) {
 
 }
 
-var carts = [{capacity: 2}, {capacity: 1}];
+var carts = [{capacity: 1},{capacity: 2}];
 var train = new TrainVisualization(carts);
 train.draw('train-drag-drop-example');

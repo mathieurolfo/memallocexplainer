@@ -10,11 +10,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+	<script type="text/javascript" src="components/3-first-fit/jquery.min.js"></script>
+	<script type="text/javascript" src="components/3-first-fit/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="components/3-first-fit/fabric.min.js"></script>
 
 	<!-- Add our own CSS and JS -->
 	<link href="components/main.css" rel="stylesheet" type="text/css">
     <!-- <link href="components/drag-and-drop/interact.js" rel="stylesheet" type="text/css"> -->
     <script src="components/drag-and-drop/interact.js" defer></script>
+    <link href="components/buttons.css" rel="stylesheet" type="text/css">
 
 	<!-- Add individual sections -->
 
@@ -25,13 +29,17 @@
     <link href="components/6-segregated-freelist/segregated-freelist.css" rel="stylesheet" type="text/css">
     <script src="components/6-segregated-freelist/segregated-freelist.js" defer></script>
 
-    <script src="components/3-first-fit/index.js" defer></script>
-	<script type="text/javascript" src="components/3-first-fit/jquery.min.js"></script>
-	<script type="text/javascript" src="components/3-first-fit/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="components/3-first-fit/fabric.min.js"></script>
+    <!-- <script src="components/3-first-fit/shared-fit-game-logic.js" defer></script> -->
+
+
+
+    <script src="components/3-first-fit/first-fit.js"></script>
+    <link href="components/3-first-fit/first-fit.css" rel="stylesheet" type="text/css">
+
+	
 
     <link href="components/4-best-fit/best-fit.css" rel="stylesheet" type="text/css">
-    <script src="components/4-best-fit/best-fit.js" defer></script>
+    <script src="components/4-best-fit/best-fit.js"></script>
 
     <link href="components/7-play/play.css" rel="stylesheet" type="text/css">
     <script src="components/7-play/play.js" defer></script>
@@ -98,50 +106,104 @@
 	<!-- Matt -->
 
     <section id="first-fit">
-    </section>
+    
 
-	<div id="header-text">Load the train by placing cargo in the first space it fits!</div>
-	<span id="cargo-display-region">
-		<div id="cargo-display-header" class="display-header"></div>
-		<div id="cargo-current-size"></div>
-		<div id="cargo-box" class="centered"></div>
+	<div id="first-fit-header-text">Load the train by placing cargo in the first space it fits!</div>
+	<div id="first-fit-description-text" >
+	The cargo is located on the left of the screen. You will have three pieces of cargo to place, and you can only see the size of the current piece of cargo. Browse through the train using the left and right arrows until you find a spot where the cargo fits. You can see your current speed and space usage at the bottom of the window.
+	</div>
+	<span id="first-fit-cargo-display-region">
+
+		<div id="first-fit-cargo-display-header" class="display-header"></div>
+		<!-- <div id="first-fit-current-cargo-size"></div> -->
+		<div id="first-fit-current-cargo-box" class="centered"></div>
+		<div id="first-fit-cargo2" class="cargo-box centered">?</div>
+		<div id="first-fit-cargo3" class="cargo-box centered">?</div>
 	</span>
 
-	<span id="current-car-region">
-		<div id="car-display-header" class="display-header"></div>
+	<span id="first-fit-current-car-region">
+		<div id="first-fit-car-display-header" class="display-header"></div>
 		<!-- <button id="button" onclick="buttonClicked()">place load</button> -->
-		<div id="car-display">
-			<button id="left-button" onclick="leftClicked()">Prev car</button>
-			<canvas id="current-train">
-
-			</canvas>
-			<button id="right-button" onclick="rightClicked()">Next car</button>
+		<div id="first-fit-car-display">
+			<button id="first-fit-left-button" class="button button-circle" onclick="firstfitleftClicked()"><</button>
+			<canvas id="first-fit-current-train"></canvas>
+			<button id="first-fit-right-button" class="button button-circle" onclick="firstfitrightClicked()">></button>
 		</div>
 
 
 		<div class="centered">
-			<div id="car-capacity">hi</div>
-			<button id="load-button" onclick="loadClicked()">Load Cargo</button>
-			<div id="message-box"></div>
+			<div id="first-fit-car-capacity">hi</div>
+			<button id="first-fit-load-button" class="button" onclick="firstfitloadClicked()">Load Cargo</button>
+			<div>
+				<div id="first-fit-message-box" ></div>
+			</div>
 		</div>
 
 	</span>
 
-	<div id="train-display-region">
-		<div id="click-counter">
-			<span >Train cars inspected: </span><span id="clicks"></span>
+	<div id="first-fit-train-display-region">
+		<div id="first-fit-click-counter">
+			<span >Train cars inspected: </span><span id="first-fit-clicks"></span>
 		</div>
-		<div id="util-counter">
-			<span >Total train space used: </span><span id="utilization"></span>
+		<div id="first-fit-util-counter">
+			<span >Total train space used: </span><span id="first-fit-utilization"></span>
 		</div>
-		<canvas id="train-display"></canvas>
+		<canvas id="first-fit-train-display"></canvas>
 	</div>
-	<button id="refresh-button" onclick="resetSimulation()">Refresh</button>
-</div>
+	<button id="first-fit-refresh-button" class="button" onclick="firstfitresetSimulation()">Refresh this Game</button>
 
-
+	<div id="first-fit-end-text" name="first-fit-segue">
+	The strategy we just tried out, placing the cargo in the first-fitting spot, has its strengths and weaknesses. On one hand, we are able to place a given piece of cargo pretty quickly: we placed the first two pieces of cargo after only looking at a single car! However, we couldn't make the best use of our train's available space: we had what is referred to as fragmentation. <br><br>Our final stats were 5 cars inspected and 6/15 space utilization: can we do better with a different strategy?
+	</div>
+	</section>
 	<!--  Matt To-Do, best fit can reuse the first fit css/js-->
      <section id="best-fit">
+
+	<div id="best-fit-header-text">Load the train by placing cargo in the smallest space it fits!</div>
+		<div id="best-fit-description-text" >
+		The same rules as above apply.
+		</div>
+		<span id="best-fit-cargo-display-region">
+
+			<div id="best-fit-cargo-display-header" class="display-header"></div>
+			
+			<div id="best-fit-current-cargo-box" class="centered"></div>
+			<div id="best-fit-cargo2" class="cargo-box centered">?</div>
+			<div id="best-fit-cargo3" class="cargo-box centered">?</div>
+
+		</span>
+
+		<span id="best-fit-current-car-region">
+			<div id="best-fit-car-display-header" class="display-header"></div>
+			
+			<div id="best-fit-car-display">
+				<button id="best-fit-left-button" class="button button-circle" onclick="leftClicked()"><</button>
+				<canvas id="best-fit-current-train"></canvas>
+				<button id="best-fit-right-button" class="button button-circle" onclick="rightClicked()">></button>
+			</div>
+
+
+			<div class="centered">
+				<div id="best-fit-car-capacity">hi</div>
+				<button id="best-fit-load-button" class="button" onclick="loadClicked()">Load Cargo</button>
+				<div>
+					<div id="best-fit-message-box" ></div>
+				</div>
+			</div>
+
+		</span>
+
+		<div id="best-fit-train-display-region">
+			<div id="best-fit-click-counter">
+				<span >Train cars inspected: </span><span id="best-fit-clicks"></span>
+			</div>
+			<div id="best-fit-util-counter">
+				<span >Total train space used: </span><span id="best-fit-utilization"></span>
+			</div>
+			<canvas id="best-fit-train-display"></canvas>
+		</div>
+		<button id="best-fit-refresh-button" class="button" onclick="resetSimulation()">Refresh this Game</button>
+
     </section>
 
 	<section id="balance">
