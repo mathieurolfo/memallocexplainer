@@ -48,7 +48,7 @@ function initializeParameters() {
         currentCar: currentCar,
         remainingCapacity: remainingCapacity,
         currentCargoIndex: currentCargoIndex,
-        clicks: 0,
+        clicks: 1,
         utilization: 0
     };
 
@@ -135,6 +135,15 @@ function refresh() {
     $('#first-fit-clicks').html(window.firstfitcurrentState.clicks);
     $('#first-fit-utilization').html(window.firstfitcurrentState.utilization + " out of " + window.firstfitinitialGame.totalSpace)
 
+    if (capacity >= window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]) {
+    	$('#first-fit-left-button').attr("disabled", true);
+    	$('#first-fit-right-button').attr("disabled", true);
+    	$('#first-fit-message-box').html("The cargo fits! Place it here!");
+    } else {
+    	$('#first-fit-left-button').attr("disabled", false);
+    	$('#first-fit-right-button').attr("disabled", false);
+    }
+
     updateCargoBox();
     updateTrainCar();
     redrawCargo();
@@ -143,7 +152,8 @@ function refresh() {
     setTimeout(function() {
         if (stageCompleted()) {
         //TODO: clear up the display
-            alert("You've finished this exercise! Continue scrolling to learn more.");
+            alert("Oh no! It seems that there isn't anywhere for you to put the last cargo on the train.\
+It would have fit on the first car, but we filled that with smaller cargos. Scroll down for more explanation.");
         }
     }, 300);
 
@@ -196,7 +206,7 @@ function updateTrainCar() {
 }
 
 function stageCompleted() {
-    if (window.firstfitcurrentState.cargoLeft == 0) return true;
+    if (window.firstfitcurrentState.clicks === 5) {return true;}
 
 }
 
@@ -233,6 +243,7 @@ function loadClicked() {
         window.firstfitcurrentState.currentCargoIndex += 1
         window.firstfitcurrentState.cargoLeft -= 1
         window.firstfitcurrentState.currentCar = 1;
+        window.firstfitcurrentState.clicks += 1;
         $('#first-fit-message-box').html("Cargo successfully loaded!")
         refresh();
     } else {
