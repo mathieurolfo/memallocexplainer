@@ -1,3 +1,14 @@
-#section-2 button {
-  /* background-color: blue; */
+/*#section-2 button {
+   background-color: blue; 
+}*/
+
+
+#seglist-display-region {
+	display: inline-block;
+	width: 500px;
+	height: 400px;
+	/*background-color: red;*/
+	/*opacity: 0.5;*/
+	margin: 5px;
+	border: 1px solid;
 }
