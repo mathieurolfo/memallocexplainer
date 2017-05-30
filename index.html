@@ -6,6 +6,8 @@
 
     <!-- Add Boostrap -->
 	<!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
+    <!-- Col and row from the example code in class -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
 
@@ -47,7 +49,8 @@
       <div class="jumbotron">
         <div class="container">
           <h1 class="display-3">Heap Allocation</h1>
-          <p class="lead">an interactive explanation</p>
+          <p class="lead" align="left">an interactive explanation</p>
+          <p>We will teach you heap allocation strategies</p>
         </div>
       </div>
     </header>
@@ -55,44 +58,48 @@
 	<!-- Kitty TO DO -->
     <section id="intro">
 
-    	<div class="container">
-    		<div class="row">
-          		<div class="col">
-	            <h2>A train is a heap, it has lots of spaces</h2>
-	            <p>train...</p>
-	                        <img class="img-fluid img-thumbnail" id="triangle-1" src="figures/train-head.svg"></img>
+        <div class="container">
+            <div class="row">
+              <h3>Carts on a train are storage spaces. </h3>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-3" align="right">
+                    <img class="img img-fluid" id="train-head" src="figures/train-head.svg"></img>
+                </div>
+                <div class="col-md-3" align="left">
+                    <div id="inner-dropzone-1" class="dropzone" width=100>
+                        <img class="img img-fluid" id="car-2" src="figures/train2.svg"></img>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div id="inner-dropzone-2" class="dropzone" width=135>
+                    <img class="img img-fluid" id="car-3" src="figures/train3.svg"></img>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" align="center">
+                <h4>Drag the cargo to load the train!</h4>
+            </div>
+            </div>
 
+              </div>
+            </div>
 
-	            <button class="btn btn-primary" id="button-1">Button 1</button>
-	          </div>
-	        </div>
+        </div>
+        <div id="cargo-1" class="draggable drag-drop" width=120>
+            drag-me
+        </div>
+        </div>
 
-
-    	</div>
-	</section>
+      </div>
+    </section>
 
 
 	<!-- Kitty-TO-DO -->
 	<section id="malloc">
-      <div class="container">
-        <h2>Drag Placeholder</h2>
-    <div id="no-drop" class="draggable drag-drop"> #no-drop </div>
 
-                <div id="yes-drop" class="draggable drag-drop"> #yes-drop </div>
-
-                <div id="outer-dropzone" class="dropzone">#outer-dropzone
-                  <div id="inner-dropzone" class="dropzone">#inner-dropzone</div>
-                 </div>
-
-        <div class="row">
-          <div class="col-sm-9">
-            <p>This is called allocation.</p>
-            <button class="btn btn-primary" id="button-2">Button 2</button>
-          </div>
-          <div class="col">
-          </div>
-        </div>
-      </div>
     </section>
 
 	<!-- Matt -->

@@ -1,8 +1,28 @@
 /* The dragging code for '.draggable' from the demo above
  * applies to this demo as well so it doesn't have to be repeated. */
+var startPos = {x:0, y:0};
+
+interact('.draggable')
+  .on('dragstart', function (event) {
+    var rect = interact.getElementRect(event.target);
+    startPos.x = rect.left + rect.width/2;
+    startPos.y = rect.top + rect.height/2;
+    // event.draggable.snap({
+    //   anchors:[startPos]
+    // });
+
+  })
 
 interact('.draggable')
   .draggable({
+    // snap: {
+    //   targets: [
+    //     interact.createSnapGrid({ x: 30, y: 30 })
+    //   ],
+    //   range: Infinity,
+    //   relativePoints: [ { x: 0, y: 0 } ],
+    //   // endOnly: true,
+    // },
     // enable inertial throwing
     inertia: true,
     // keep the element within the area of it's parent
@@ -28,9 +48,10 @@ interact('.draggable')
   });
 
   function dragMoveListener (event) {
-    var target = event.target,
-        // keep the dragged position in the data-x/data-y attributes
-        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+    var target = event.target;
+
+    // keep the dragged position in the data-x/data-y attributes
+    var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
         y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
     // translate the element
@@ -38,7 +59,7 @@ interact('.draggable')
     target.style.transform =
       'translate(' + x + 'px, ' + y + 'px)';
 
-    // update the posiion attributes
+    // update the position attributes
     target.setAttribute('data-x', x);
     target.setAttribute('data-y', y);
   }
@@ -46,10 +67,11 @@ interact('.draggable')
   // this is used later in the resizing and gesture demos
   window.dragMoveListener = dragMoveListener;
 
+
 // enable draggables to be dropped into this
 interact('.dropzone').dropzone({
   // only accept elements matching this CSS selector
-  accept: '#yes-drop',
+  accept: '.draggable',
   // Require a 75% element overlap for a drop to be possible
   overlap: 0.75,
 
@@ -65,17 +87,35 @@ interact('.dropzone').dropzone({
 
     // feedback the possibility of a drop
     dropzoneElement.classList.add('drop-target');
-    draggableElement.classList.add('can-drop');
-    draggableElement.textContent = 'Dragged in';
+    // draggableElement.textContent = 'Dragged in';
+    if (parseInt(dropzoneElement.getAttribute("width")) >= parseInt(draggableElement.getAttribute("width"))) {
+      draggableElement.classList.add('can-drop');
+      draggableElement.textContent = "Drop-me";
+    } else {
+      draggableElement.classList.add('no-drop');
+      draggableElement.textContent = "Can't load";
+    }
   },
   ondragleave: function (event) {
     // remove the drop feedback style
     event.target.classList.remove('drop-target');
     event.relatedTarget.classList.remove('can-drop');
-    event.relatedTarget.textContent = 'Dragged out';
+    event.relatedTarget.classList.remove('no-drop');
+    event.relatedTarget.textContent = 'Drag-me'
+    // event.draggable.snap({
+    //   anchors: [startPos]
+    // })
+    // event.relatedTarget.textContent = 'Dragged out';
   },
   ondrop: function (event) {
-    event.relatedTarget.textContent = 'Dropped';
+      var draggableElement = event.relatedTarget;
+      if (draggableElement.classList.contains('no-drop')){
+        event.relatedTarget.textContent = "Can't load";
+      }else{
+        event.relatedTarget.textContent = "Loaded";
+      }
+
+
   },
   ondropdeactivate: function (event) {
     // remove active dropzone feedback
