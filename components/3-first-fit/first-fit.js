@@ -242,6 +242,7 @@ function loadClicked() {
 
 function resetSimulation() {
 	window.firstfitcarcanvas.clear();
+	$('#first-fit-message-box').html("");
 	initializeParameters();
 	init();
 }
