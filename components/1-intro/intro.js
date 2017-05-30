@@ -1,53 +1,4 @@
-/* The dragging code for '.draggable' from the demo above
- * applies to this demo as well so it doesn't have to be repeated. */
-var startPos = {x:0, y:0};
-
-interact('.draggable')
-  .on('dragstart', function (event) {
-    var rect = interact.getElementRect(event.target);
-    startPos.x = rect.left + rect.width/2;
-    startPos.y = rect.top + rect.height/2;
-    // event.draggable.snap({
-    //   anchors:[startPos]
-    // });
-
-  })
-
-interact('.draggable')
-  .draggable({
-    // snap: {
-    //   targets: [
-    //     interact.createSnapGrid({ x: 30, y: 30 })
-    //   ],
-    //   range: Infinity,
-    //   relativePoints: [ { x: 0, y: 0 } ],
-    //   // endOnly: true,
-    // },
-    // enable inertial throwing
-    inertia: true,
-    // keep the element within the area of it's parent
-    restrict: {
-      restriction: "parent",
-      endOnly: true,
-      elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
-    },
-    // enable autoScroll
-    autoScroll: true,
-
-    // call this function on every dragmove event
-    onmove: dragMoveListener,
-    // call this function on every dragend event
-    onend: function (event) {
-      var textEl = event.target.querySelector('p');
-
-      textEl && (textEl.textContent =
-        'moved a distance of '
-        + (Math.sqrt(event.dx * event.dx +
-                     event.dy * event.dy)|0) + 'px');
-    }
-  });
-
-  function dragMoveListener (event) {
+function dragMoveListener (event) {
     var target = event.target;
 
     // keep the dragged position in the data-x/data-y attributes
@@ -62,64 +13,128 @@ interact('.draggable')
     // update the position attributes
     target.setAttribute('data-x', x);
     target.setAttribute('data-y', y);
-  }
+}
 
-  // this is used later in the resizing and gesture demos
-  window.dragMoveListener = dragMoveListener;
+// this is used later in the resizing and gesture demos
+// window.dragMoveListener = dragMoveListener;
 
+function TrainVisualization (carts) {
+  this.carts = carts;
+}
 
-// enable draggables to be dropped into this
-interact('.dropzone').dropzone({
-  // only accept elements matching this CSS selector
-  accept: '.draggable',
-  // Require a 75% element overlap for a drop to be possible
-  overlap: 0.75,
+TrainVisualization.prototype.draw = function(domId) {
+  var container = document.getElementById(domId);
+  var cargoVisualization = document.createElement("div");
+  cargoVisualization.setAttribute("id", "train-cargo-1");
+  cargoVisualization.setAttribute("class", "train-cargo drag-drop");
+  cargoVisualization.setAttribute("data-capacity", "2");
 
-  // listen for drop related events:
+  interact(cargoVisualization)
+    .draggable({
+      // enable inertial throwing
+      inertia: true,
+      // keep the element within the area of it's parent
+      restrict: {
+        restriction: "parent",
+        endOnly: true,
+        elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+      },
+      // enable autoScroll
+      autoScroll: true,
 
-  ondropactivate: function (event) {
-    // add active dropzone feedback
-    event.target.classList.add('drop-active');
-  },
-  ondragenter: function (event) {
-    var draggableElement = event.relatedTarget,
-        dropzoneElement = event.target;
-
-    // feedback the possibility of a drop
-    dropzoneElement.classList.add('drop-target');
-    // draggableElement.textContent = 'Dragged in';
-    if (parseInt(dropzoneElement.getAttribute("width")) >= parseInt(draggableElement.getAttribute("width"))) {
-      draggableElement.classList.add('can-drop');
-      draggableElement.textContent = "Drop-me";
-    } else {
-      draggableElement.classList.add('no-drop');
-      draggableElement.textContent = "Can't load";
-    }
-  },
-  ondragleave: function (event) {
-    // remove the drop feedback style
-    event.target.classList.remove('drop-target');
-    event.relatedTarget.classList.remove('can-drop');
-    event.relatedTarget.classList.remove('no-drop');
-    event.relatedTarget.textContent = 'Drag-me'
-    // event.draggable.snap({
-    //   anchors: [startPos]
-    // })
-    // event.relatedTarget.textContent = 'Dragged out';
-  },
-  ondrop: function (event) {
-      var draggableElement = event.relatedTarget;
-      if (draggableElement.classList.contains('no-drop')){
-        event.relatedTarget.textContent = "Can't load";
-      }else{
-        event.relatedTarget.textContent = "Loaded";
+      // call this function on every dragmove event
+      onmove: dragMoveListener,
+      onstart: function(event) {
+        event.target.classList.add('dragging');
+      },
+      onend: function(event) {
+        event.target.classList.remove('dragging');
       }
+    });
 
+  container.appendChild(cargoVisualization);
 
-  },
-  ondropdeactivate: function (event) {
-    // remove active dropzone feedback
-    event.target.classList.remove('drop-active');
-    event.target.classList.remove('drop-target');
-  }
-});
+  this.carts.forEach(function(cart, index){
+
+    // create a dom element for the current cart
+    var cartVisualization = document.createElement("div");
+    cartVisualization.setAttribute("id", "train-cart-" + index);
+    cartVisualization.setAttribute("class", "train-cart");
+    // size it
+    cartVisualization.style.width = (cart.capacity * 100) + "px";
+    // make it a dropzone
+    interact(cartVisualization)
+      .dropzone({
+        // only accept elements matching this CSS selector
+        accept: '.train-cargo',
+        // Require a 75% element overlap for a drop to be possible
+        overlap: 0.75,
+        ondropactivate: function (event) {
+          // add active dropzone feedback
+          event.target.classList.add('drop-active');
+        },
+        ondragenter: function (event) {
+          var draggableElement = event.relatedTarget,
+              dropzoneElement = event.target;
+          var cargoSize = draggableElement.getAttribute("data-capacity");
+
+          // feedback the possibility of a drop
+          dropzoneElement.classList.add('drop-target');
+          if (cargoSize <= cart.capacity) {
+            draggableElement.classList.add('can-drop');
+          } else {
+            draggableElement.classList.add('no-drop');
+          }
+      },
+      ondragleave: function (event) {
+        // remove the drop feedback style
+        event.target.classList.remove('drop-target');
+        event.relatedTarget.classList.remove('can-drop');
+        event.relatedTarget.classList.remove('no-drop');
+        // event.relatedTarget.textContent = 'Drag-me'
+        // event.draggable.snap({
+        //   anchors: [startPos]
+        // })
+        // event.relatedTarget.textContent = 'Dragged out';
+      },
+      ondrop: function (event) {
+          var draggableElement = event.relatedTarget,
+              dropzoneElement = event.target;
+
+          draggableElement.classList.remove('dragging');
+
+          if (draggableElement.classList.contains('no-drop')){
+            // TODO: see if interact.js does this smarter somehow
+
+            draggableElement.style.webkitTransform =
+            draggableElement.style.transform =
+              'translate(' + 0 + 'px, ' + 0 + 'px)';
+            draggableElement.setAttribute('data-x', 0);
+            draggableElement.setAttribute('data-y', 0);
+            // event.relatedTarget.textContent = "Can't load";
+          } else {
+            draggableElement.style.webkitTransform =
+            draggableElement.style.transform =
+              'translate(' + dropzoneElement.offsetLeft + 'px, ' + 0 + 'px)';
+            draggableElement.setAttribute('data-x', dropzoneElement.offsetLeft);
+            draggableElement.setAttribute('data-y', 0);
+            interact(draggableElement).draggable(false);
+          }
+          event.relatedTarget.classList.remove('can-drop');
+          event.relatedTarget.classList.remove('no-drop');
+      },
+      ondropdeactivate: function (event) {
+        // remove active dropzone feedback
+        event.target.classList.remove('drop-active');
+        event.target.classList.remove('drop-target');
+      }
+    });
+    // insert it into train visualization DOM element
+    container.appendChild(cartVisualization);
+  });
+
+}
+
+var carts = [{capacity: 2}, {capacity: 1}];
+var train = new TrainVisualization(carts);
+train.draw('train-drag-drop-example');
