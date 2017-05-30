@@ -1,29 +1,29 @@
 "use strict";
 
-window.addEventListener("load", function() {
-  var button1 = document.getElementById("button-1");
+// window.addEventListener("load", function() {
+//   var button1 = document.getElementById("button-1");
 
-  var button1WasClicked = false;
+//   var button1WasClicked = false;
 
-  button1.addEventListener("click", function() {
-    button1WasClicked = !button1WasClicked
-    if (button1WasClicked) {
-      button1.setAttribute("class", "btn btn-warning");
-    } else {
-      button1.setAttribute("class", "btn btn-danger");
-    }
-  });
-});
+//   button1.addEventListener("click", function() {
+//     button1WasClicked = !button1WasClicked
+//     if (button1WasClicked) {
+//       button1.setAttribute("class", "btn btn-warning");
+//     } else {
+//       button1.setAttribute("class", "btn btn-danger");
+//     }
+//   });
+// });
 
+console.log("first fit loaded");
+firstfitinitializeParameters();
+$(firstfitinit);
 
+// window.onload = function() {
 
-window.onload = function() {
+// }
 
-	initializeParameters();
-    $(init);
-}
-
-function initializeParameters() {
+function firstfitinitializeParameters() {
 	var cargo = [null, 4, 2, 6, "none!"];
     var cars = [null, 8, 5, 2];
     var totalSpace = 0;
@@ -55,7 +55,7 @@ function initializeParameters() {
 
 }
 
-function init() {
+function firstfitinit() {
     window.firstfitcarcanvas = new fabric.StaticCanvas('first-fit-current-train');
     window.firstfitcarcanvas.setWidth(300);
     window.firstfitcarcanvas.setHeight(150);
@@ -66,12 +66,12 @@ function init() {
 
     window.firstfitcarcanvas.add(window.firstfittraincar, window.firstfitwheel1, window.firstfitwheel2, window.firstfitcargo);
 
-    initWholeTrainGraphic();
+    firstfitinitWholeTrainGraphic();
 
-    refresh();
+    firstfitrefresh();
 }
 
-function initWholeTrainGraphic() {
+function firstfitinitWholeTrainGraphic() {
     window.firstfittraincanvas = new fabric.StaticCanvas('first-fit-train-display');
     window.firstfittraincanvas.setWidth(750);
     window.firstfittraincanvas.setHeight(90);
@@ -107,7 +107,7 @@ function initWholeTrainGraphic() {
 
 }
 
-function redrawCargo() {
+function firstfitredrawCargo() {
     var currLeft = window.firstfitleftOffset;
     for (var j = 1; j<window.firstfitinitialGame.cars.length; j++) {
         var loadedCargo = "cargo" + j;
@@ -119,7 +119,7 @@ function redrawCargo() {
     }
 }
 
-function refresh() {
+function firstfitrefresh() {
 
 
     var capacity = window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar];
@@ -144,13 +144,13 @@ function refresh() {
     	$('#first-fit-right-button').attr("disabled", false);
     }
 
-    updateCargoBox();
-    updateTrainCar();
-    redrawCargo();
+    firstfitupdateCargoBox();
+    firstfitupdateTrainCar();
+    firstfitredrawCargo();
 
     //should be done with promises: just notifies users after graphics rerendered if sim done
     setTimeout(function() {
-        if (stageCompleted()) {
+        if (firstfitstageCompleted()) {
         //TODO: clear up the display
             alert("Oh no! It seems that there isn't anywhere for you to put the last cargo on the train.\
 It would have fit on the first car, but we filled that with smaller cargos. Scroll down for more explanation.");
@@ -159,7 +159,7 @@ It would have fit on the first car, but we filled that with smaller cargos. Scro
 
 }
 
-function updateCargoBox() {
+function firstfitupdateCargoBox() {
     var cargoSize = window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
     cargoSize *= 30
     $('#first-fit-current-cargo-box').css("width", cargoSize);
@@ -177,7 +177,7 @@ function updateCargoBox() {
     }
 }
 
-function updateTrainCar() {
+function firstfitupdateTrainCar() {
     var trainSize = window.firstfitinitialGame.cars[window.firstfitcurrentState.currentCar];
     var remainingSpace = window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar];
     var filledSpace = trainSize - remainingSpace
@@ -205,37 +205,37 @@ function updateTrainCar() {
 
 }
 
-function stageCompleted() {
+function firstfitstageCompleted() {
     if (window.firstfitcurrentState.clicks === 5) {return true;}
 
 }
 
-function leftClicked() {
+function firstfitleftClicked() {
     $('#first-fit-message-box').html("");
 
     if (window.firstfitcurrentState.currentCar > 1) {
         window.firstfitcurrentState.currentCar -= 1;
         //window.firstfitcurrentState.clicks += 1; // NOT penalizing going backwards
-        refresh();
+        firstfitrefresh();
     } else {
         $('#first-fit-message-box').html("You're already at the first car!");
     }
 
 }
 
-function rightClicked() {
+function firstfitrightClicked() {
     $('#first-fit-message-box').html("");
 
     if (window.firstfitcurrentState.currentCar < window.firstfitinitialGame.numCars) {
         window.firstfitcurrentState.currentCar += 1;
         window.firstfitcurrentState.clicks += 1;
-        refresh();
+        firstfitrefresh();
     } else {
         $('#first-fit-message-box').html("You're already at the last car!");
     }
 }
 
-function loadClicked() {
+function firstfitloadClicked() {
     if (window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex] <= window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar]) {
         //load the cargo
         window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar] -= window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
@@ -245,15 +245,15 @@ function loadClicked() {
         window.firstfitcurrentState.currentCar = 1;
         window.firstfitcurrentState.clicks += 1;
         $('#first-fit-message-box').html("Cargo successfully loaded!")
-        refresh();
+        firstfitrefresh();
     } else {
         $('#first-fit-message-box').html("That cargo doesn't fit in this car.")
     }
 }
 
-function resetSimulation() {
+function firstfitresetSimulation() {
 	window.firstfitcarcanvas.clear();
 	$('#first-fit-message-box').html("");
-	initializeParameters();
-	init();
+	firstfitinitializeParameters();
+	firstfitinit();
 }

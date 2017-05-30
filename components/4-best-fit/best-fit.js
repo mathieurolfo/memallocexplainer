@@ -1,26 +1,27 @@
 "use strict";
 
-window.addEventListener("load", function() {
-  var button1 = document.getElementById("button-1");
+// window.addEventListener("load", function() {
+//   var button1 = document.getElementById("button-1");
 
-  var button1WasClicked = false;
+//   var button1WasClicked = false;
 
-  button1.addEventListener("click", function() {
-    button1WasClicked = !button1WasClicked
-    if (button1WasClicked) {
-      button1.setAttribute("class", "btn btn-warning");
-    } else {
-      button1.setAttribute("class", "btn btn-danger");
-    }
-  });
-});
+//   button1.addEventListener("click", function() {
+//     button1WasClicked = !button1WasClicked
+//     if (button1WasClicked) {
+//       button1.setAttribute("class", "btn btn-warning");
+//     } else {
+//       button1.setAttribute("class", "btn btn-danger");
+//     }
+//   });
+// });
 
 
+console.log("best fit loaded");
+initializeParameters();
+$(init);
 
 window.onload = function() {
-
-  initializeParameters();
-  $(init);
+  
 }
 
 function initializeParameters() {
@@ -135,14 +136,14 @@ function refresh() {
     $('#best-fit-clicks').html(window.bestfitcurrentState.clicks);
     $('#best-fit-utilization').html(window.bestfitcurrentState.utilization + " out of " + window.bestfitinitialGame.totalSpace)
 
-    if (capacity >= window.bestfitinitialGame.cargo[window.bestfitcurrentState.currentCargoIndex]) {
-      $('#best-fit-left-button').attr("disabled", true);
-      $('#best-fit-right-button').attr("disabled", true);
-      $('#best-fit-message-box').html("The cargo fits! Place it here!");
-    } else {
-      $('#best-fit-left-button').attr("disabled", false);
-      $('#best-fit-right-button').attr("disabled", false);
-    }
+    // if (capacity >= window.bestfitinitialGame.cargo[window.bestfitcurrentState.currentCargoIndex]) {
+    //   $('#best-fit-left-button').attr("disabled", true);
+    //   $('#best-fit-right-button').attr("disabled", true);
+    //   $('#best-fit-message-box').html("The cargo fits! Place it here!");
+    // } else {
+    //   $('#best-fit-left-button').attr("disabled", false);
+    //   $('#best-fit-right-button').attr("disabled", false);
+    // }
 
     updateCargoBox();
     updateTrainCar();
@@ -206,7 +207,7 @@ function updateTrainCar() {
 }
 
 function stageCompleted() {
-    if (window.bestfitcurrentState.clicks === 5) {return true;}
+    // if (window.bestfitcurrentState.clicks === 5) {return true;}
 
 }
 
