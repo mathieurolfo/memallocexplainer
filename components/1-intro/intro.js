@@ -88,10 +88,12 @@ interact('.dropzone').dropzone({
     // feedback the possibility of a drop
     dropzoneElement.classList.add('drop-target');
     // draggableElement.textContent = 'Dragged in';
-    if (dropzoneElement.getAttribute("width") >= draggableElement.getAttribute("width")) {
+    if (parseInt(dropzoneElement.getAttribute("width")) >= parseInt(draggableElement.getAttribute("width"))) {
       draggableElement.classList.add('can-drop');
+      draggableElement.textContent = "Drop-me";
     } else {
       draggableElement.classList.add('no-drop');
+      draggableElement.textContent = "Can't load";
     }
   },
   ondragleave: function (event) {
@@ -99,13 +101,21 @@ interact('.dropzone').dropzone({
     event.target.classList.remove('drop-target');
     event.relatedTarget.classList.remove('can-drop');
     event.relatedTarget.classList.remove('no-drop');
+    event.relatedTarget.textContent = 'Drag-me'
     // event.draggable.snap({
     //   anchors: [startPos]
     // })
     // event.relatedTarget.textContent = 'Dragged out';
   },
   ondrop: function (event) {
-    // event.relatedTarget.textContent = 'Dropped';
+      var draggableElement = event.relatedTarget;
+      if (draggableElement.classList.contains('no-drop')){
+        event.relatedTarget.textContent = "Can't load";
+      }else{
+        event.relatedTarget.textContent = "Loaded";
+      }
+
+
   },
   ondropdeactivate: function (event) {
     // remove active dropzone feedback
