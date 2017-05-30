@@ -95,6 +95,11 @@
   background-color: #999;
 }
 
+.no-drop {
+  color: #29e;
+  background-color: #999;
+}
+
 #grid-snap {
   width: 80px;
   background-color: #29e;
@@ -107,7 +112,7 @@
 
 
 #train-drag-drop-example {
-  width: 600px;
+  width: 5000px;
   height: 300px;
 }
 
