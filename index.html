@@ -28,6 +28,8 @@
     <script src="components/2-malloc/malloc.js" defer></script>
     <link href="components/6-segregated-freelist/segregated-freelist.css" rel="stylesheet" type="text/css">
     <script src="components/6-segregated-freelist/segregated-freelist.js" defer></script>
+    <link href="components/7-play/play.css" rel="stylesheet" type="text/css">
+    <script src="components/7-play/play.js" defer></script>
 
     <!-- <script src="components/3-first-fit/shared-fit-game-logic.js" defer></script> -->
 
@@ -218,7 +220,7 @@
 			<!-- <div id="cargo-display-header" class="display-header"></div>
 			<div id="cargo-current-size"></div> -->
 			<img class="img" src="figures/train-head.svg"></img>
-			<div class="train" id="seg-free-example">
+			<!-- <div class="train" id="seg-free-example"> -->
 		</span>
 		<span id="seglist-display-region">
 			<!-- <div id="cargo-display-header" class="display-header"></div>
@@ -227,6 +229,50 @@
 			<!-- <div class="train" id="seg-free-example"> -->
 		</span>
         
+	</section>
+
+	<section id="play">
+
+		<span id="seg-free-cargo-display-region">
+
+			<div id="seg-free-cargo-display-header" class="display-header"></div>
+
+			<div id="seg-free-current-cargo-box" class="centered"></div>
+			<div id="seg-free-cargo2" class="cargo-box centered">?</div>
+			<div id="seg-free-cargo3" class="cargo-box centered">?</div>
+
+		</span>
+
+		<span id="seg-free-current-car-region">
+			<div id="seg-free-car-display-header" class="display-header"></div>
+
+			<div id="seg-free-car-display">
+				<button id="seg-free-left-button" class="button button-circle" onclick="leftClickedSeg()"></button>
+				<canvas id="seg-free-current-train"></canvas>
+				<button id="seg-free-right-button" class="button button-circle" onclick="rightClickedSeg()">></button>
+			</div>
+
+
+			<div class="centered">
+				<div id="seg-free-car-capacity">hi</div>
+				<button id="seg-free-load-button" class="button" onclick="loadClickedSeg()">Load Cargo</button>
+				<div>
+					<div id="seg-free-message-box" ></div>
+				</div>
+			</div>
+
+		</span>
+
+		<div id="seg-free-train-display-region">
+			<div id="seg-free-click-counter">
+				<span >Train cars inspected: </span><span id="seg-free-clicks"></span>
+			</div>
+			<div id="seg-free-util-counter">
+				<span >Total train space used: </span><span id="seg-free-utilization"></span>
+			</div>
+			<canvas id="seg-free-train-display"></canvas>
+		</div>
+		<button id="seg-free-refresh-button" class="button" onclick="resetSimulationSeg()">Refresh this Game</button>
 	</section>
 
 	<section id="conclusion">
