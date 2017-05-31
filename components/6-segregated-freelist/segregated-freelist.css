@@ -1,78 +1,190 @@
-/*#section-2 button {
-   background-color: blue; 
-}*/
-
-
-#seglist-display-region {
-	display: inline-block;
-	width: 700px;
-	height: 400px;
-	margin: 5px;
-	border: 1px solid;
+span, div {
+  font-family: "Source Sans Pro", sans-serif;
 }
 
-#freetrain-display-region {
-	display: inline-block;
-	width: 700px;
-	height: 500px;
-	margin: 5px;
-	border: 1px solid;
+#best-fit-header-text {
+  font-size: 30px;
+  /*margin-left: auto;
+  margin-right: auto;*/
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 800px;
 }
 
-html,body{
-  width:100%;
-  height:100%;
-  padding:0px;
-  margin:0px;
+#best-fit-description-text {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 100px;
+  width: 600px;
 }
 
-.drag-list{
-  width:100%;height:100%;
-  background:#49F;
+#best-fit-cargo-display-region {
+  display: inline-block;
+  width: 300px;
+  height: 400px;
+  /*background-color: red;*/
+  /*opacity: 0.5;*/
+  margin: 5px;
+  border: 1px solid;
 }
 
-.drag-list .list{
-  background:#e1e1e1;
-  border-radius:6px;
-  margin:4px;
-  width:120px;
-  float:left;
+#best-fit-current-cargo-box {
+  margin-top: 20px;
+  width: 0px;
+  height: 50px;
+  box-shadow: 5px;
+
+  line-height: 45px;
+  background-color: red;
+  color: black;
+}
+
+.cargo-box {
+  margin-top: 20px;
+  width: 60px;
+  height: 50px;
+  box-shadow: 5px;
+
+  line-height: 45px;
+  background-color: gray;
+  color: black;
+}
+
+.display-header {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  font-size: 24px;
+  color: black;
+  text-align: center;
+}
+
+#best-fit-cargo-display-header {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  font-size: 24px;
+  color: black;
+  text-align: center;
+}
+
+#best-fit-current-cargo-size {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  font-size: 24px;
+  color: black;
+  text-align: center;
+}
+
+
+
+#best-fit-current-car-region {
+  width: 500px;
+  height: 400px;
+  /*background-color: blue;
+  opacity: 0.5;*/
+  border: 1px solid;
+  display: inline-block;
+  vertical-align: top;
+  margin: 5px;
+}
+
+#best-fit-train-display-region {
+  width: 815px;
+  height: 150px;
+  /*background-color: green;
+  opacity: 0.5;*/
+  border: 1px solid;
+  margin: 5px;
+}
+
+#best-fit-train-display {
+  margin-left: 20px;
+  width: 700px;
+  height: 150px;
+}
+
+#best-fit-car-display {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 15px;
+  
+}
+
+#best-fit-car-display-header {
+  font-size: 24px;
+}
+
+#best-fit-current-train {
+  display: inline-block;
+  vertical-align: middle;
+  width: 200px;
+  height: 200px;
+  /*background-color: red;*/
+}
+
+#best-fit-car-capacity {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#best-fit-message-box {
+  background-color: yellow;
+  white-space: nowrap;
+  display: inline;
+  margin-top: 15px;
+  /*padding: 3px;*/
+  /*display: inline-block;*/
+  font-size: 24px;
+}
+
+#best-fit-load-button {
+  margin-top: 20px;
+  background-color: lightblue;
+  margin-bottom: 30px;
+}
+
+#best-fit-click-counter {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#best-fit-util-counter {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+button {
+  margin: 5px;
 
 }
 
-.drag-list .list p { 
-  text-align:left; 
-  margin:10px 10px 10px 10px; 
-  font-weight:bold;
-  user-select: none;
-  -webkit-user-select: none;
-  color:#888;
+#best-fit-left-button {
+  background-color: lightblue;
 }
 
-.drag-list .page{
-  background:#fafafa;
-  width:90px;
-  cursor: pointer;
-  text-align:center;
-  margin:4px;
-  margin-left:10px;
-  padding:4px;
-  border-radius:4px;
-  color:#666;
-  box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+#best-fit-right-button {
+  background-color: lightblue;
 }
 
-.drag-list .list .page:hover{ background:#e9e9e9}
 
-.rotated {transform: rotateZ(6deg);}
-
-.drag-list .placeholder{
-    width:90px;
-    height:26px;
-    margin:4px;
-    margin-left:10px;
-    border-width:2px;
-    border-style:dashed;
-    border-radius:4px;
-    border-color:#aaa;
+#best-fit-end-text {
+  width: 600px;
+  margin-left: 100px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  height: 400px;
+  font-size: 20px;
 }
+

@@ -225,6 +225,46 @@
 
 	<!-- optional, have the user play on their own -->
 	<section id="play">
+		<span id="best-fit-cargo-display-region">
+
+			<div id="best-fit-cargo-display-header" class="display-header"></div>
+			
+			<div id="best-fit-current-cargo-box" class="centered"></div>
+			<div id="best-fit-cargo2" class="cargo-box centered">?</div>
+			<div id="best-fit-cargo3" class="cargo-box centered">?</div>
+
+		</span>
+
+		<span id="best-fit-current-car-region">
+			<div id="best-fit-car-display-header" class="display-header"></div>
+			
+			<div id="best-fit-car-display">
+				<button id="best-fit-left-button" class="button button-circle" onclick="leftClicked()"><</button>
+				<canvas id="best-fit-current-train"></canvas>
+				<button id="best-fit-right-button" class="button button-circle" onclick="rightClicked()">></button>
+			</div>
+
+
+			<div class="centered">
+				<div id="best-fit-car-capacity">hi</div>
+				<button id="best-fit-load-button" class="button" onclick="loadClicked()">Load Cargo</button>
+				<div>
+					<div id="best-fit-message-box" ></div>
+				</div>
+			</div>
+
+		</span>
+
+		<div id="best-fit-train-display-region">
+			<div id="best-fit-click-counter">
+				<span >Train cars inspected: </span><span id="best-fit-clicks"></span>
+			</div>
+			<div id="best-fit-util-counter">
+				<span >Total train space used: </span><span id="best-fit-utilization"></span>
+			</div>
+			<canvas id="best-fit-train-display"></canvas>
+		</div>
+		<button id="best-fit-refresh-button" class="button" onclick="resetSimulation()">Refresh this Game</button>
 	</section>
 
 	<section id="conclusion">
