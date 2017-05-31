@@ -18,23 +18,28 @@ function dragMoveListener(event) {
 // this is used later in the resizing and gesture demos
 // window.dragMoveListener = dragMoveListener;
 
-function TrainVisualization (draggableCargos, carts) {
+function TrainVisualization (draggableCarts, carts) {
   this.carts = carts;
-  this.draggableCargos = draggableCargos
+  this.draggableCarts = draggableCarts
 }
+
+var CARGO_SIZE = 20
 
 TrainVisualization.prototype.draw = function(domId) {
   var container = document.getElementById(domId);
 
-  this.draggableCargos.forEach(function(cargo, index){
-    var draggableCargo = document.createElement("div");
-    draggableCargo.setAttribute("id", "train-cargo-" + index);
-    draggableCargo.setAttribute("class", "train-cargo drag-drop");
-    draggableCargo.setAttribute("capacity", cargo.capacity);
-    draggableCargo.style.width = "100px"
-    draggableCargo.textContent = cargo.capacity
+  this.draggableCarts.forEach(function(cargo, index){
+    var draggableCart = document.createElement("div");
+    draggableCart.setAttribute("id", "draggable-cart-" + index);
+    draggableCart.setAttribute("class", "draggable-cart drag-drop");
+    draggableCart.setAttribute("capacity", cargo.capacity);
+    draggableCart.setAttribute("nextCart", "draggable-cart-" + (1+index));
+    draggableCart.style.width = cargo.capacity * CARGO_SIZE + "px"
+    draggableCart.textContent = cargo.capacity
+    draggableCart.style.visibility = "hidden";
 
-    interact(draggableCargo)
+
+    interact(draggableCart)
       .draggable({
         inertia: true,
         // keep the element within the area of it's parent
@@ -54,28 +59,27 @@ TrainVisualization.prototype.draw = function(domId) {
           event.target.classList.remove('dragging');
         }
       });
-    container.appendChild(draggableCargo);
+    container.appendChild(draggableCart);
   });
 
 
   this.carts.forEach(function(cart, index){
-
     // create a dom element for the current cart
-    var cartVisualization = document.createElement("div");
-    cartVisualization.setAttribute("id", "train-cart-" + index);
-    cartVisualization.setAttribute("class", "train-cart");
+    var bucket = document.createElement("div");
+    bucket.setAttribute("id", "train-cart-" + index);
+    bucket.setAttribute("class", "train-cart");
     // size it
-    cartVisualization.style.width = "500px";
-    cartVisualization.setAttribute("maxCapacity", cart.maxCapacity);
-    cartVisualization.setAttribute("numCarts", 0);
-    cartVisualization.textContent = (parseInt(cart.maxCapacity)-3).toString() + "~" + cart.maxCapacity
+    bucket.style.width = "800px";
+    bucket.setAttribute("maxCapacity", cart.maxCapacity);
+    bucket.setAttribute("cartLength", 0);
+    bucket.textContent = (parseInt(cart.maxCapacity)-3).toString() + "~" + cart.maxCapacity
     // make it a dropzone
-    interact(cartVisualization)
+    interact(bucket)
       .dropzone({
         // only accept elements matching this CSS selector
-        accept: '.train-cargo',
+        accept: '.draggable-cart',
         // Require a 75% element overlap for a drop to be possible
-        overlap: 0.95,
+        overlap: 0.4,
         ondropactivate: function (event) {
           // add active dropzone feedback
           event.target.classList.add('drop-active');
@@ -122,17 +126,29 @@ TrainVisualization.prototype.draw = function(domId) {
               // event.relatedTarget.textContent = "Can't load";
               event.relatedTarget.classList.remove('no-drop');
             } else if (draggableElement.classList.contains('can-drop')){
-              var numCarts = parseInt(dropzoneElement.getAttribute("numCarts", 0));
-              console.log("numCarts: " + numCarts)
-              console.log(dropzoneElement)
+              var cartLength = parseInt(dropzoneElement.getAttribute("cartLength", 0));
+              var cargoCapacity = parseInt(draggableElement.getAttribute("capacity", 0));
+              console.log("length: " + cartLength)
+
+              var x = cartLength * CARGO_SIZE - draggableElement.offsetLeft,
+                  y = dropzoneElement.offsetTop - draggableElement.offsetTop;
               draggableElement.style.webkitTransform =
               draggableElement.style.transform =
-                'translate(' + dropzoneElement.offsetLeft * numCarts + 'px, ' + dropzoneElement.offsetTop-50 + 'px)';
-              draggableElement.setAttribute('data-x', dropzoneElement.offsetLeft * numCarts);
-              // draggableElement.setAttribute('data-y', 0);
+                'translate(' + x + 'px, ' + y + 'px)';
+              console.log(draggableElement.style.transform)
+              draggableElement.setAttribute('data-x', x);
+              draggableElement.setAttribute('data-y', y);
+
               interact(draggableElement).draggable(false);
-              dropzoneElement.setAttribute("numCarts", (numCarts+1).toString())
+
+              dropzoneElement.setAttribute("cartLength", (cargoCapacity+cartLength).toString())
               event.relatedTarget.classList.remove('can-drop');
+
+              // make the next cart visible
+              if (document.getElementById(draggableElement.getAttribute("nextCart")) != null) {
+                document.getElementById(draggableElement.getAttribute("nextCart")).style.visibility = "";
+              }
+
             }
         },
         ondropdeactivate: function (event) {
@@ -144,12 +160,16 @@ TrainVisualization.prototype.draw = function(domId) {
     // insert it into train visualization DOM element
     container.appendChild(document.createElement('br'));
     container.appendChild(document.createElement('br'));
-    container.appendChild(cartVisualization);
+    container.appendChild(bucket);
   });
 
 }
 
-var draggableCargos = [{capacity: 4}, {capacity: 8}, {capacity: 16}, {capacity: 10}, {capacity: 12}, {capacity: 4}];
+var draggableCarts = [
+  {capacity: 4}, {capacity: 8}, {capacity: 16},
+  {capacity: 10}, {capacity: 12}, {capacity: 4},
+  {capacity: 2}, {capacity: 8}, {capacity: 4},  {capacity: 6}];
 var carts = [{maxCapacity: 4}, {maxCapacity: 8}, {maxCapacity: 12}, {maxCapacity: 16}];
-var train = new TrainVisualization(draggableCargos, carts);
+var train = new TrainVisualization(draggableCarts, carts);
 train.draw('train-drag-drop-example');
+document.getElementById("draggable-cart-0").style.visibility = "";
