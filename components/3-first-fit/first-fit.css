@@ -157,9 +157,7 @@ span, div {
 	margin-bottom: 30px;
 }
 
-.flashing-button {
-	-webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-}
+
 
 #first-fit-click-counter {
 	margin-top: 10px;
@@ -198,6 +196,14 @@ button {
 	margin-bottom: 30px;
 	height: 400px;
 	font-size: 20px;
+}
+
+.pulsing {
+	/*animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);*/
+	animation-name: pulse;
+	animation-duration: 1.25s;
+	animation-iteration-count: infinite;
+	animation-timing-function: cubic-bezier(0.66,0,0,1);
 }
 
 @-webkit-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
