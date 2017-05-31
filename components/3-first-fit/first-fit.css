@@ -9,15 +9,17 @@ span, div {
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 10px;
-	width: 800px;
+	/*width: 800px;*/
 }
 
 #first-fit-description-text {
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 20px;
-	margin-left: 100px;
-	width: 600px;
+	/*margin-left: 100px;*/
+	/*width: 600px;*/
+	padding-left: 150px;
+	padding-right: 150px;
 }
 
 #first-fit-cargo-display-region {
@@ -155,6 +157,10 @@ span, div {
 	margin-bottom: 30px;
 }
 
+.flashing-button {
+	-webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
 #first-fit-click-counter {
 	margin-top: 10px;
 	margin-left: 10px;
@@ -168,6 +174,12 @@ span, div {
 button {
 	margin: 5px;
 
+}
+
+#first-fit-game-container {
+	width: 90%;
+	margin: 0 auto;
+	background-color: #42eef4;
 }
 
 #first-fit-left-button {
@@ -188,3 +200,4 @@ button {
 	font-size: 20px;
 }
 
+@-webkit-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}

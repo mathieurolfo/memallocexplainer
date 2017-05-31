@@ -25,7 +25,7 @@ $(firstfitinit);
 
 function firstfitinitializeParameters() {
 	var cargo = [null, 4, 2, 6, "none!"];
-    var cars = [null, 8, 5, 2];
+    var cars = [null, 1, 8, 5, 2];
     var totalSpace = 0;
     for (var x=1; x<cars.length; x++) {
         totalSpace += cars[x];
