@@ -61,7 +61,6 @@
       </div>
     </header>
 
-	<!-- Kitty TO DO -->
     <section id="intro">
 
         <div class="container">
@@ -69,36 +68,15 @@
               <h3>Carts on a train are storage spaces! </h3>
             </div>
             <div class="row">
-                <div class="train" id="train-drag-drop-example" >
+                <h4>Click to load the train!</h4>
                 </div>
-   <!--              <img class="img img-fluid" id="train-head" src="figures/train-head.svg"></img>
-                <div id="inner-dropzone-1" class="dropzone" width=100>
-                    <img class="img img-fluid" id="car-2" src="figures/train2.svg"></img>
-                </div>
-                <div id="inner-dropzone-2" class="dropzone" width=135>
-                    <img class="img img-fluid" id="car-3" src="figures/train3.svg"></img>
-                </div> -->
-            </div>
-            <div class="row">
-                <div class="col-md-12" align="center">
-                <h4>Drag the cargo to load the train!</h4>
-            </div>
-            </div>
-
-              </div>
             </div>
 
         </div>
-<!--         <div id="cargo-1" class="draggable drag-drop" width=120 data-capacity="2">
-            drag-me
-        </div> -->
-        </div>
 
-      </div>
     </section>
 
 
-	<!-- Kitty-TO-DO -->
 	<section id="malloc">
         <h4>This is called allocation.</h4>
     </section>
@@ -156,7 +134,7 @@
 	The strategy we just tried out, placing the cargo in the first-fitting spot, has its strengths and weaknesses. On one hand, we are able to place a given piece of cargo pretty quickly: we placed the first two pieces of cargo after only looking at a single car! However, we couldn't make the best use of our train's available space: we had what is referred to as fragmentation. <br><br>Our final stats were 5 cars inspected and 6/15 space utilization: can we do better with a different strategy?
 	</div>
 	</section>
-	<!--  Matt To-Do, best fit can reuse the first fit css/js-->
+	<!--  best fit -->
      <section id="best-fit">
 
 	<div id="best-fit-header-text">Load the train by placing cargo in the smallest space it fits!</div>
@@ -210,21 +188,40 @@
     </section>
 
 
-	<!-- SunMi TO-DO -->
 	<section id="segregated-freelist">
-		<p>Now let's make our cheat sheet</p>
-		<!-- <span id="seglist-display-region"> -->
-			<!-- <div id="cargo-display-header" class="display-header"></div>
-			<div id="cargo-current-size"></div> -->
-			<!-- <img class="img" src="figures/train-head.svg"></img>
-			<div class="train" id="seg-free-example">
-			<div class="train" id="seg-free-example">
-			<div class="train" id="seg-free-example"> -->
-		<!-- </span> -->
+
+        <div class="container" >
+            <div class="row">
+              <h5>Now let's create a cheat sheet! </h5>
+              <div id="free-list-text" name="free-list-segue">
+    Can you sort it into different bucket list by looking at each cart once? <br>Try drag the carts into different size list!
+        </div>
+              <p></p>
+
+            </div>
+            <div class="row">
+                <div class="train" id="train-drag-drop-example" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" align="center">
+                <h4>Drag the empty train into different categories of sizes!</h4>
+                </div>
+            </div>
+
+        </div>
+            </div>
+
+        </div>
+
     </section>
 
-	<!-- optional, have the user play on their own -->
 	<section id="play">
+        <div class="container">
+            <div class="row">
+              <h5>Now load the train according to the cheat sheet! </h5>
+          </div>
+      </div>
 	</section>
 
 	<section id="conclusion">
