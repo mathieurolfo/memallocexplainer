@@ -1,12 +1,5 @@
 "use strict";
 
-riot.mount('drag-lists',{lists:
-        [{name:'list1',
-          pages:[{name:'page1'}, {name:'page2'},{name:'page3'}]},
-        {name:'list2',
-        pages:[{name:'page4'}, {name:'page5'}]},
-        {name:'list3'},
-        {name:'list4'}]});
 
 function dragMoveListener (event) {
     var target = event.target;
@@ -25,20 +18,45 @@ function dragMoveListener (event) {
     target.setAttribute('data-y', y);
 }
 
-// this is used later in the resizing and gesture demos
-// window.dragMoveListener = dragMoveListener;
+function initializeParameters() {
+  var cargo = [null, 4, 2, 6, "none!"];
+    var cars = [null, 8, 5, 2];
+    var totalSpace = 0;
+    for (var x=1; x<cars.length; x++) {
+        totalSpace += cars[x];
+    }
+    var remainingCapacity = cars.slice(0); //copy the unloaded car array
+    var cargoLeft = cargo.length - 2; //adjust for 1 indexing and end message
+    var currentCargoIndex = 1;
+    var numCars = cars.length - 1;
+    var currentCar = 1;
+    window.bestfitinitialGame = {
+        cargo: cargo,
+        cars: cars,
+        numCars: numCars,
+        totalSpace: totalSpace
 
-function TrainVisualization (carts) {
-  this.carts = carts;
+    };
+
+    window.bestfitcurrentState = {
+        cargoLeft: cargoLeft,
+        currentCar: currentCar,
+        remainingCapacity: remainingCapacity,
+        currentCargoIndex: currentCargoIndex,
+        clicks: 1,
+        utilization: 0
+    };
+
+
 }
+
 
 TrainVisualization.prototype.draw = function(domId) {
   var container = document.getElementById(domId);
   var cargoVisualization = document.createElement("div");
   cargoVisualization.setAttribute("id", "train-cargo-1");
   cargoVisualization.setAttribute("class", "train-cargo drag-drop");
-  cargoVisualization.setAttribute("capacity", "2");
-  cargoVisualization.style.width = (cargoVisualization.getAttribute("capacity") * 100) + "px"
+  cargoVisualization.setAttribute("data-capacity", "2");
 
   interact(cargoVisualization)
     .draggable({
@@ -79,7 +97,7 @@ TrainVisualization.prototype.draw = function(domId) {
         // only accept elements matching this CSS selector
         accept: '.train-cargo',
         // Require a 75% element overlap for a drop to be possible
-        overlap: 0.4,
+        overlap: 0.75,
         ondropactivate: function (event) {
           // add active dropzone feedback
           event.target.classList.add('drop-active');
@@ -87,14 +105,13 @@ TrainVisualization.prototype.draw = function(domId) {
         ondragenter: function (event) {
           var draggableElement = event.relatedTarget,
               dropzoneElement = event.target;
-          var cargoSize = draggableElement.getAttribute("capacity");
+          var cargoSize = draggableElement.getAttribute("data-capacity");
 
           // feedback the possibility of a drop
           dropzoneElement.classList.add('drop-target');
-          if (parseInt(cargoSize) == parseInt(cart.capacity)) {
+          if (cargoSize <= cart.capacity) {
             draggableElement.classList.add('can-drop');
           } else {
-            console.log(cargoSize, cart.capacity)
             draggableElement.classList.add('no-drop');
           }
       },
@@ -140,14 +157,10 @@ TrainVisualization.prototype.draw = function(domId) {
         event.target.classList.remove('drop-active');
         event.target.classList.remove('drop-target');
       }
-    });
-    // insert it into train visualization DOM element
-    container.appendChild(cartVisualization);
-  });
+    }
+
 
 }
-
-var carts = [{capacity: 1},{capacity: 2}];
+var carts = [{capacity: 2}, {capacity: 1}];
 var train = new TrainVisualization(carts);
-
 train.draw('seg-free-example');
