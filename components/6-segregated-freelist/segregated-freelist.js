@@ -242,4 +242,3 @@ function resetSimulation() {
   initializeParameters();
   init();
 }
-
