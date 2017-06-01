@@ -1,3 +1,190 @@
-#section-2 button {
-  /* background-color: blue; */
+span, div {
+	font-family: "Source Sans Pro", sans-serif;
 }
+
+#seg-free-header-text {
+	font-size: 30px;
+	/*margin-left: auto;
+	margin-right: auto;*/
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	width: 800px;
+}
+
+#seg-free-description-text {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 100px;
+	width: 600px;
+}
+
+#seg-free-cargo-display-region {
+	display: inline-block;
+	width: 300px;
+	height: 400px;
+	/*background-color: red;*/
+	/*opacity: 0.5;*/
+	margin: 5px;
+	border: 1px solid;
+}
+
+#seg-free-current-cargo-box {
+	margin-top: 20px;
+	width: 0px;
+	height: 50px;
+	box-shadow: 5px;
+
+	line-height: 45px;
+	background-color: red;
+	color: black;
+}
+
+.cargo-box {
+	margin-top: 20px;
+	width: 60px;
+	height: 50px;
+	box-shadow: 5px;
+
+	line-height: 45px;
+	background-color: gray;
+	color: black;
+}
+
+.display-header {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	font-size: 24px;
+	color: black;
+	text-align: center;
+}
+
+#seg-free-cargo-display-header {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	font-size: 24px;
+	color: black;
+	text-align: center;
+}
+
+#seg-free-current-cargo-size {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	font-size: 24px;
+	color: black;
+	text-align: center;
+}
+
+
+
+#seg-free-current-car-region {
+	width: 500px;
+	height: 400px;
+	/*background-color: blue;
+	opacity: 0.5;*/
+	border: 1px solid;
+	display: inline-block;
+	vertical-align: top;
+	margin: 5px;
+}
+
+#seg-free-train-display-region {
+	width: 815px;
+	height: 150px;
+	/*background-color: green;
+	opacity: 0.5;*/
+	border: 1px solid;
+	margin: 5px;
+}
+
+#seg-free-train-display {
+	margin-left: 20px;
+	width: 700px;
+	height: 150px;
+}
+
+#seg-free-car-display {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	margin-top: 15px;
+	
+}
+
+#seg-free-car-display-header {
+	font-size: 24px;
+}
+
+#seg-free-current-train {
+	display: inline-block;
+	vertical-align: middle;
+	width: 200px;
+	height: 200px;
+	/*background-color: red;*/
+}
+
+#seg-free-car-capacity {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#seg-free-message-box {
+	background-color: yellow;
+	white-space: nowrap;
+	display: inline;
+	margin-top: 15px;
+	/*padding: 3px;*/
+	/*display: inline-block;*/
+	font-size: 24px;
+}
+
+#seg-free-load-button {
+	margin-top: 20px;
+	background-color: lightblue;
+	margin-bottom: 30px;
+}
+
+#seg-free-click-counter {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#seg-free-util-counter {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+button {
+	margin: 5px;
+
+}
+
+#seg-free-left-button {
+	background-color: lightblue;
+}
+
+#seg-free-right-button {
+	background-color: lightblue;
+}
+
+
+#seg-free-end-text {
+	width: 600px;
+	margin-left: 100px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	height: 400px;
+	font-size: 20px;
+}
+
