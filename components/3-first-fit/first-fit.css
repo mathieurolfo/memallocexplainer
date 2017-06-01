@@ -39,8 +39,9 @@ span, div {
 	box-shadow: 5px;
 
 	line-height: 45px;
-	background-color: red;
+	/*background-color: red;*/
 	color: black;
+	border: 2px solid;
 }
 
 .cargo-box {
@@ -178,7 +179,8 @@ button {
 
 #first-fit-load-button {
 	margin-top: 20px;
-	background-color: lightblue;
+	/*background-color: lightblue;*/
+	color: black;
 	margin-bottom: 30px;
 }
 
