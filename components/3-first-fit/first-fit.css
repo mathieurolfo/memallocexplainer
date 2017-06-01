@@ -151,12 +151,6 @@ span, div {
 	font-size: 24px;
 }
 
-#first-fit-load-button {
-	margin-top: 20px;
-	background-color: lightblue;
-	margin-bottom: 30px;
-}
-
 
 
 #first-fit-click-counter {
@@ -175,17 +169,27 @@ button {
 }
 
 #first-fit-game-container {
-	width: 90%;
+	width: 70%;
 	margin: 0 auto;
-	background-color: #42eef4;
+	/*background-color: #42eef4;*/
+	border: 2px solid;
+	padding-bottom: 20px;
+}
+
+#first-fit-load-button {
+	margin-top: 20px;
+	background-color: lightblue;
+	margin-bottom: 30px;
 }
 
 #first-fit-left-button {
 	background-color: lightblue;
+	/*animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);*/
 }
 
 #first-fit-right-button {
 	background-color: lightblue;
+	/*animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);*/
 }
 
 
@@ -198,12 +202,12 @@ button {
 	font-size: 20px;
 }
 
-.pulsing {
-	/*animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);*/
+/*.pulsing {
+	animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
 	animation-name: pulse;
 	animation-duration: 1.25s;
 	animation-iteration-count: infinite;
 	animation-timing-function: cubic-bezier(0.66,0,0,1);
 }
 
-@-webkit-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+@-webkit-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}*/

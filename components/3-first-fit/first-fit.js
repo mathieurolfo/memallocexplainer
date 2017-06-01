@@ -142,7 +142,9 @@ function firstfitrefresh() {
     } else {
     	$('#first-fit-left-button').attr("disabled", false);
     	$('#first-fit-right-button').attr("disabled", false);
-        // $('first-fit-load-button').removeClass("pulsing");
+        $('#first-fit-load-button').attr("animation", "none");
+        $('#first-fit-load-button').removeClass("pulsing");
+        $('#first-fit-load-button').stop();
     }
 
     firstfitupdateCargoBox();
@@ -237,9 +239,9 @@ function firstfitrightClicked() {
 }
 
 function firstfitloadClicked() {
-    $('#first-fit-load-button').removeClass("pulsing");
-    $('#first-fit-load-button').animate({animation: 'none'});
-    $('#first-fit-load-button').stop()
+    // $('#first-fit-load-button').removeClass("pulsing");
+    // $('#first-fit-load-button').animate({animation: 'none'});
+    // $('#first-fit-load-button').stop()
     if (window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex] <= window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar]) {
         //load the cargo
         window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar] -= window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
