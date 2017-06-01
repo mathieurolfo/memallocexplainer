@@ -76,6 +76,8 @@
                 <p>Click to load</p>
                     <img class="img img-fluid" id="figure-head" src="figures/train-head.svg"></img>
                     <img class="img img-fluid" id="figure-cart2" src="figures/train2.svg"></img>
+                    <img class="img img-fluid" id="figure-cart2copy" src="figures/train2-copy.svg"></img>
+
                     <button id="first-fit-load-button" class="button" onclick="firstfitloadClicked()">Load Cargo</button>
               </div>
             </div>
@@ -85,60 +87,109 @@
 
 
 	<section id="malloc">
-        <h4>This is called allocation.</h4>
+		<div><div id="malloc-container" class="centered">
+		<h2>Loading the Train</h2>
+		<div id="malloc-description-text">
+		In our explanation, we represent requests for memory allocation, called malloc in computer science terms, as placing cargo on train cars. To place cargo on a train, you will check train cars sequentially, and if they have enough space, press the button to load the cargo. Cargo can be placed on cars larger than them, but not cars smaller than them.
+		</div>
+		
+		<div id="malloc-demo-1">
+		<h5>Try and load the cargo!</h5>
+		<div class="centered"><div id="malloc-cargo-box-1" class="malloc-cargo-box cargo-box">4</div></div>
+
+		<img class="img img-fluid figure-head" id="figure-head-1" src="figures/train-head.svg"></img>
+        <img class="img img-fluid figure-cart2" id="figure-cart2-1" src="figures/train-demo.svg"></img>
+        
+        <div><button id="demo-load-button-1" class="malloc-load-button button-pill button button-3d" onclick="demoLoadClicked1()">Load Cargo</button></div>
+        </div>
+
+        <div id="malloc-demo-2">
+
+        	<div class="malloc-text centered">
+        	Great, you placed the cargo! Now try with a cargo that is too big for the cart. 
+        	</div>
+
+	        <div class="centered"><div id="malloc-cargo-box-2" class="malloc-cargo-box cargo-box">10</div></div>
+
+			<img class="img img-fluid figure-head" id="figure-head-2" src="figures/train-head.svg"></img>
+	        <img class="img img-fluid figure-cart2" id="figure-cart2-2" src="figures/train-demo.svg"></img>
+	        
+	        <div><button id="malloc-load-button2" class=" malloc-load-button button button-3d button-pill" onclick="demoLoadClicked2()">Load Cargo</button></div>
+	        </div>
+
+
+        </div>
+
+        <div id="malloc-section-end">
+        <div class="malloc-text centered">
+        It simply won't fit on the train car. If there isn't a train car big enough for the cargo, we won't be able to load it on the train and lose out on our profit!
+	    </div>
+
+	    <div class="malloc-text centered add-spacing">
+        Now that we know the rules of the game, let's try and figure out the best way to load up our trains. 
+	    </div>
+
+	    </div>
+
     </section>
 
 	<!-- Matt -->
 
     <section id="first-fit">
-
-
-	<div id="first-fit-header-text">Load the train by placing cargo in the first space it fits!</div>
-	<div id="first-fit-description-text" >
-	The cargo is located on the left of the screen. You will have three pieces of cargo to place, and you can only see the size of the current piece of cargo. Browse through the train using the left and right arrows until you find a spot where the cargo fits. You can see your current speed and space usage at the bottom of the window.
-	</div>
-	<span id="first-fit-cargo-display-region">
-
-		<div id="first-fit-cargo-display-header" class="display-header"></div>
-		<!-- <div id="first-fit-current-cargo-size"></div> -->
-		<div id="first-fit-current-cargo-box" class="centered"></div>
-		<div id="first-fit-cargo2" class="cargo-box centered">?</div>
-		<div id="first-fit-cargo3" class="cargo-box centered">?</div>
-	</span>
-
-	<span id="first-fit-current-car-region">
-		<div id="first-fit-car-display-header" class="display-header"></div>
-		<!-- <button id="button" onclick="buttonClicked()">place load</button> -->
-		<div id="first-fit-car-display">
-			<button id="first-fit-left-button" class="button button-circle" onclick="firstfitleftClicked()"><</button>
-			<canvas id="first-fit-current-train"></canvas>
-			<button id="first-fit-right-button" class="button button-circle" onclick="firstfitrightClicked()">></button>
+    
+    <div class="centered">
+		<div id="first-fit-header-text">Load the train by placing cargo in the first space it fits!</div>
+		<div id="first-fit-description-text" >
+		The cargo is located on the left of the screen. You will have three pieces of cargo to place, and you can only see the size of the current piece of cargo. Browse through the train using the left and right arrows until you find a spot where the cargo fits. You can see your current speed and space usage at the bottom of the window.
 		</div>
+	</div>
 
+    <div><div id="first-fit-game-container" class="centered">
+		<span id="first-fit-cargo-display-region">
 
-		<div class="centered">
-			<div id="first-fit-car-capacity">hi</div>
-			<button id="first-fit-load-button" class="button" onclick="firstfitloadClicked()">Load Cargo</button>
-			<div>
-				<div id="first-fit-message-box" ></div>
+			<div id="first-fit-cargo-display-header" class="display-header"></div>
+			<!-- <div id="first-fit-current-cargo-size"></div> -->
+			<div id="first-fit-current-cargo-box" class="centered"></div>
+			<!-- <div id="first-fit-cargo2" class="cargo-box centered">?</div>
+			<div id="first-fit-cargo3" class="cargo-box centered">?</div> -->
+		</span>
+
+		<span id="first-fit-current-car-region">
+			<div id="first-fit-car-display-header" class="display-header"></div>
+			<!-- <button id="button" onclick="buttonClicked()">place load</button> -->
+			<div id="first-fit-car-display">
+				<button id="first-fit-left-button" class="button button-3d button-circle" onclick="firstfitleftClicked()"><</button>
+				<canvas id="first-fit-current-train"></canvas>
+				<button id="first-fit-right-button" class="button button-3d button-circle" onclick="firstfitrightClicked()">></button>
 			</div>
-		</div>
 
-	</span>
 
-	<div id="first-fit-train-display-region">
-		<div id="first-fit-click-counter">
-			<span >Train cars inspected: </span><span id="first-fit-clicks"></span>
+			<div class="centered">
+				<div id="first-fit-car-capacity">hi</div>
+				<button id="first-fit-load-button" class="button button-3d button-action button-jumbo " onclick="firstfitloadClicked()">Load</button>
+				<div>
+					<div id="first-fit-message-box" ></div>
+				</div>
+			</div>
+
+		</span>
+
+		<div id="first-fit-train-display-region">
+			<div id="first-fit-click-counter">
+				<span >Train cars inspected: </span><span id="first-fit-clicks"></span>
+			</div>
+			<div id="first-fit-util-counter">
+				<span >Total train space used: </span><span id="first-fit-utilization"></span>
+			</div>
+			<canvas id="first-fit-train-display"></canvas>
 		</div>
-		<div id="first-fit-util-counter">
-			<span >Total train space used: </span><span id="first-fit-utilization"></span>
-		</div>
-		<canvas id="first-fit-train-display"></canvas>
-	</div>
-	<button id="first-fit-refresh-button" class="button" onclick="firstfitresetSimulation()">Refresh this Game</button>
+		<button id="first-fit-refresh-button" class="button" onclick="firstfitresetSimulation()">Refresh this Game</button>
+
+	</div></div>
 
 	<div id="first-fit-end-text" name="first-fit-segue">
 	The strategy we just tried out, placing the cargo in the first-fitting spot, has its strengths and weaknesses. On one hand, we are able to place a given piece of cargo pretty quickly: we placed the first two pieces of cargo after only looking at a single car! However, we couldn't make the best use of our train's available space: we had what is referred to as fragmentation. <br><br>Our final stats were 5 cars inspected and 6/15 space utilization: can we do better with a different strategy?
+	
 	</div>
 	</section>
 	<!--  best fit -->
@@ -162,15 +213,16 @@
 			<div id="best-fit-car-display-header" class="display-header"></div>
 
 			<div id="best-fit-car-display">
+
 				<button id="best-fit-left-button" class="button button-circle" onclick="leftClicked()"></button>
 				<canvas id="best-fit-current-train"></canvas>
-				<button id="best-fit-right-button" class="button button-circle" onclick="rightClicked()">></button>
+				<button id="best-fit-right-button" class="button button-3d button-circle " onclick="rightClicked()">></button>
 			</div>
 
 
 			<div class="centered">
 				<div id="best-fit-car-capacity">hi</div>
-				<button id="best-fit-load-button" class="button" onclick="loadClicked()">Load Cargo</button>
+				<button id="best-fit-load-button" class="button button-3d button-action button-circle button-jumbo" onclick="loadClicked()">Load</button>
 				<div>
 					<div id="best-fit-message-box" ></div>
 				</div>
@@ -215,7 +267,7 @@
                 </div>
             </div>
 
-        </div>        
+        </div>
 	</section>
 
 	<section id="play">

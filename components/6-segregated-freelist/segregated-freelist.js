@@ -36,7 +36,7 @@ TrainVisualization.prototype.draw = function(domId) {
     draggableCart.setAttribute("nextCart", "draggable-cart-" + (1+index));
     draggableCart.style.width = cargo.capacity * CARGO_SIZE + "px"
     draggableCart.textContent = cargo.capacity
-    draggableCart.style.visibility = "hidden";
+    draggableCart.style.visibility = "";
 
 
     interact(draggableCart)

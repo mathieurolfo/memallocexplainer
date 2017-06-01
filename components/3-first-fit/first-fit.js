@@ -25,7 +25,7 @@ $(firstfitinit);
 
 function firstfitinitializeParameters() {
 	var cargo = [null, 4, 2, 6, "none!"];
-    var cars = [null, 8, 5, 2];
+    var cars = [null, 1, 8, 5, 2];
     var totalSpace = 0;
     for (var x=1; x<cars.length; x++) {
         totalSpace += cars[x];
@@ -142,6 +142,9 @@ function firstfitrefresh() {
     } else {
     	$('#first-fit-left-button').attr("disabled", false);
     	$('#first-fit-right-button').attr("disabled", false);
+        $('#first-fit-load-button').attr("animation", "none");
+        $('#first-fit-load-button').removeClass("pulsing");
+        $('#first-fit-load-button').stop();
     }
 
     firstfitupdateCargoBox();
@@ -236,6 +239,9 @@ function firstfitrightClicked() {
 }
 
 function firstfitloadClicked() {
+    // $('#first-fit-load-button').removeClass("pulsing");
+    // $('#first-fit-load-button').animate({animation: 'none'});
+    // $('#first-fit-load-button').stop()
     if (window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex] <= window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar]) {
         //load the cargo
         window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar] -= window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
@@ -256,4 +262,8 @@ function firstfitresetSimulation() {
 	$('#first-fit-message-box').html("");
 	firstfitinitializeParameters();
 	firstfitinit();
+}
+
+function pulseButton() {
+    $('#first-fit-load-button').animate({animation: 'none'});
 }

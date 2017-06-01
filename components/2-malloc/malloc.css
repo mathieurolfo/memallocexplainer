@@ -1,3 +1,69 @@
-#section-2 button {
-  /* background-color: blue; */
+#malloc-container {
+	width: 800px;
+}
+
+.malloc-load-button {
+	z-index: 100;
+	margin-top: -250px;
+}
+
+.figure-head {
+  margin-top: 0px;
+  margin-left: 0px;
+  width:100px;
+  height: 150px;
+}
+
+.figure-cart2 {
+  margin-top: 40px;
+  margin-left: 0px;
+  width:100px;
+  height: 150px;
+}
+
+.malloc-cargo-box {
+	position: relative;
+	margin-left: auto;
+	margin-right: 320px;
+	margin-top: 20px;
+	width: 60px;
+	height: 50px;
+	box-shadow: 5px;
+
+	line-height: 45px;
+	background-color: gray;
+	color: black;
+}
+
+#malloc-cargo-box-2 {
+	width: 150px;
+	margin-right: 250px;
+}
+
+#malloc {
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+#malloc-demo-1 {
+	margin-top: 50px;
+	margin-bottom: 100px;
+}
+
+#malloc-demo-2 {
+	margin-top: 50px;
+	margin-bottom: 100px;
+	visibility: hidden;
+}
+
+#malloc-section-end {
+	visibility: hidden;
+}
+
+.malloc-text {
+	width: 500px;
+}
+
+.add-spacing {
+	margin-top: 30px;
 }

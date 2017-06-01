@@ -9,15 +9,17 @@ span, div {
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 10px;
-	width: 800px;
+	/*width: 800px;*/
 }
 
 #first-fit-description-text {
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 20px;
-	margin-left: 100px;
-	width: 600px;
+	/*margin-left: 100px;*/
+	/*width: 600px;*/
+	padding-left: 150px;
+	padding-right: 150px;
 }
 
 #first-fit-cargo-display-region {
@@ -27,7 +29,7 @@ span, div {
 	/*background-color: red;*/
 	/*opacity: 0.5;*/
 	margin: 5px;
-	border: 1px solid;
+	/*border: 1px solid;*/
 }
 
 #first-fit-current-cargo-box {
@@ -37,8 +39,9 @@ span, div {
 	box-shadow: 5px;
 
 	line-height: 45px;
-	background-color: red;
+	/*background-color: red;*/
 	color: black;
+	border: 2px solid;
 }
 
 .cargo-box {
@@ -86,7 +89,7 @@ span, div {
 	height: 400px;
 	/*background-color: blue;
 	opacity: 0.5;*/
-	border: 1px solid;
+	/*border: 1px solid;*/
 	display: inline-block;
 	vertical-align: top;
 	margin: 5px;
@@ -97,7 +100,7 @@ span, div {
 	height: 150px;
 	/*background-color: green;
 	opacity: 0.5;*/
-	border: 1px solid;
+	/*border: 1px solid;*/
 	margin: 5px;
 }
 
@@ -149,11 +152,7 @@ span, div {
 	font-size: 24px;
 }
 
-#first-fit-load-button {
-	margin-top: 20px;
-	background-color: lightblue;
-	margin-bottom: 30px;
-}
+
 
 #first-fit-click-counter {
 	margin-top: 10px;
@@ -170,12 +169,29 @@ button {
 
 }
 
+#first-fit-game-container {
+	width: 70%;
+	margin: 0 auto;
+	/*background-color: #42eef4;*/
+	border: 2px solid;
+	padding-bottom: 20px;
+}
+
+#first-fit-load-button {
+	margin-top: 20px;
+	/*background-color: lightblue;*/
+	color: black;
+	margin-bottom: 30px;
+}
+
 #first-fit-left-button {
 	background-color: lightblue;
+	/*animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);*/
 }
 
 #first-fit-right-button {
 	background-color: lightblue;
+	/*animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);*/
 }
 
 
@@ -188,3 +204,12 @@ button {
 	font-size: 20px;
 }
 
+/*.pulsing {
+	animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+	animation-name: pulse;
+	animation-duration: 1.25s;
+	animation-iteration-count: infinite;
+	animation-timing-function: cubic-bezier(0.66,0,0,1);
+}
+
+@-webkit-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}*/
