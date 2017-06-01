@@ -67,9 +67,7 @@
                 <div class="col-md-12">
                 <h2>A train is a heap, it has lots of spaces</h2>
                 <p>Click to load</p>
-                    <img class="img img-fluid" id="figure-head" src="figures/train-head.svg"></img>
-                    <img class="img img-fluid" id="figure-cart2" src="figures/train2.svg"></img>
-                    <button id="first-fit-load-button" class="button" onclick="firstfitloadClicked()">Load Cargo</button>
+                    
               </div>
             </div>
         </div>
@@ -78,7 +76,50 @@
 
 
 	<section id="malloc">
-        <h4>This is called allocation.</h4>
+		<div><div id="malloc-container" class="centered">
+		<h2>Loading the Train</h2>
+		<div id="malloc-description-text">
+		In our explanation, we represent requests for memory allocation, called malloc in computer science terms, as placing cargo on train cars. To place cargo on a train, you will check train cars sequentially, and if they have enough space, press the button to load the cargo. Cargo can be placed on cars larger than them, but not cars smaller than them.
+		</div>
+		
+		<div id="malloc-demo-1">
+		<h5>Try and load the cargo!</h5>
+		<div class="centered"><div id="malloc-cargo-box-1" class="malloc-cargo-box cargo-box">4</div></div>
+
+		<img class="img img-fluid figure-head" id="figure-head-1" src="figures/train-head.svg"></img>
+        <img class="img img-fluid figure-cart2" id="figure-cart2-1" src="figures/train2.svg"></img>
+        
+        <div><button id="demo-load-button-1" class="malloc-load-button button" onclick="demoLoadClicked1()">Load Cargo</button></div>
+        </div>
+
+        <div id="malloc-demo-2">
+
+        	<div class="malloc-text centered">
+        	Great, you placed the cargo! Now try with a cargo that is too big for the cart. 
+        	</div>
+
+	        <div class="centered"><div id="malloc-cargo-box-2" class="malloc-cargo-box cargo-box">10</div></div>
+
+			<img class="img img-fluid figure-head" id="figure-head-2" src="figures/train-head.svg"></img>
+	        <img class="img img-fluid figure-cart2" id="figure-cart2-2" src="figures/train2.svg"></img>
+	        
+	        <div><button id="malloc-load-button2" class=" malloc-load-button button" onclick="demoLoadClicked2()">Load Cargo</button></div>
+	        </div>
+
+
+        </div>
+
+        <div id="malloc-section-end">
+        <div class="malloc-text centered">
+        It simply won't fit on the train car. If there isn't a train car big enough for the cargo, we won't be able to load it on the train and lose out on our profit!
+	    </div>
+
+	    <div class="malloc-text centered add-spacing">
+        Now that we know the rules of the game, let's try and figure out the best way to load up our trains. 
+	    </div>
+
+	    </div>
+
     </section>
 
 	<!-- Matt -->

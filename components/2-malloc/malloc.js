@@ -1,17 +1,23 @@
 "use strict";
 
-// window.addEventListener("load", function() {
-//   var button1 = document.getElementById("button-1");
+var clicked = false;
 
-//   var button1WasClicked = false;
+function demoLoadClicked1() {
+	if (!clicked) {
+		$('#malloc-cargo-box-1').animate({"bottom": "-=100"});
+		$('#malloc-demo-2').css("visibility", "visible");
+		clicked = true;
+	}
+	
+}
 
-//   button1.addEventListener("click", function() {
-//     button1WasClicked = !button1WasClicked
-//     if (button1WasClicked) {
-//       button1.setAttribute("class", "btn btn-warning");
-//     } else {
-//       button1.setAttribute("class", "btn btn-danger");
-//     }
-//   });
-// });
+function demoLoadClicked2() {
+	$('#malloc-cargo-box-2').animate({"bottom": "-=100"});
+	$('#malloc-cargo-box-2').animate({"bottom": "+=100"});
+	$('#malloc-section-end').css("visibility", "visible");
+}
 
+function loadMallocText() {
+	console.log("called")
+	$('#malloc-description-text').html("This is malloc");
+}
