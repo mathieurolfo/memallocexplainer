@@ -140,44 +140,58 @@
 	</div>
 
     <div><div id="first-fit-game-container" class="centered">
-		<span id="first-fit-cargo-display-region">
+		<!-- <span id="first-fit-cargo-display-region"> -->
 
-			<div id="first-fit-cargo-display-header" class="display-header"></div>
+			<!-- <div id="first-fit-cargo-display-header" class="display-header"></div> -->
 			<!-- <div id="first-fit-current-cargo-size"></div> -->
-			<div id="first-fit-current-cargo-box" class="centered"></div>
+			
 			<!-- <div id="first-fit-cargo2" class="cargo-box centered">?</div>
 			<div id="first-fit-cargo3" class="cargo-box centered">?</div> -->
-		</span>
-
-		<span id="first-fit-current-car-region">
+		<!-- </span> -->
+		<!-- <span id="first-fit-current-car-region">
 			<div id="first-fit-car-display-header" class="display-header"></div>
-			<!-- <button id="button" onclick="buttonClicked()">place load</button> -->
-			<div id="first-fit-car-display">
+			<button id="button" onclick="buttonClicked()">place load</button> -->
+			<!-- <div id="first-fit-car-display">
 				<button id="first-fit-left-button" class="button button-3d button-circle" onclick="firstfitleftClicked()"><</button>
 				<canvas id="first-fit-current-train"></canvas>
 				<button id="first-fit-right-button" class="button button-3d button-circle" onclick="firstfitrightClicked()">></button>
 			</div>
+		</span> -->
 
+		<div>
+		<h4>Does this cargo fit in this car?</h4>
+		</div>
+		<div id="first-fit-current-cargo-box" class="centered"></div>
 
-			<div class="centered">
-				<div id="first-fit-car-capacity">hi</div>
-				<button id="first-fit-load-button" class="button button-3d button-action button-jumbo " onclick="firstfitloadClicked()">Load</button>
+		<div id="first-fit-button-area">
+			<div id="first-fit-yes-area">
+					<button id="first-fit-yes-button" class="button button-3d button-action " onclick="">Yes - Load</button>
+			</div>
+
+			<div id="first-fit-no-area">
+				<button id="first-fit-no-button" class="button button-3d button-action " onclick="firstfitloadClicked()">No - Next Car</button>
 				<div>
+			</div>
+		</div>
+
+		<div id="first-fit-train-display-region">
+			<canvas id="first-fit-train-display"></canvas>
+		</div>
+
+		<div id="first-fit-click-counter">
+			<span >Train cars inspected: </span><span id="first-fit-clicks"></span>
+		</div>
+		<div id="first-fit-util-counter">
+			<span >Total train space used: </span><span id="first-fit-utilization"></span>
+		</div>
+
+		<div class="centered">
+				<div id="first-fit-car-capacity">hi</div>
+				
 					<div id="first-fit-message-box" ></div>
 				</div>
 			</div>
 
-		</span>
-
-		<div id="first-fit-train-display-region">
-			<div id="first-fit-click-counter">
-				<span >Train cars inspected: </span><span id="first-fit-clicks"></span>
-			</div>
-			<div id="first-fit-util-counter">
-				<span >Total train space used: </span><span id="first-fit-utilization"></span>
-			</div>
-			<canvas id="first-fit-train-display"></canvas>
-		</div>
 		<button id="first-fit-refresh-button" class="button" onclick="firstfitresetSimulation()">Refresh this Game</button>
 
 	</div></div>

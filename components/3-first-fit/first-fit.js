@@ -56,15 +56,15 @@ function firstfitinitializeParameters() {
 }
 
 function firstfitinit() {
-    window.firstfitcarcanvas = new fabric.StaticCanvas('first-fit-current-train');
-    window.firstfitcarcanvas.setWidth(300);
-    window.firstfitcarcanvas.setHeight(150);
-    window.firstfittraincar = new fabric.Rect({top: 100, left: 30, width: 10, height: 10, fill: 'black'});
-    window.firstfitwheel1 = new fabric.Circle({top: 108, left: 30, radius:5, fill: 'black'})
-    window.firstfitwheel2 = new fabric.Circle({top: 108, left: 30, radius:5, fill: 'black'})
-    window.firstfitcargo = new fabric.Rect({top:60, left: 30, width: 10, height: 40, fill: 'red'});
+    // window.firstfitcarcanvas = new fabric.StaticCanvas('first-fit-current-train');
+    // window.firstfitcarcanvas.setWidth(300);
+    // window.firstfitcarcanvas.setHeight(150);
+    // window.firstfittraincar = new fabric.Rect({top: 100, left: 30, width: 10, height: 10, fill: 'black'});
+    // window.firstfitwheel1 = new fabric.Circle({top: 108, left: 30, radius:5, fill: 'black'})
+    // window.firstfitwheel2 = new fabric.Circle({top: 108, left: 30, radius:5, fill: 'black'})
+    // window.firstfitcargo = new fabric.Rect({top:60, left: 30, width: 10, height: 40, fill: 'red'});
 
-    window.firstfitcarcanvas.add(window.firstfittraincar, window.firstfitwheel1, window.firstfitwheel2, window.firstfitcargo);
+    // window.firstfitcarcanvas.add(window.firstfittraincar, window.firstfitwheel1, window.firstfitwheel2, window.firstfitcargo);
 
     firstfitinitWholeTrainGraphic();
 
@@ -148,7 +148,7 @@ function firstfitrefresh() {
     }
 
     firstfitupdateCargoBox();
-    firstfitupdateTrainCar();
+    // firstfitupdateTrainCar();
     firstfitredrawCargo();
 
     //should be done with promises: just notifies users after graphics rerendered if sim done
