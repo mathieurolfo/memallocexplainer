@@ -33,12 +33,18 @@ span, div {
 }
 
 #first-fit-current-cargo-box {
+	
+	position: relative;
+	/*margin-left: auto;
+	margin-right: 320px;*/
+	left: 250px;
+
 	margin-top: 20px;
 	width: 0px;
-	height: 50px;
-	box-shadow: 5px;
+	height: 25px;
+	/*box-shadow: 5px;
 
-	line-height: 45px;
+	line-height: 45px;*/
 	/*background-color: red;*/
 	color: black;
 	border: 2px solid;
@@ -95,17 +101,12 @@ span, div {
 	margin: 5px;
 }
 
+
 #first-fit-train-display-region {
-	width: 815px;
-	height: 150px;
-	/*background-color: green;
-	opacity: 0.5;*/
-	/*border: 1px solid;*/
-	margin: 5px;
+	margin-top: 30px;
 }
 
 #first-fit-train-display {
-	margin-top: 20px;
 	margin-left: 20px;
 	width: 700px;
 	height: 150px;
@@ -163,20 +164,24 @@ span, div {
 #first-fit-util-counter {
 	margin-top: 10px;
 	margin-left: 10px;
+	margin-bottom: 20px;
 }
 
 button {
 	margin: 5px;
+	color: black;
 
 }
 
 #first-fit-game-container {
 	width: 70%;
 	margin: 0 auto;
+	margin-top: 20px;
 	/*background-color: #42eef4;*/
 	border: 2px solid;
 	padding-bottom: 20px;
 	padding-top: 20px;
+	visibility: hidden;
 }
 
 #first-fit-load-button {
@@ -186,24 +191,27 @@ button {
 	margin-bottom: 30px;
 }
 
-#first-fit-left-button {
-	background-color: lightblue;
+#first-fit-yes-button {
+	color: black;
+	/*background-color: lightblue;*/
 	/*animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);*/
 }
 
-#first-fit-right-button {
-	background-color: lightblue;
+#first-fit-no-button {
+	color: black;
+	/*background-color: lightblue;*/
 	/*animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);*/
 }
 
 
 #first-fit-end-text {
 	width: 600px;
-	margin-left: 100px;
+	/*margin-left: 100px;*/
 	margin-top: 30px;
 	margin-bottom: 30px;
 	height: 400px;
 	font-size: 20px;
+	visibility: hidden;
 }
 
 

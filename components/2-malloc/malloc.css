@@ -27,12 +27,10 @@
 	margin-right: 320px;
 	margin-top: 20px;
 	width: 60px;
-	height: 50px;
-	box-shadow: 5px;
-
-	line-height: 45px;
-	background-color: gray;
+	height: 30px;
+	background-color: white;
 	color: black;
+	border: 2px solid;
 }
 
 #malloc-cargo-box-2 {
