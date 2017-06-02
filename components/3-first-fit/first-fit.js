@@ -59,6 +59,18 @@ function firstfitinit() {
     window.firstfitcarcanvas = new fabric.StaticCanvas('first-fit-current-train');
     window.firstfitcarcanvas.setWidth(300);
     window.firstfitcarcanvas.setHeight(150);
+
+    // fabric.loadSVGFromURL('http://rol.fo/files/train2.svg', function(objects, options) {
+    //     var obj = fabric.util.groupSVGElements(objects, options);
+    //     // obj.set({
+    //     //     left:0,
+    //     //     top: 20,
+    //     // })
+    //     window.firstfitcarcanvas.add(obj);
+    // });
+
+
+
     window.firstfittraincar = new fabric.Rect({top: 100, left: 30, width: 10, height: 10, fill: 'black'});
     window.firstfitwheel1 = new fabric.Circle({top: 108, left: 30, radius:5, fill: 'black'})
     window.firstfitwheel2 = new fabric.Circle({top: 108, left: 30, radius:5, fill: 'black'})
