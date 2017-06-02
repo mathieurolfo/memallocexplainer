@@ -1,27 +1,11 @@
 "use strict";
 
-// window.addEventListener("load", function() {
-//   var button1 = document.getElementById("button-1");
 
-//   var button1WasClicked = false;
-
-//   button1.addEventListener("click", function() {
-//     button1WasClicked = !button1WasClicked
-//     if (button1WasClicked) {
-//       button1.setAttribute("class", "btn btn-warning");
-//     } else {
-//       button1.setAttribute("class", "btn btn-danger");
-//     }
-//   });
-// });
 
 console.log("first fit loaded");
 firstfitinitializeParameters();
 $(firstfitinit);
 
-// window.onload = function() {
-
-// }
 
 function firstfitinitializeParameters() {
 	var cargo = [null, 4, 2, 6, "none!"];
@@ -77,11 +61,9 @@ function firstfitinitTrainCarGraphic() {
     //     window.firstfitcarcanvas.add(obj);
     // });
 
-
-
-    window.firstfittraincar = new fabric.Rect({top: 100, left: 30, width: 10, height: 10, fill: 'black'});
-    window.firstfitwheel1 = new fabric.Circle({top: 108, left: 30, radius:5, fill: 'black'})
-    window.firstfitwheel2 = new fabric.Circle({top: 108, left: 30, radius:5, fill: 'black'})
+    window.firstfittraincar = new fabric.Rect({top: 100, left: 30, width: 10, height: 10, fill: 'gray',stroke: 'black', strokeWidth: 2});
+    window.firstfitwheel1 = new fabric.Circle({top: 105, left: 30, radius:5, fill: 'gray',stroke: 'black', strokeWidth: 2})
+    window.firstfitwheel2 = new fabric.Circle({top: 105, left: 30, radius:5, fill: 'gray',stroke: 'black', strokeWidth: 2})
     window.firstfitcargo = new fabric.Rect({top:60, left: 30, width: 10, height: 40, fill: 'red'});
 
     window.firstfitcarcanvas.add(window.firstfittraincar, window.firstfitwheel1, window.firstfitwheel2, window.firstfitcargo);
@@ -223,8 +205,8 @@ function firstfitupdateTrainCar() {
     var cargoPosition = window.firstfittraincar.left;
     window.firstfitcargo.set({width: filledSpace*25, left: cargoPosition});
 
-    var wheel1Position = window.firstfittraincar.left;
-    var wheel2Position = window.firstfittraincar.left + window.firstfittraincar.width - 2*window.firstfitwheel2.radius;
+    var wheel1Position = window.firstfittraincar.left +3;
+    var wheel2Position = window.firstfittraincar.left -3 + window.firstfittraincar.width - 2*window.firstfitwheel2.radius;
     window.firstfitwheel1.set({left: wheel1Position});
     window.firstfitwheel2.set({left: wheel2Position});
     window.firstfitcarcanvas.renderAll();

@@ -35,10 +35,10 @@ span, div {
 #first-fit-current-cargo-box {
 	margin-top: 20px;
 	width: 0px;
-	height: 50px;
-	box-shadow: 5px;
+	height: 25px;
+	/*box-shadow: 5px;
 
-	line-height: 45px;
+	line-height: 45px;*/
 	/*background-color: red;*/
 	color: black;
 	border: 2px solid;
@@ -95,17 +95,12 @@ span, div {
 	margin: 5px;
 }
 
+
 #first-fit-train-display-region {
-	width: 815px;
-	height: 150px;
-	/*background-color: green;
-	opacity: 0.5;*/
-	/*border: 1px solid;*/
-	margin: 5px;
+	margin-top: 30px;
 }
 
 #first-fit-train-display {
-	margin-top: 20px;
 	margin-left: 20px;
 	width: 700px;
 	height: 150px;
