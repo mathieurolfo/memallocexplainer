@@ -105,6 +105,7 @@ span, div {
 }
 
 #first-fit-train-display {
+	margin-top: 20px;
 	margin-left: 20px;
 	width: 700px;
 	height: 150px;
@@ -175,6 +176,7 @@ button {
 	/*background-color: #42eef4;*/
 	border: 2px solid;
 	padding-bottom: 20px;
+	padding-top: 20px;
 }
 
 #first-fit-load-button {
@@ -202,6 +204,16 @@ button {
 	margin-bottom: 30px;
 	height: 400px;
 	font-size: 20px;
+}
+
+
+#first-fit-yes-area {
+	display: inline-block;
+	
+}
+
+#first-fit-no-area {
+	display: inline-block;
 }
 
 /*.pulsing {
