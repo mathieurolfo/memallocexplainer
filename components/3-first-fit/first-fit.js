@@ -2,7 +2,7 @@
 
 
 
-console.log("first fit loaded");
+
 firstfitinitializeParameters();
 $(firstfitinit);
 
@@ -213,17 +213,17 @@ function firstfitupdateCargoBox() {
     var cargoSize = window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
     cargoSize *= 30
     $('#first-fit-current-cargo-box').css("width", cargoSize);
-    console.log(cargoSize);
+   
     $('#first-fit-current-cargo-box').html(window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]);
     
     $('#first-fit-current-cargo-box').css("bottom", "0px");
 
     // var right = window.firstfitwheel2.left + window.firstfittraincar.left;//cargoSize - 70
-    // right += "px"
-    console.log("cargo", window.firstfitcargo.left)
-    console.log("car", window.firstfittraincar.left)
-    console.log("wheel", window.firstfitwheel2.left)
-    console.log($('#first-fit-current-cargo-box').css("left"));
+    // // right += "px"
+    // console.log("cargo", window.firstfitcargo.left)
+    // console.log("car", window.firstfittraincar.left)
+    // console.log("wheel", window.firstfitwheel2.left)
+    // console.log($('#first-fit-current-cargo-box').css("left"));
     var resetPosition = "250px"
     $('#first-fit-current-cargo-box').css("left", resetPosition);
 
@@ -321,3 +321,7 @@ function firstfitresetSimulation() {
 	firstfitinit();
 }
 
+function startFirstFit() {
+    $('#first-fit-game-container').css('visibility', 'visible');
+    $('#first-fit-start-button').css('display', 'none');
+}

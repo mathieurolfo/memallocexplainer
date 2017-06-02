@@ -136,6 +136,7 @@
 		<div id="first-fit-description-text" >
 		The cargo is located on the left of the screen. You will have three pieces of cargo to place, and you can only see the size of the current piece of cargo. Browse through the train using the left and right arrows until you find a spot where the cargo fits. You can see your current speed and space usage at the bottom of the window.
 		</div>
+		<button id="first-fit-start-button" class=" malloc-load-button button button-3d button-pill" onclick="startFirstFit()">Got it!</button>
 	</div>
 
     <div><div id="first-fit-game-container" class="centered">
@@ -164,6 +165,7 @@
 
 		<canvas id="first-fit-current-train"></canvas>
 
+		<div id="first-fit-car-display-header" class="display-header"></div>
 		<div id="first-fit-button-area"> 
 			<div id="first-fit-yes-area">
 					<button id="first-fit-yes-button" class="button button-3d button-pill" onclick="firstfitYesClicked()">Yes - Load</button>
@@ -182,10 +184,10 @@
 		</div>
 
 		<div id="first-fit-click-counter">
-			<h4><span >Train cars inspected: </span><span id="first-fit-clicks"></span></h4>
+			<h3><span >Train cars inspected: </span><span id="first-fit-clicks"></span></h3>
 		</div>
 		<div id="first-fit-util-counter">
-			<h4><span >Total train space used: </span><span id="first-fit-utilization"></span></h4>
+			<h3><span >Total train space used: </span><span id="first-fit-utilization"></span></h3>
 		</div>
 
 		<!-- <div class="centered">
@@ -200,58 +202,71 @@
 	</div></div>
 
 	<div id="first-fit-end-text" class="centered" name="first-fit-segue">
-	The strategy we just tried out, placing the cargo in the first-fitting spot, has its strengths and weaknesses. On one hand, we are able to place a given piece of cargo pretty quickly: we placed the first two pieces of cargo after only looking at a single car! However, we couldn't make the best use of our train's available space: we had what is referred to as fragmentation. <br><br>Our final stats were 5 cars inspected and 6/15 space utilization: can we do better with a different strategy?
+	The strategy we just tried out, placing the cargo in the first-fitting spot, has its strengths and weaknesses. On one hand, we are able to place a given piece of cargo pretty quickly: we placed the first two pieces of cargo after only looking at a single car! However, we couldn't make the best use of our train's available space: we had what is referred to as fragmentation. <br><br>Our final stats were 5 cars inspected and 6/16 space utilization: can we do better with a different strategy?
 
 	</div>
 	</section>
 	<!--  best fit -->
      <section id="best-fit">
 
-	<div id="best-fit-header-text">Load the train by placing cargo in the smallest space it fits!</div>
-		<div id="best-fit-description-text" >
-		The same rules as above apply.
+	<div><div id="best-fit-game-container" class="centered">
+		<!-- <span id="first-fit-cargo-display-region"> -->
+
+			<!-- <div id="first-fit-cargo-display-header" class="display-header"></div> -->
+			<!-- <div id="first-fit-current-cargo-size"></div> -->
+			
+			<!-- <div id="first-fit-cargo2" class="cargo-box centered">?</div>
+			<div id="first-fit-cargo3" class="cargo-box centered">?</div> -->
+		<!-- </span> -->
+		<!-- <span id="first-fit-current-car-region"> -->
+			<!-- <div id="first-fit-car-display-header" class="display-header"></div> -->
+			<!-- <button id="button" onclick="buttonClicked()">place load</button> -->
+			<!-- <div id="first-fit-car-display"> -->
+				<!-- <button id="first-fit-left-button" class="button button-3d button-circle" onclick="firstfitleftClicked()"><</button> -->
+				
+				<!-- <button id="first-fit-right-button" class="button button-3d button-circle" onclick="firstfitrightClicked()">></button> -->
+		<!-- 	</div>
+		</span>
+ -->
+		<div>
+		<h4>Is this the best-fitting car for this cargo?</h4>
 		</div>
-		<span id="best-fit-cargo-display-region">
+		<div id="best-fit-current-cargo-box" ></div>
 
-			<div id="best-fit-cargo-display-header" class="display-header"></div>
+		<canvas id="best-fit-current-train"></canvas>
 
-			<div id="best-fit-current-cargo-box" class="centered"></div>
-			<div id="best-fit-cargo2" class="cargo-box centered">?</div>
-			<div id="best-fit-cargo3" class="cargo-box centered">?</div>
-
-		</span>
-
-		<span id="best-fit-current-car-region">
-			<div id="best-fit-car-display-header" class="display-header"></div>
-
-			<div id="best-fit-car-display">
-
-				<button id="best-fit-left-button" class="button button-circle" onclick="leftClicked()"></button>
-				<canvas id="best-fit-current-train"></canvas>
-				<button id="best-fit-right-button" class="button button-3d button-circle " onclick="rightClicked()">></button>
+		<div id="best-fit-car-display-header" class="display-header"></div>
+		<div id="best-fit-button-area"> 
+			<div id="best-fit-yes-area">
+					<button id="best-fit-yes-button" class="button button-3d button-pill" onclick="bestfitYesClicked()">Yes - Load</button>
 			</div>
 
-
-			<div class="centered">
-				<div id="best-fit-car-capacity">hi</div>
-				<button id="best-fit-load-button" class="button button-3d button-action button-circle button-jumbo" onclick="loadClicked()">Load</button>
+			<div id="best-fit-no-area">
+				<button id="best-fit-no-button" class="button button-3d button-pill" onclick="bestfitNoClicked()">No - Next Car</button>
 				<div>
-					<div id="best-fit-message-box" ></div>
-				</div>
 			</div>
-
-		</span>
-
-		<div id="best-fit-train-display-region">
-			<div id="best-fit-click-counter">
-				<span >Train cars inspected: </span><span id="best-fit-clicks"></span>
-			</div>
-			<div id="best-fit-util-counter">
-				<span >Total train space used: </span><span id="best-fit-utilization"></span>
-			</div>
+		</div>
+		
+		<div id="best-fit-train-display-region" >
+			<h5 class="centered"> Overview of the whole train:</h5>
 			<canvas id="best-fit-train-display"></canvas>
 		</div>
-		<button id="best-fit-refresh-button" class="button" onclick="resetSimulation()">Refresh this Game</button>
+
+		<div id="best-fit-click-counter">
+			<h3><span >Train cars inspected: </span><span id="best-fit-clicks"></span></h3>
+		</div>
+		<div id="best-fit-util-counter">
+			<h3><span >Total train space used: </span><span id="best-fit-utilization"></span></h3>
+		</div>
+
+		<!-- <div class="centered">
+			<div id="first-fit-car-capacity">hi</div>
+			
+				<div id="first-fit-message-box" ></div>
+			</div>
+		</div> -->
+
+		<button id="best-fit-refresh-button" class="button" onclick="bestfitresetSimulation()">Refresh this Game</button>
 
     </section>
 

@@ -164,6 +164,7 @@ span, div {
 #first-fit-util-counter {
 	margin-top: 10px;
 	margin-left: 10px;
+	margin-bottom: 20px;
 }
 
 button {
@@ -175,10 +176,12 @@ button {
 #first-fit-game-container {
 	width: 70%;
 	margin: 0 auto;
+	margin-top: 20px;
 	/*background-color: #42eef4;*/
 	border: 2px solid;
 	padding-bottom: 20px;
 	padding-top: 20px;
+	visibility: hidden;
 }
 
 #first-fit-load-button {
