@@ -1,27 +1,11 @@
 "use strict";
 
-// window.addEventListener("load", function() {
-//   var button1 = document.getElementById("button-1");
 
-//   var button1WasClicked = false;
-
-//   button1.addEventListener("click", function() {
-//     button1WasClicked = !button1WasClicked
-//     if (button1WasClicked) {
-//       button1.setAttribute("class", "btn btn-warning");
-//     } else {
-//       button1.setAttribute("class", "btn btn-danger");
-//     }
-//   });
-// });
 
 console.log("first fit loaded");
 firstfitinitializeParameters();
 $(firstfitinit);
 
-// window.onload = function() {
-
-// }
 
 function firstfitinitializeParameters() {
 	var cargo = [null, 4, 2, 6, "none!"];
@@ -56,7 +40,7 @@ function firstfitinitializeParameters() {
 }
 
 function firstfitinit() {
-
+    
     firstfitinitTrainCarGraphic();
     firstfitinitWholeTrainGraphic();
 
@@ -77,12 +61,10 @@ function firstfitinitTrainCarGraphic() {
     //     window.firstfitcarcanvas.add(obj);
     // });
 
-
-
-    window.firstfittraincar = new fabric.Rect({top: 100, left: 30, width: 10, height: 10, fill: 'black'});
-    window.firstfitwheel1 = new fabric.Circle({top: 108, left: 30, radius:5, fill: 'black'})
-    window.firstfitwheel2 = new fabric.Circle({top: 108, left: 30, radius:5, fill: 'black'})
-    window.firstfitcargo = new fabric.Rect({top:60, left: 30, width: 10, height: 40, fill: 'red'});
+    window.firstfittraincar = new fabric.Rect({top: 100, left: 80, width: 10, height: 10, fill: 'gray',stroke: 'black', strokeWidth: 2});
+    window.firstfitwheel1 = new fabric.Circle({top: 105, left: 80, radius:5, fill: 'gray',stroke: 'black', strokeWidth: 2})
+    window.firstfitwheel2 = new fabric.Circle({top: 105, left: 80, radius:5, fill: 'gray',stroke: 'black', strokeWidth: 2})
+    window.firstfitcargo = new fabric.Rect({top:75, left: 130, width: 0, height: 25, fill: 'white'});
 
     window.firstfitcarcanvas.add(window.firstfittraincar, window.firstfitwheel1, window.firstfitwheel2, window.firstfitcargo);
 
@@ -115,7 +97,7 @@ function firstfitinitWholeTrainGraphic() {
         window[wheel2] = new fabric.Circle({top: 55, left: currLeft+carWidth-10-3, radius:5, fill: 'gray',stroke: 'black', strokeWidth: 2});
         window[car] = new fabric.Rect({top: 50, left: currLeft, width: carWidth, height: 10, fill: 'gray', stroke: 'black', strokeWidth: 2});
         window.firstfittraincanvas.add(window[car],window[wheel1], window[wheel2]);
-
+        
         // console.log(j);
         // fabric.loadSVGFromURL('http://rol.fo/files/train2.svg', function(objects, options) {
         //     var obj = fabric.util.groupSVGElements(objects, options);
@@ -127,13 +109,13 @@ function firstfitinitWholeTrainGraphic() {
         //     console.log("adding object")
         //     window.firstfittraincanvas.add(obj);
         //     currLeft += 10;
-        // });
+        // }); 
 
 
         var cargoWidth = (window.firstfitinitialGame.cars[j]-window.firstfitcurrentState.remainingCapacity[j])*25;
-        window[loadedCargo] = new fabric.Rect({top: 30, left: currLeft, width: cargoWidth, height: 20, fill: 'red'});
+        window[loadedCargo] = new fabric.Rect({top: 30, left: currLeft, width: cargoWidth, height: 20, fill: 'white'});
         window.firstfittraincanvas.add(window[loadedCargo]);
-
+        
         currLeft += carWidth + 10;
 
     }
@@ -141,13 +123,25 @@ function firstfitinitWholeTrainGraphic() {
 
 }
 
-function firstfitredrawCargo() {
+function firstfitupdateWholeTrainCargo() {
     var currLeft = window.firstfitleftOffset;
     for (var j = 1; j<window.firstfitinitialGame.cars.length; j++) {
         var loadedCargo = "cargo" + j;
         var carWidth = window.firstfitinitialGame.cars[j]*25
         var cargoWidth = (window.firstfitinitialGame.cars[j]-window.firstfitcurrentState.remainingCapacity[j])*25;
-        window[loadedCargo] = new fabric.Rect({top: 30, left: currLeft, width: cargoWidth, height: 20, fill: 'red'});
+        
+        if (cargoWidth > 0) {
+             window[loadedCargo] = new fabric.Rect({
+                top: 30, left: currLeft, width: cargoWidth, height: 20, fill: 'white',
+                stroke: 'black', strokeWidth: 2
+            });
+
+        } else {
+            window[loadedCargo] = new fabric.Rect({top: 30, left: currLeft, width: cargoWidth, height: 20, fill: 'white'});
+        }
+        
+        
+
         window.firstfittraincanvas.add(window[loadedCargo]);
         currLeft += carWidth + 10;
     }
@@ -167,21 +161,14 @@ function firstfitrefresh() {
     $('#first-fit-clicks').html(window.firstfitcurrentState.clicks);
     $('#first-fit-utilization').html(window.firstfitcurrentState.utilization + " out of " + window.firstfitinitialGame.totalSpace)
 
-    if (capacity >= window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]) {
-    	$('#first-fit-left-button').attr("disabled", true);
-    	$('#first-fit-right-button').attr("disabled", true);
-    	$('#first-fit-message-box').html("The cargo fits! Place it here!");
-    } else {
-    	$('#first-fit-left-button').attr("disabled", false);
-    	$('#first-fit-right-button').attr("disabled", false);
-        $('#first-fit-load-button').attr("animation", "none");
-        $('#first-fit-load-button').removeClass("pulsing");
-        $('#first-fit-load-button').stop();
-    }
 
-    firstfitupdateCargoBox();
+    
+
+    
     firstfitupdateTrainCar();
-    firstfitredrawCargo();
+    firstfitupdateCargoBox();
+    firstfitupdateWholeTrainCargo();
+    firstfitupdateButtonStates(capacity, maxCapacity);
 
     //should be done with promises: just notifies users after graphics rerendered if sim done
     setTimeout(function() {
@@ -194,72 +181,95 @@ It would have fit on the first car, but we filled that with smaller cargos. Scro
 
 }
 
-function firstfitupdateCargoBox() {
-    var cargoSize = window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
-    cargoSize *= 30
-    $('#first-fit-current-cargo-box').css("width", cargoSize);
-    console.log(cargoSize);
-    $('#first-fit-current-cargo-box').html(window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]);
-
-    if (window.firstfitcurrentState.cargoLeft === 3) {
-		$('#first-fit-cargo2').css("display", "block");
-    	$('#first-fit-cargo3').css("display", "block");
-    } else if (window.firstfitcurrentState.cargoLeft === 2) {
-    	$('#first-fit-cargo3').css("display", "none");
-    } else if (window.firstfitcurrentState.cargoLeft === 1) {
-    	$('#first-fit-cargo2').css("display", "none");
-    	$('#first-fit-cargo3').css("display", "none");
-    }
-}
-
 function firstfitupdateTrainCar() {
     var trainSize = window.firstfitinitialGame.cars[window.firstfitcurrentState.currentCar];
     var remainingSpace = window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar];
     var filledSpace = trainSize - remainingSpace
 
     window.firstfittraincar.set({width: trainSize*25});
-    window.firstfittraincar.centerH();
+    // window.firstfittraincar.centerH();
 
     var cargoPosition = window.firstfittraincar.left;
-    window.firstfitcargo.set({width: filledSpace*25, left: cargoPosition});
+    if (filledSpace>0) {
+        window.firstfitcargo.set({width: filledSpace*25, left: cargoPosition, stroke: 'black', strokeWidth: 2});
+    } else {
+        window.firstfitcargo.set({width: filledSpace*25, left: cargoPosition, strokeWidth: 0});
+    }
+    
 
-    var wheel1Position = window.firstfittraincar.left;
-    var wheel2Position = window.firstfittraincar.left + window.firstfittraincar.width - 2*window.firstfitwheel2.radius;
+    var wheel1Position = window.firstfittraincar.left +3;
+    var wheel2Position = window.firstfittraincar.left -3 + window.firstfittraincar.width - 2*window.firstfitwheel2.radius;
     window.firstfitwheel1.set({left: wheel1Position});
     window.firstfitwheel2.set({left: wheel2Position});
     window.firstfitcarcanvas.renderAll();
 
-    //modify button states
-    if (window.firstfitcurrentState.currentCar === window.firstfitinitialGame.numCars) {
-    	$('#first-fit-right-button').addClass("disabled");
-    } else if (window.firstfitcurrentState.currentCar === 1){
-    	$('#first-fit-left-button').addClass("disabled");
+}
+
+function firstfitupdateCargoBox() {
+    var cargoSize = window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
+    cargoSize *= 30
+    $('#first-fit-current-cargo-box').css("width", cargoSize);
+    console.log(cargoSize);
+    $('#first-fit-current-cargo-box').html(window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]);
+    
+    $('#first-fit-current-cargo-box').css("bottom", "0px");
+
+    // var right = window.firstfitwheel2.left + window.firstfittraincar.left;//cargoSize - 70
+    // right += "px"
+    console.log("cargo", window.firstfitcargo.left)
+    console.log("car", window.firstfittraincar.left)
+    console.log("wheel", window.firstfitwheel2.left)
+    console.log($('#first-fit-current-cargo-box').css("left"));
+    var resetPosition = "250px"
+    $('#first-fit-current-cargo-box').css("left", resetPosition);
+
+    $('#first-fit-current-cargo-box').css("top", "0px");
+    // console.log(window.firstfitwheel2, right)
+}
+
+function firstfitupdateButtonStates(capacity, maxCapacity) {
+    
+
+    if (capacity >= window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]) {
+        $('#first-fit-no-button').attr("disabled", true);
+        $('#first-fit-yes-button').attr("disabled", false);
+
+        $('#first-fit-no-button').removeClass("button-action");
+        $('#first-fit-yes-button').addClass("button-action");
     } else {
-    	$('#first-fit-left-button').removeClass("disabled");
-    	$('#first-fit-right-button').removeClass("disabled");
+        $('#first-fit-no-button').addClass("button-action");
+        $('#first-fit-yes-button').removeClass("button-action");
+        $('#first-fit-no-button').attr("disabled", false);
+        $('#first-fit-yes-button').attr("disabled", true);
     }
 
+
+    if (window.firstfitcurrentState.currentCar === window.firstfitinitialGame.numCars) {
+        $('#first-fit-yes-button').addClass("disabled");
+    } else {
+        $('#first-fit-right-button').removeClass("disabled");
+    }
 }
 
 function firstfitstageCompleted() {
-    if (window.firstfitcurrentState.clicks === 5) {return true;}
-
+    if (window.firstfitcurrentState.clicks === 8) {return true;}
+    return false;
 }
 
-function firstfitleftClicked() {
-    $('#first-fit-message-box').html("");
+// function firstfitleftClicked() {
+//     $('#first-fit-message-box').html("");
 
-    if (window.firstfitcurrentState.currentCar > 1) {
-        window.firstfitcurrentState.currentCar -= 1;
-        //window.firstfitcurrentState.clicks += 1; // NOT penalizing going backwards
-        firstfitrefresh();
-    } else {
-        $('#first-fit-message-box').html("You're already at the first car!");
-    }
+//     if (window.firstfitcurrentState.currentCar > 1) {
+//         window.firstfitcurrentState.currentCar -= 1;
+//         //window.firstfitcurrentState.clicks += 1; // NOT penalizing going backwards
+//         firstfitrefresh();
+//     } else {
+//         $('#first-fit-message-box').html("You're already at the first car!");
+//     }
 
-}
+// }
 
-function firstfitrightClicked() {
+function firstfitNoClicked() {
     $('#first-fit-message-box').html("");
 
     if (window.firstfitcurrentState.currentCar < window.firstfitinitialGame.numCars) {
@@ -271,20 +281,34 @@ function firstfitrightClicked() {
     }
 }
 
-function firstfitloadClicked() {
+function firstfitYesClicked() {
     // $('#first-fit-load-button').removeClass("pulsing");
     // $('#first-fit-load-button').animate({animation: 'none'});
     // $('#first-fit-load-button').stop()
     if (window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex] <= window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar]) {
         //load the cargo
-        window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar] -= window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
-        window.firstfitcurrentState.utilization += window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
-        window.firstfitcurrentState.currentCargoIndex += 1
-        window.firstfitcurrentState.cargoLeft -= 1
-        window.firstfitcurrentState.currentCar = 1;
-        window.firstfitcurrentState.clicks += 1;
-        $('#first-fit-message-box').html("Cargo successfully loaded!")
-        firstfitrefresh();
+
+        var cargoWidth = 30*window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
+        console.log(cargoWidth)
+        var left = 255 + window.firstfitwheel2.left - window.firstfittraincar.left - cargoWidth 
+        $('#first-fit-current-cargo-box').animate({"top": "100", "left": left},1000,function() {
+            console.log("animation complete");
+        
+
+
+            window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar] -= window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
+            window.firstfitcurrentState.utilization += window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
+            window.firstfitcurrentState.currentCargoIndex += 1
+            window.firstfitcurrentState.cargoLeft -= 1
+            window.firstfitcurrentState.currentCar = 1;
+            window.firstfitcurrentState.clicks += 1;
+            $('#first-fit-message-box').html("Cargo successfully loaded!")
+            
+            setTimeout(firstfitrefresh, 500);
+            ;
+        });
+
+       
     } else {
         $('#first-fit-message-box').html("That cargo doesn't fit in this car.")
     }
@@ -297,6 +321,3 @@ function firstfitresetSimulation() {
 	firstfitinit();
 }
 
-function pulseButton() {
-    $('#first-fit-load-button').animate({animation: 'none'});
-}

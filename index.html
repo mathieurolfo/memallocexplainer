@@ -160,30 +160,32 @@
 		<div>
 		<h4>Does this cargo fit in this car?</h4>
 		</div>
-		<div id="first-fit-current-cargo-box" class="centered"></div>
+		<div id="first-fit-current-cargo-box" ></div>
 
 		<canvas id="first-fit-current-train"></canvas>
 
-		<div id="first-fit-button-area">
+		<div id="first-fit-button-area"> 
 			<div id="first-fit-yes-area">
-					<button id="first-fit-yes-button" class="button button-3d button-pill" onclick="">Yes - Load</button>
+					<button id="first-fit-yes-button" class="button button-3d button-pill" onclick="firstfitYesClicked()">Yes - Load</button>
 			</div>
 
 			<div id="first-fit-no-area">
-				<button id="first-fit-no-button" class="button button-3d button-pill" onclick="firstfitloadClicked()">No - Next Car</button>
+				<button id="first-fit-no-button" class="button button-3d button-pill" onclick="firstfitNoClicked()">No - Next Car</button>
 				<div>
 			</div>
 		</div>
 
-		<div id="first-fit-train-display-region">
+		
+		<div id="first-fit-train-display-region" >
+			<h5 class="centered"> Overview of the whole train:</h5>
 			<canvas id="first-fit-train-display"></canvas>
 		</div>
 
 		<div id="first-fit-click-counter">
-			<span >Train cars inspected: </span><span id="first-fit-clicks"></span>
+			<h4><span >Train cars inspected: </span><span id="first-fit-clicks"></span></h4>
 		</div>
 		<div id="first-fit-util-counter">
-			<span >Total train space used: </span><span id="first-fit-utilization"></span>
+			<h4><span >Total train space used: </span><span id="first-fit-utilization"></span></h4>
 		</div>
 
 		<!-- <div class="centered">
