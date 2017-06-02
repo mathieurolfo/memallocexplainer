@@ -56,7 +56,7 @@ function firstfitinitializeParameters() {
 }
 
 function firstfitinit() {
-    
+
     firstfitinitTrainCarGraphic();
     firstfitinitWholeTrainGraphic();
 
@@ -115,7 +115,7 @@ function firstfitinitWholeTrainGraphic() {
         window[wheel2] = new fabric.Circle({top: 55, left: currLeft+carWidth-10-3, radius:5, fill: 'gray',stroke: 'black', strokeWidth: 2});
         window[car] = new fabric.Rect({top: 50, left: currLeft, width: carWidth, height: 10, fill: 'gray', stroke: 'black', strokeWidth: 2});
         window.firstfittraincanvas.add(window[car],window[wheel1], window[wheel2]);
-        
+
         // console.log(j);
         // fabric.loadSVGFromURL('http://rol.fo/files/train2.svg', function(objects, options) {
         //     var obj = fabric.util.groupSVGElements(objects, options);
@@ -127,13 +127,13 @@ function firstfitinitWholeTrainGraphic() {
         //     console.log("adding object")
         //     window.firstfittraincanvas.add(obj);
         //     currLeft += 10;
-        // }); 
+        // });
 
 
         var cargoWidth = (window.firstfitinitialGame.cars[j]-window.firstfitcurrentState.remainingCapacity[j])*25;
         window[loadedCargo] = new fabric.Rect({top: 30, left: currLeft, width: cargoWidth, height: 20, fill: 'red'});
         window.firstfittraincanvas.add(window[loadedCargo]);
-        
+
         currLeft += carWidth + 10;
 
     }
@@ -200,7 +200,7 @@ function firstfitupdateCargoBox() {
     $('#first-fit-current-cargo-box').css("width", cargoSize);
     console.log(cargoSize);
     $('#first-fit-current-cargo-box').html(window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]);
-    
+
     if (window.firstfitcurrentState.cargoLeft === 3) {
 		$('#first-fit-cargo2').css("display", "block");
     	$('#first-fit-cargo3').css("display", "block");
