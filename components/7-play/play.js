@@ -40,17 +40,22 @@ function initializeParametersSeg() {
     var currentCargoIndex = 1;
     var numCars = cars.length - 1;
     var currentCar = 1;
+    var currentBucket = 1;
     window.segfreeInitialGame = {
         cargo: cargo,
         cars: cars,
+        car4: car4,
+        car8: car8,
+        car12: car12,
+        car16: car16,
         numCars: numCars,
         totalSpace: totalSpace
-
     };
 
     window.segfreeCurrentState = {
         cargoLeft: cargoLeft,
         currentCar: currentCar,
+        currentBucket: currentBucket,
         remainingCapacity: remainingCapacity,
         currentCargoIndex: currentCargoIndex,
         clicks: 1,
@@ -79,7 +84,7 @@ function init() {
 function initWholeTrainGraphicSeg() {
     window.segfreetraincanvas = new fabric.StaticCanvas('seg-free-train-display');
     window.segfreetraincanvas.setWidth(750);
-    window.segfreetraincanvas.setHeight(90);
+    window.segfreetraincanvas.setHeight(150);
     fabric.loadSVGFromURL('http://rol.fo/files/train.svg', function(objects, options) {
         var obj = fabric.util.groupSVGElements(objects, options);
         obj.set({
@@ -238,6 +243,26 @@ function rightClickedSeg() {
     } else {
         $('#seg-free-message-box').html("You're already at the last car!");
     }
+}
+
+function firstBucket() {
+
+    // document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
 }
 
 function loadClickedSeg() {
