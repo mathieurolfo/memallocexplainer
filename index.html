@@ -72,13 +72,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                <h2>A train is a heap, it has lots of spaces</h2>
-                <p>Click to load</p>
-                    <img class="img img-fluid" id="figure-head" src="figures/train-head.svg"></img>
-                    <img class="img img-fluid" id="figure-cart2" src="figures/train2.svg"></img>
-                    <img class="img img-fluid" id="figure-cart2copy" src="figures/train2-copy.svg"></img>
-
-                    <button id="first-fit-load-button" class="button" onclick="firstfitloadClicked()">Load Cargo</button>
+                <h2>We will teach you heap allocation.</h2>
               </div>
             </div>
         </div>
@@ -92,28 +86,28 @@
 		<div id="malloc-description-text">
 		In our explanation, we represent requests for memory allocation, called malloc in computer science terms, as placing cargo on train cars. To place cargo on a train, you will check train cars sequentially, and if they have enough space, press the button to load the cargo. Cargo can be placed on cars larger than them, but not cars smaller than them.
 		</div>
-		
+
 		<div id="malloc-demo-1">
 		<h5>Try and load the cargo!</h5>
 		<div class="centered"><div id="malloc-cargo-box-1" class="malloc-cargo-box cargo-box">4</div></div>
 
 		<img class="img img-fluid figure-head" id="figure-head-1" src="figures/train-head.svg"></img>
         <img class="img img-fluid figure-cart2" id="figure-cart2-1" src="figures/train-demo.svg"></img>
-        
+
         <div><button id="demo-load-button-1" class="malloc-load-button button-pill button button-3d" onclick="demoLoadClicked1()">Load Cargo</button></div>
         </div>
 
         <div id="malloc-demo-2">
 
         	<div class="malloc-text centered">
-        	Great, you placed the cargo! Now try with a cargo that is too big for the cart. 
+        	Great, you placed the cargo! Now try with a cargo that is too big for the cart.
         	</div>
 
 	        <div class="centered"><div id="malloc-cargo-box-2" class="malloc-cargo-box cargo-box">10</div></div>
 
 			<img class="img img-fluid figure-head" id="figure-head-2" src="figures/train-head.svg"></img>
 	        <img class="img img-fluid figure-cart2" id="figure-cart2-2" src="figures/train-demo.svg"></img>
-	        
+
 	        <div><button id="malloc-load-button2" class=" malloc-load-button button button-3d button-pill" onclick="demoLoadClicked2()">Load Cargo</button></div>
 	        </div>
 
@@ -126,7 +120,7 @@
 	    </div>
 
 	    <div class="malloc-text centered add-spacing">
-        Now that we know the rules of the game, let's try and figure out the best way to load up our trains. 
+        Now that we know the rules of the game, let's try and figure out the best way to load up our trains.
 	    </div>
 
 	    </div>
@@ -136,7 +130,7 @@
 	<!-- Matt -->
 
     <section id="first-fit">
-    
+
     <div class="centered">
 		<div id="first-fit-header-text">Load the train by placing cargo in the first space it fits!</div>
 		<div id="first-fit-description-text" >
@@ -189,7 +183,7 @@
 
 	<div id="first-fit-end-text" name="first-fit-segue">
 	The strategy we just tried out, placing the cargo in the first-fitting spot, has its strengths and weaknesses. On one hand, we are able to place a given piece of cargo pretty quickly: we placed the first two pieces of cargo after only looking at a single car! However, we couldn't make the best use of our train's available space: we had what is referred to as fragmentation. <br><br>Our final stats were 5 cars inspected and 6/15 space utilization: can we do better with a different strategy?
-	
+
 	</div>
 	</section>
 	<!--  best fit -->
