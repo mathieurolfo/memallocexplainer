@@ -149,21 +149,12 @@ function firstfitrefresh() {
     $('#first-fit-clicks').html(window.firstfitcurrentState.clicks);
     $('#first-fit-utilization').html(window.firstfitcurrentState.utilization + " out of " + window.firstfitinitialGame.totalSpace)
 
-    if (capacity >= window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]) {
-    	$('#first-fit-left-button').attr("disabled", true);
-    	$('#first-fit-right-button').attr("disabled", true);
-    	$('#first-fit-message-box').html("The cargo fits! Place it here!");
-    } else {
-    	$('#first-fit-left-button').attr("disabled", false);
-    	$('#first-fit-right-button').attr("disabled", false);
-        $('#first-fit-load-button').attr("animation", "none");
-        $('#first-fit-load-button').removeClass("pulsing");
-        $('#first-fit-load-button').stop();
-    }
+    
 
     firstfitupdateCargoBox();
     firstfitupdateTrainCar();
     firstfitredrawCargo();
+    firstfitupdateButtonStates(capacity, maxCapacity);
 
     //should be done with promises: just notifies users after graphics rerendered if sim done
     setTimeout(function() {
@@ -212,15 +203,33 @@ function firstfitupdateTrainCar() {
     window.firstfitcarcanvas.renderAll();
 
     //modify button states
-    if (window.firstfitcurrentState.currentCar === window.firstfitinitialGame.numCars) {
-    	$('#first-fit-right-button').addClass("disabled");
-    } else if (window.firstfitcurrentState.currentCar === 1){
-    	$('#first-fit-left-button').addClass("disabled");
+    
+
+}
+
+function firstfitupdateButtonStates(capacity, maxCapacity) {
+    
+
+    if (capacity >= window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]) {
+        $('#first-fit-no-button').attr("disabled", true);
+        $('#first-fit-yes-button').attr("disabled", false);
+
+        $('#first-fit-no-button').removeClass("button-action");
+        $('#first-fit-yes-button').addClass("button-action");
     } else {
-    	$('#first-fit-left-button').removeClass("disabled");
-    	$('#first-fit-right-button').removeClass("disabled");
+        $('#first-fit-no-button').addClass("button-action");
+        $('#first-fit-yes-button').removeClass("button-action");
+
+        $('#first-fit-no-button').attr("disabled", false);
+        $('#first-fit-yes-button').attr("disabled", true);
     }
 
+
+    if (window.firstfitcurrentState.currentCar === window.firstfitinitialGame.numCars) {
+        $('#first-fit-yes-button').addClass("disabled");
+    } else {
+        $('#first-fit-right-button').removeClass("disabled");
+    }
 }
 
 function firstfitstageCompleted() {
@@ -228,20 +237,20 @@ function firstfitstageCompleted() {
 
 }
 
-function firstfitleftClicked() {
-    $('#first-fit-message-box').html("");
+// function firstfitleftClicked() {
+//     $('#first-fit-message-box').html("");
 
-    if (window.firstfitcurrentState.currentCar > 1) {
-        window.firstfitcurrentState.currentCar -= 1;
-        //window.firstfitcurrentState.clicks += 1; // NOT penalizing going backwards
-        firstfitrefresh();
-    } else {
-        $('#first-fit-message-box').html("You're already at the first car!");
-    }
+//     if (window.firstfitcurrentState.currentCar > 1) {
+//         window.firstfitcurrentState.currentCar -= 1;
+//         //window.firstfitcurrentState.clicks += 1; // NOT penalizing going backwards
+//         firstfitrefresh();
+//     } else {
+//         $('#first-fit-message-box').html("You're already at the first car!");
+//     }
 
-}
+// }
 
-function firstfitrightClicked() {
+function firstfitNoClicked() {
     $('#first-fit-message-box').html("");
 
     if (window.firstfitcurrentState.currentCar < window.firstfitinitialGame.numCars) {
@@ -253,7 +262,7 @@ function firstfitrightClicked() {
     }
 }
 
-function firstfitloadClicked() {
+function firstfitYesClicked() {
     // $('#first-fit-load-button').removeClass("pulsing");
     // $('#first-fit-load-button').animate({animation: 'none'});
     // $('#first-fit-load-button').stop()

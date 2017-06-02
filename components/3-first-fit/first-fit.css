@@ -162,6 +162,7 @@ span, div {
 
 button {
 	margin: 5px;
+	color: black;
 
 }
 
@@ -181,13 +182,15 @@ button {
 	margin-bottom: 30px;
 }
 
-#first-fit-left-button {
-	background-color: lightblue;
+#first-fit-yes-button {
+	color: black;
+	/*background-color: lightblue;*/
 	/*animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);*/
 }
 
-#first-fit-right-button {
-	background-color: lightblue;
+#first-fit-no-button {
+	color: black;
+	/*background-color: lightblue;*/
 	/*animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);*/
 }
 
