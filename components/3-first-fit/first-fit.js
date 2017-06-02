@@ -176,7 +176,11 @@ function firstfitrefresh() {
         //TODO: clear up the display
             alert("Oh no! It seems that there isn't anywhere for you to put the last cargo on the train.\
 It would have fit on the first car, but we filled that with smaller cargos. Scroll down for more explanation.");
+        $('#first-fit-game-container').css("opacity", "0.25");
+       
+        $('#first-fit-end-text').css("visibility", "visible");
         }
+
     }, 300);
 
 }
@@ -282,17 +286,13 @@ function firstfitNoClicked() {
 }
 
 function firstfitYesClicked() {
-    // $('#first-fit-load-button').removeClass("pulsing");
-    // $('#first-fit-load-button').animate({animation: 'none'});
-    // $('#first-fit-load-button').stop()
     if (window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex] <= window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar]) {
         //load the cargo
 
         var cargoWidth = 30*window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
         console.log(cargoWidth)
         var left = 255 + window.firstfitwheel2.left - window.firstfittraincar.left - cargoWidth 
-        $('#first-fit-current-cargo-box').animate({"top": "100", "left": left},1000,function() {
-            console.log("animation complete");
+        $('#first-fit-current-cargo-box').animate({"top": "100", "left": left},700,function() {
         
 
 
