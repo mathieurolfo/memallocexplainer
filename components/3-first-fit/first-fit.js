@@ -132,12 +132,12 @@ function firstfitupdateWholeTrainCargo() {
         
         if (cargoWidth > 0) {
              window[loadedCargo] = new fabric.Rect({
-                top: 30, left: currLeft, width: cargoWidth, height: 20, fill: 'white',
+                top: 25, left: currLeft, width: cargoWidth, height: 25, fill: 'white',
                 stroke: 'black', strokeWidth: 2
             });
 
         } else {
-            window[loadedCargo] = new fabric.Rect({top: 30, left: currLeft, width: cargoWidth, height: 20, fill: 'white'});
+            window[loadedCargo] = new fabric.Rect({top: 30, left: currLeft, width: cargoWidth, height: 30, fill: 'white'});
         }
         
         
@@ -211,7 +211,7 @@ function firstfitupdateTrainCar() {
 
 function firstfitupdateCargoBox() {
     var cargoSize = window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
-    cargoSize *= 30
+    cargoSize *= 25
     $('#first-fit-current-cargo-box').css("width", cargoSize);
    
     $('#first-fit-current-cargo-box').html(window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]);
@@ -224,7 +224,13 @@ function firstfitupdateCargoBox() {
     // console.log("car", window.firstfittraincar.left)
     // console.log("wheel", window.firstfitwheel2.left)
     // console.log($('#first-fit-current-cargo-box').css("left"));
-    var resetPosition = "250px"
+    var car = "firstfitcar" + (window.firstfitcurrentState.currentCar);
+    console.log("current car - ", window[car].left);
+    var fixedOffset = 20;
+    var cargoWidth = (window.firstfitinitialGame.cars[window.firstfitcurrentState.currentCar]-window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar])*25;
+        
+
+    var resetPosition = fixedOffset + window[car].left + cargoWidth +  "px"
     $('#first-fit-current-cargo-box').css("left", resetPosition);
 
     $('#first-fit-current-cargo-box').css("top", "0px");
@@ -289,10 +295,10 @@ function firstfitYesClicked() {
     if (window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex] <= window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar]) {
         //load the cargo
 
-        var cargoWidth = 30*window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
+        var cargoWidth = 25*window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
         console.log(cargoWidth)
         var left = 255 + window.firstfitwheel2.left - window.firstfittraincar.left - cargoWidth 
-        $('#first-fit-current-cargo-box').animate({"top": "100", "left": left},700,function() {
+        $('#first-fit-current-cargo-box').animate({"top": "80"},700,function() {
         
 
 

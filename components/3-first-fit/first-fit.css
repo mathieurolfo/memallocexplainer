@@ -108,8 +108,8 @@ span, div {
 
 #first-fit-train-display {
 	margin-left: 20px;
-	width: 700px;
-	height: 150px;
+	/*width: 700px;*/
+	/*height: 150px;*/
 }
 
 #first-fit-car-display {
@@ -181,7 +181,7 @@ button {
 	border: 2px solid;
 	padding-bottom: 20px;
 	padding-top: 20px;
-	visibility: hidden;
+	/*visibility: hidden;*/
 }
 
 #first-fit-load-button {
