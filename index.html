@@ -203,10 +203,19 @@
 	<div id="first-fit-end-text" class="centered" name="first-fit-segue">
 	The strategy we just tried out, placing the cargo in the first-fitting spot, has its strengths and weaknesses. On one hand, we are able to place a given piece of cargo pretty quickly: we placed the first two pieces of cargo after only looking at a single car! However, we couldn't make the best use of our train's available space: we had what is referred to as fragmentation. <br><br>Our final stats were <b>8 cars inspected</b> and <b>6/16 space utilization</b>: can we do better with a different strategy?
 
+	<br><br><br>Instead of placing cargo in the first-fitting spot, what if we place it in the <i>best-fitting</i> spot? This will minimize the amount of small, leftover spaces in each train car, which we call fragmentation.<br>  
+	<button id="best-fit-start-button" class="centered malloc-load-button button button-3d button-pill" onclick="startBestFit()">Try Best Fit</button>
 	</div>
 	</section>
 	<!--  best fit -->
      <section id="best-fit">
+     <div class="centered">
+		<!-- <div id="first-fit-header-text">Load the train by placing cargo in the first space it fits!</div>
+		<div id="first-fit-description-text" >
+		The cargo is located on the left of the screen. You will have three pieces of cargo to place, and you can only see the size of the current piece of cargo. Browse through the train using the left and right arrows until you find a spot where the cargo fits. You can see your current speed and space usage at the bottom of the window.
+		</div>
+		<button id="first-fit-start-button" class=" malloc-load-button button button-3d button-pill" onclick="startFirstFit()">Got it!</button>
+	</div> -->
 
 	<div><div id="best-fit-game-container" class="centered">
 		<!-- <span id="first-fit-cargo-display-region"> -->
