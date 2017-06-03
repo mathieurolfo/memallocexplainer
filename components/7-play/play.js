@@ -272,6 +272,8 @@ function loadClickedSeg() {
     if (window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex] <= window.segfreeCurrentState.remainingCapacity[window.segfreeCurrentState.currentCar]) {
         //load the cargo
         window.segfreeCurrentState.remainingCapacity[window.segfreeCurrentState.currentCar] -= window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex]
+        var curBucket = window.segfreeCurrentState.carMap[window.segfreeCurrentState.currentBucket];
+        carBucket.indexOf(window.segfreeCurrentState.currentCar);
         window.segfreeCurrentState.utilization += window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex]
         window.segfreeCurrentState.currentCargoIndex += 1
         window.segfreeCurrentState.cargoLeft -= 1
