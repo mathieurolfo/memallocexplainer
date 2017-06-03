@@ -330,7 +330,7 @@ function firstfitYesClicked() {
 }
 
 function firstfitresetSimulation() {
-	window.firstfitcarcanvas.clear();
+	// window.firstfitcarcanvas.clear();
 	$('#first-fit-message-box').html("");
 	firstfitinitializeParameters();
 	firstfitinit();
