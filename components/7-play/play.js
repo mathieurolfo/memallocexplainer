@@ -25,12 +25,15 @@ window.onload = function() {
 }
 
 function initializeParametersSeg() {
-  var cargo = [null, 8, 2, 4, 10, 7, 6, 15, "none!"];
-    var cars = [null, 4, 8, 16, 10, 12, 4, 2, 8, 4, 6];
-    var car4 = [null, 4, 2, 4, 4];
-    var car8 = [null, 6, 8, 8];
-    var car12 = [null, 10, 12];
-    var car16 = [null, 16];
+  	var cargo = [null, 8, 2, 4, 10, 7, 6, 15, "none!"];
+  	// var carMap = {4: [(4, 1), (2, 7), (4, 9), (4, 6)], 8: [(6, 10), (8, 2), (8, 8)], 12: [(10, 4), (12, 5)], 16: [(16, 3)]};
+    var carMap = {4: [1, 6, 7, 9], 8: [2, 8, 10], 12: [4, 5], 16: [3]};
+    var cars = [null, 4, 6, 16, 10, 12, 2, 4, 8, 4, 8];
+
+    var car4 = [1, 6, 7, 9]; //[4, 2, 4, 4] 
+    var car8 = [2, 8, 10]; //[6, 8, 8]
+    var car12 = [4, 5]; //[10, 12]
+    var car16 = [3]; //[16]
     var totalSpace = 0;
     for (var x=1; x<cars.length; x++) {
         totalSpace += cars[x];
@@ -40,7 +43,7 @@ function initializeParametersSeg() {
     var currentCargoIndex = 1;
     var numCars = cars.length - 1;
     var currentCar = 1;
-    var currentBucket = 1;
+    var currentBucket = 0;
     window.segfreeInitialGame = {
         cargo: cargo,
         cars: cars,
@@ -55,6 +58,8 @@ function initializeParametersSeg() {
     window.segfreeCurrentState = {
         cargoLeft: cargoLeft,
         currentCar: currentCar,
+        carMap: carMap,
+        currentCars: carMap[4],
         currentBucket: currentBucket,
         remainingCapacity: remainingCapacity,
         currentCargoIndex: currentCargoIndex,
@@ -139,8 +144,8 @@ function refreshSeg() {
     $('#seg-free-cargo-display-header').html("Cargo loads remaining: " + window.segfreeCurrentState.cargoLeft);
     $('#seg-free-current-cargo-size').html("Current cargo:"); //" size: " + window.InitialGame.cargo[window.currentState.currentCargoIndex]);
 
-    $('#seg-free-car-display-header').html("Current Car: "
-        + window.segfreeCurrentState.currentCar + " of " + window.segfreeInitialGame.numCars);
+    $('#seg-free-car-display-header').html("Current Car: Car "
+        + window.segfreeCurrentState.currentCar);
 
     $('#seg-free-clicks').html(window.segfreeCurrentState.clicks);
     $('#seg-free-utilization').html(window.segfreeCurrentState.utilization + " out of " + window.segfreeInitialGame.totalSpace)
@@ -220,13 +225,24 @@ function stageCompletedSeg() {
 
 }
 
+function bucketClicked(bucketNum) {
+	window.segfreeCurrentState.currentBucket = bucketNum;
+	window.segfreeCurrentState.currentCars = window.segfreeCurrentState.carMap[bucketNum];
+	window.segfreeCurrentState.currentCar = window.segfreeCurrentState.currentCars[0];
+	refreshSeg();
+}
+
 function leftClickedSeg() {
     $('#seg-free-message-box').html("");
-
-    if (window.segfreeCurrentState.currentCar > 1) {
-        window.segfreeCurrentState.currentCar -= 1;
-        //window.segfreecurrentState.clicks += 1; // NOT penalizing going backwards
-        refreshSeg();
+    var indexfound = (window.segfreeCurrentState.currentCars).indexOf(window.segfreeCurrentState.currentCar);
+    if (indexfound > 0) {
+    	window.segfreeCurrentState.currentCar = window.segfreeCurrentState.currentCars[indexfound-1];
+    	window.segfreeCurrentState.clicks += 1;
+    	refreshSeg();
+    // if (window.segfreeCurrentState.currentCar > 1) {
+    //     window.segfreeCurrentState.currentCar -= 1;
+    //     //window.segfreecurrentState.clicks += 1; // NOT penalizing going backwards
+    //     refreshSeg();
     } else {
         $('#seg-free-message-box').html("You're already at the first car!");
     }
@@ -235,34 +251,21 @@ function leftClickedSeg() {
 
 function rightClickedSeg() {
     $('#seg-free-message-box').html("");
-
-    if (window.segfreeCurrentState.currentCar < window.segfreeInitialGame.numCars) {
-        window.segfreeCurrentState.currentCar += 1;
-        window.segfreeCurrentState.clicks += 1;
-        refreshSeg();
+    var indexfound = (window.segfreeCurrentState.currentCars).indexOf(window.segfreeCurrentState.currentCar);
+    if (indexfound < window.segfreeCurrentState.currentCars.length - 1) {
+    	window.segfreeCurrentState.currentCar = window.segfreeCurrentState.currentCars[indexfound+1];
+    	window.segfreeCurrentState.clicks += 1;
+    	refreshSeg();
     } else {
-        $('#seg-free-message-box').html("You're already at the last car!");
+    	$('#seg-free-message-box').html("You're already at the last car!");
     }
-}
-
-function firstBucket() {
-
-    // document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
+    // if (window.segfreeCurrentState.currentCar < window.segfreeInitialGame.numCars) {
+    //     window.segfreeCurrentState.currentCar += 1;
+    //     window.segfreeCurrentState.clicks += 1;
+    //     refreshSeg();
+    // } else {
+    //     $('#seg-free-message-box').html("You're already at the last car!");
+    // }
 }
 
 function loadClickedSeg() {

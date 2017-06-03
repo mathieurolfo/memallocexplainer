@@ -310,39 +310,38 @@
 
 	<section id="play">
 
-		<span id="seg-free-cargo-display-region">
-
-			<div id="seg-free-cargo-display-header" class="display-header"></div>
-
+		<div class="centered">
+			Load this cargo: 
 			<div id="seg-free-current-cargo-box" class="centered"></div>
-			<div id="seg-free-cargo2" class="cargo-box centered">?</div>
-			<div id="seg-free-cargo3" class="cargo-box centered">?</div>
+		</div>
+
+		<span id="seg-free-cargo-display-region">
+			Choose a bucket
+			<div>
+			<button id="seg-free-load-button" class="button" onclick="bucketClicked(4)">1-4</button>
+			</div>
+			<div>
+			<button id="seg-free-load-button" class="button" onclick="bucketClicked(8)">5-8</button>
+			</div>
+			<div>
+			<button id="seg-free-load-button" class="button" onclick="bucketClicked(12)">9-12</button>
+			</div>
+			<div>
+			<button id="seg-free-load-button" class="button" onclick="bucketClicked(16)">13-16</button>
+			</div>
+
+			<!-- <div id="seg-free-cargo-display-header" class="display-header"></div> -->
+
+			<!-- <div id="seg-free-current-cargo-box" class="centered"></div> -->
+			<!-- <div id="seg-free-cargo2" class="cargo-box centered">?</div> -->
+			<!-- <div id="seg-free-cargo3" class="cargo-box centered">?</div> -->
+
 
 		</span>
 
 		<span id="seg-free-current-car-region">
 			<div id="seg-free-car-display-header" class="display-header"></div>
 			<div class="centered">
-				<!-- <div class="dropdown">
-					  <button onclick="dropdownSeg()" class="dropbtn">Jump to bucket...</button>
-					  <div id="myDropdown" class="dropdown-content">
-					    <a href="#">1-4</a>
-					    <a href="#">5-8</a>
-					    <a href="#">9-12</a>
-					    <a href="#">13-16</a>
-					  </div>
-					</div> -->
-				<div class="container">
-				  <div class="dropdown">
-				    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Jump to bucket...</button>
-				    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-				      <li role="presentation"><a role="menuitem" tabindex="-1" onclick="firstBucket()" href="#">2-4</a></li>
-				      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">6-8</a></li>
-				      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">10-12</a></li>
-				      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">14-16</a></li>
-				    </ul>
-				  </div>
-				</div>
 			</div>
 			<div id="seg-free-car-display">
 				<button id="seg-free-left-button" class="button button-circle" onclick="leftClickedSeg()"></button>
