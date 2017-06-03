@@ -161,11 +161,8 @@
 		<div>
 		<h4>Does this cargo fit in this car?</h4>
 		</div>
-		<div id="first-fit-current-cargo-box" ></div>
-
-		<canvas id="first-fit-current-train"></canvas>
-
-		<div id="first-fit-car-display-header" class="display-header"></div>
+		
+		
 		<div id="first-fit-button-area"> 
 			<div id="first-fit-yes-area">
 					<button id="first-fit-yes-button" class="button button-3d button-pill" onclick="firstfitYesClicked()">Yes - Load</button>
@@ -176,10 +173,11 @@
 				<div>
 			</div>
 		</div>
-
+		<div id="first-fit-current-cargo-box" ></div>
+		<img class="" id="first-fit-arrow" src="figures/arrow.png"></img>
 		
 		<div id="first-fit-train-display-region" >
-			<h5 class="centered"> Overview of the whole train:</h5>
+			<!-- <h5 class="centered"> Overview of the whole train:</h5> -->
 			<canvas id="first-fit-train-display"></canvas>
 		</div>
 
@@ -198,11 +196,12 @@
 		</div> -->
 
 		<button id="first-fit-refresh-button" class="button" onclick="firstfitresetSimulation()">Refresh this Game</button>
-
+		<!-- <div id="first-fit-car-display-header" class="display-header"></div>
+		<canvas id="first-fit-current-train"></canvas> -->
 	</div></div>
 
 	<div id="first-fit-end-text" class="centered" name="first-fit-segue">
-	The strategy we just tried out, placing the cargo in the first-fitting spot, has its strengths and weaknesses. On one hand, we are able to place a given piece of cargo pretty quickly: we placed the first two pieces of cargo after only looking at a single car! However, we couldn't make the best use of our train's available space: we had what is referred to as fragmentation. <br><br>Our final stats were 5 cars inspected and 6/16 space utilization: can we do better with a different strategy?
+	The strategy we just tried out, placing the cargo in the first-fitting spot, has its strengths and weaknesses. On one hand, we are able to place a given piece of cargo pretty quickly: we placed the first two pieces of cargo after only looking at a single car! However, we couldn't make the best use of our train's available space: we had what is referred to as fragmentation. <br><br>Our final stats were <b>8 cars inspected</b> and <b>6/16 space utilization</b>: can we do better with a different strategy?
 
 	</div>
 	</section>
@@ -288,6 +287,11 @@
                 <canvas id="seglist-train"></canvas>
             </div>
 
+            <canvas id="seglist-train"></canvas>
+            <canvas id="seglist-train"></canvas>
+            <canvas id="seglist-train"></canvas>
+            <canvas id="seglist-train"></canvas>
+            
             <div id="seglist-buttons">
             </div>
             <div id="seglist-all">
