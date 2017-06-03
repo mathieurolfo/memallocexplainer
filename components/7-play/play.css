@@ -2,6 +2,18 @@ span, div {
 	font-family: "Source Sans Pro", sans-serif;
 }
 
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
 #seg-free-header-text {
 	font-size: 30px;
 	/*margin-left: auto;
