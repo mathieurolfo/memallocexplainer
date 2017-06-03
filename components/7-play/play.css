@@ -14,6 +14,12 @@ td, th {
     padding: 8px;
 }
 
+.highlight { background-color: blue; }
+
+tr:hover {
+	background: red
+}
+
 #seg-free-header-text {
 	font-size: 30px;
 	/*margin-left: auto;
