@@ -318,55 +318,67 @@
 
 	<section id="play">
 
+		<table style="width:70%">
+		  <tr>
+		    <td style='width: 20%;'>Bucket 1-4</td>
+		    <td></td> 
+		  </tr>
+		  <tr>
+		    <td>Bucket 5-8</td>
+		    <td></td> 
+		  </tr>
+		  <tr>
+		    <td>Bucket 9-12</td>
+		    <td></td> 
+		  </tr>
+		  <tr>
+		    <td>Bucket 13-16</td>
+		    <td></td> 
+		  </tr>
+		</table>
+
 		<div class="centered">
 			Load this cargo: 
 			<div id="seg-free-current-cargo-box" class="centered"></div>
 		</div>
-
-		<span id="seg-free-cargo-display-region">
-			Choose a bucket
-			<div>
-			<button id="seg-free-load-button" class="button" onclick="bucketClicked(4)">1-4</button>
-			</div>
-			<div>
-			<button id="seg-free-load-button" class="button" onclick="bucketClicked(8)">5-8</button>
-			</div>
-			<div>
-			<button id="seg-free-load-button" class="button" onclick="bucketClicked(12)">9-12</button>
-			</div>
-			<div>
-			<button id="seg-free-load-button" class="button" onclick="bucketClicked(16)">13-16</button>
-			</div>
-
-			<!-- <div id="seg-free-cargo-display-header" class="display-header"></div> -->
-
-			<!-- <div id="seg-free-current-cargo-box" class="centered"></div> -->
-			<!-- <div id="seg-free-cargo2" class="cargo-box centered">?</div> -->
-			<!-- <div id="seg-free-cargo3" class="cargo-box centered">?</div> -->
-
-
-		</span>
-
-		<span id="seg-free-current-car-region">
-			<div id="seg-free-car-display-header" class="display-header"></div>
-			<div class="centered">
-			</div>
-			<div id="seg-free-car-display">
-				<button id="seg-free-left-button" class="button button-circle" onclick="leftClickedSeg()"></button>
-				<canvas id="seg-free-current-train"></canvas>
-				<button id="seg-free-right-button" class="button button-circle" onclick="rightClickedSeg()">></button>
-			</div>
-
-
-			<div class="centered">
-				<div id="seg-free-car-capacity">hi</div>
-				<button id="seg-free-load-button" class="button" onclick="loadClickedSeg()">Load Cargo</button>
-				<div>
-					<div id="seg-free-message-box" ></div>
+		<div class="centered">
+			<span id="seg-free-cargo-display-region">
+				<div class="centered">
+					Choose a bucket
+					<div>
+					<button id="seg-free-load-button" class="button" onclick="bucketClicked(4)">1-4</button>
+					</div>
+					<div>
+					<button id="seg-free-load-button" class="button" onclick="bucketClicked(8)">5-8</button>
+					</div>
+					<div>
+					<button id="seg-free-load-button" class="button" onclick="bucketClicked(12)">9-12</button>
+					</div>
+					<div>
+					<button id="seg-free-load-button" class="button" onclick="bucketClicked(16)">13-16</button>
+					</div>
 				</div>
-			</div>
+			</span>
 
-		</span>
+			<span id="seg-free-current-car-region">
+				<div id="seg-free-car-display-header" class="display-header"></div>
+				<div class="centered">
+				</div>
+				<div id="seg-free-car-display">
+					<button id="seg-free-left-button" class="button button-circle" onclick="leftClickedSeg()"></button>
+					<canvas id="seg-free-current-train"></canvas>
+					<button id="seg-free-right-button" class="button button-circle" onclick="rightClickedSeg()">></button>
+				</div>
+				<div class="centered">
+					<div id="seg-free-car-capacity">hi</div>
+					<button id="seg-free-load-button" class="button" onclick="loadClickedSeg()">Load Cargo</button>
+					<div>
+						<div id="seg-free-message-box" ></div>
+					</div>
+				</div>
+
+			</span>
+		</div>
 
 		<div id="seg-free-train-display-region">
 			<div id="seg-free-click-counter">

@@ -2,6 +2,18 @@ span, div {
 	font-family: "Source Sans Pro", sans-serif;
 }
 
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
 #seg-free-header-text {
 	font-size: 30px;
 	/*margin-left: auto;
@@ -27,7 +39,7 @@ span, div {
 	/*background-color: red;*/
 	/*opacity: 0.5;*/
 	margin: 5px;
-	border: 1px solid;
+	/*border: 1px solid;*/
 }
 
 #seg-free-current-cargo-box {
@@ -86,7 +98,7 @@ span, div {
 	height: 400px;
 	/*background-color: blue;
 	opacity: 0.5;*/
-	border: 1px solid;
+	/*border: 1px solid;*/
 	display: inline-block;
 	vertical-align: top;
 	margin: 5px;
