@@ -24,6 +24,13 @@ window.onload = function() {
   
 }
 
+$("#data tr").click(function() {
+    var selected = $(this).hasClass("highlight");
+    $("#data tr").removeClass("highlight");
+    if(!selected)
+            $(this).addClass("highlight");
+});
+
 function initializeParametersSeg() {
   	var cargo = [null, 8, 2, 4, 10, 7, 6, 15, "none!"];
   	// var carMap = {4: [(4, 1), (2, 7), (4, 9), (4, 6)], 8: [(6, 10), (8, 2), (8, 8)], 12: [(10, 4), (12, 5)], 16: [(16, 3)]};
