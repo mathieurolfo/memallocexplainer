@@ -24,11 +24,13 @@ window.onload = function() {
   
 }
 
+var car1 = {size: 4, index: 1, used: false};
+
 $("#data tr").click(function() {
     var selected = $(this).hasClass("highlight");
     $("#data tr").removeClass("highlight");
     if(!selected)
-            $(this).addClass("highlight");
+        $(this).addClass("highlight");
 });
 
 function initializeParametersSeg() {
