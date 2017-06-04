@@ -167,9 +167,9 @@
 		<div>
 		<h4>Does this cargo fit in this car?</h4>
 		</div>
-		
-		
-		<div id="first-fit-button-area"> 
+
+
+		<div id="first-fit-button-area">
 			<div id="first-fit-yes-area">
 					<button id="first-fit-yes-button" class="button button-3d button-pill" onclick="firstfitYesClicked()">Yes - Load</button>
 			</div>
@@ -181,7 +181,7 @@
 		</div>
 		<div id="first-fit-current-cargo-box" ></div>
 		<img class="" id="first-fit-arrow" src="figures/arrow.png"></img>
-		
+
 		<div id="first-fit-train-display-region" >
 			<!-- <h5 class="centered"> Overview of the whole train:</h5> -->
 			<canvas id="first-fit-train-display"></canvas>
@@ -207,7 +207,10 @@
 	</div></div>
 
 	<div id="first-fit-end-text" class="centered" name="first-fit-segue">
-	The strategy we just tried out, placing the cargo in the first-fitting spot, has its strengths and weaknesses. On one hand, we are able to place a given piece of cargo pretty quickly: we placed the first two pieces of cargo after only looking at a single car! However, we couldn't make the best use of our train's available space: we had what is referred to as fragmentation. <br><br>Our final stats were <b>8 cars inspected</b> and <b>6/16 space utilization</b>: can we do better with a different strategy? What if instead of placing cargo in the first-fitting spot, what if we place it in the <i>best-fitting</i> spot? This will minimize the amount of small, leftover spaces in each train car, which we call fragmentation.<br>  
+	The strategy we just tried out, placing the cargo in the first-fitting spot, has its strengths and weaknesses. On one hand, we are able to place a given piece of cargo pretty quickly: we placed the first two pieces of cargo after only looking at a single car! However, we couldn't make the best use of our train's available space: we had what is referred to as fragmentation. <br><br>Our final stats were <b>8 cars inspected</b> and <b>6/16 space utilization</b>: can we do better with a different strategy?
+
+	<br><br><br>Instead of placing cargo in the first-fitting spot, what if we place it in the <i>best-fitting</i> spot? This will minimize the amount of small, leftover spaces in each train car, which we call fragmentation.<br>
+
 	<button id="best-fit-start-button" class="centered malloc-load-button button button-3d button-pill" onclick="startBestFit()">Try Best Fit</button>
 	</div>
 	</section>
@@ -226,7 +229,7 @@
 
 			<!-- <div id="first-fit-cargo-display-header" class="display-header"></div> -->
 			<!-- <div id="first-fit-current-cargo-size"></div> -->
-			
+
 			<!-- <div id="first-fit-cargo2" class="cargo-box centered">?</div>
 			<div id="first-fit-cargo3" class="cargo-box centered">?</div> -->
 		<!-- </span> -->
@@ -235,7 +238,7 @@
 			<!-- <button id="button" onclick="buttonClicked()">place load</button> -->
 			<!-- <div id="first-fit-car-display"> -->
 				<!-- <button id="first-fit-left-button" class="button button-3d button-circle" onclick="firstfitleftClicked()"><</button> -->
-				
+
 				<!-- <button id="first-fit-right-button" class="button button-3d button-circle" onclick="firstfitrightClicked()">></button> -->
 		<!-- 	</div>
 		</span>
@@ -248,7 +251,7 @@
 		<canvas id="best-fit-current-train"></canvas>
 
 		<div id="best-fit-car-display-header" class="display-header"></div>
-		<div id="best-fit-button-area"> 
+		<div id="best-fit-button-area">
 			<div id="best-fit-yes-area">
 					<button id="best-fit-yes-button" class="button button-3d button-pill" onclick="bestfitYesClicked()">Yes - Load</button>
 			</div>
@@ -258,7 +261,7 @@
 				<div>
 			</div>
 		</div>
-		
+
 		<div id="best-fit-train-display-region" >
 			<h5 class="centered"> Overview of the whole train:</h5>
 			<canvas id="best-fit-train-display"></canvas>
@@ -273,7 +276,7 @@
 
 		<!-- <div class="centered">
 			<div id="first-fit-car-capacity">hi</div>
-			
+
 				<div id="first-fit-message-box" ></div>
 			</div>
 		</div> -->
@@ -292,25 +295,14 @@
               <h5>Now let's create a cheat sheet! </h5>
               <div id="free-list-text" name="free-list-segue">
     Can you sort it into different bucket list by looking at each cart once? <br>Try drag the carts into different size list!
-        		</div>
+                </div>
               <p></p>
-            </div>
 
-            <div id="seglist-fit-train-display-region">
-                <canvas id="seglist-train"></canvas>
             </div>
-
-            <canvas id="seglist-train"></canvas>
-            <canvas id="seglist-train"></canvas>
-            <canvas id="seglist-train"></canvas>
-            <canvas id="seglist-train"></canvas>
-            
-            <div id="seglist-buttons">
+            <div class="row">
+                <div class="train" id="train-drag-drop-example" >
+                </div>
             </div>
-            <div id="seglist-all">
-            </div>
-
-
             <div class="row">
                 <div class="col-md-12" align="center">
                 <h4>Drag the empty train into different categories of sizes!</h4>
@@ -318,32 +310,32 @@
             </div>
 
         </div>
-	</section>
+    </section>
 
 	<section id="play">
 
 		<table id="data" style="width:70%">
 		  <tr>
 		    <td style='width: 20%;'><button type="button">Bucket 1-4</button></td>
-		    <td></td> 
+		    <td></td>
 		  </tr>
 		  <tr>
 		    <td>Bucket 5-8</td>
-		    <td></td> 
+		    <td></td>
 		  </tr>
 		  <tr>
 		    <td>Bucket 9-12</td>
-		    <td></td> 
+		    <td></td>
 		  </tr>
 		  <tr>
 		    <td>Bucket 13-16</td>
-		    <td></td> 
+		    <td></td>
 		  </tr>
 		</table>
 
 
 		<div class="centered">
-			Load this cargo: 
+			Load this cargo:
 			<div id="seg-free-current-cargo-box" class="centered"></div>
 		</div>
 		<div class="centered">
