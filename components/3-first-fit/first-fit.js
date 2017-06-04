@@ -236,7 +236,7 @@ function firstfitupdateCargoBox() {
     $('#first-fit-current-cargo-box').css("top", "0px");
     
     //draw dotted cargo box
-    if (cargoFits()) {
+    if (firstfitcargoFits()) {
         $('#first-fit-cargo-outline').css("color", "green");
     } else {
         $('#first-fit-cargo-outline').css("color", "red");
@@ -250,18 +250,18 @@ function firstfitupdateCargoBox() {
     $('#first-fit-arrow').css("left", arrowPosition+"px");
     $('#first-fit-arrow').css("top", "40px");
     $('#first-fit-arrow').stop();
-    bounceArrow();
+    firstfitbounceArrow();
     // console.log(window.firstfitwheel2, right)
 }
 
-function bounceArrow() {
+function firstfitbounceArrow() {
 
     $('#first-fit-arrow').animate({"top": "+=8"}, 400, function() {
-        $('#first-fit-arrow').animate({"top": "-=8"}, 400, bounceArrow);
+        $('#first-fit-arrow').animate({"top": "-=8"}, 400, firstfitbounceArrow);
     });
 }
 
-function cargoFits() {
+function firstfitcargoFits() {
     var capacity = window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar];
     return capacity >= window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
 }
@@ -271,7 +271,7 @@ function firstfitupdateButtonStates(capacity, maxCapacity) {
     //PROPERLY TOGGLE BUTTONS AND STATES!
 
     //if should place, prevent next
-    if (cargoFits()) {
+    if (firstfitcargoFits()) {
         $('#first-fit-no-button').attr("disabled", false);
         $('#first-fit-yes-button').attr("disabled", false);
 
@@ -312,7 +312,7 @@ function firstfitstageCompleted() {
 
 function firstfitNoClicked() {
 
-    if (cargoFits()) { //place
+    if (firstfitcargoFits()) { //place
         console.log("it fits!!");
         $('#first-fit-message-box').html("The cargo fits in this car!");
         $('#first-fit-message-box').fadeIn("400", function() {
