@@ -24,9 +24,7 @@ function firstfitinitializeParameters() {
         cars: cars,
         numCars: numCars,
         totalSpace: totalSpace
-
     };
-
     window.firstfitcurrentState = {
         cargoLeft: cargoLeft,
         currentCar: currentCar,
@@ -35,8 +33,6 @@ function firstfitinitializeParameters() {
         clicks: 1,
         utilization: 0
     };
-
-
 }
 
 function firstfitinit() {
@@ -74,7 +70,7 @@ function firstfitinitWholeTrainGraphic() {
     window.firstfittraincanvas = new fabric.StaticCanvas('first-fit-train-display');
     window.firstfittraincanvas.setWidth(750);
     window.firstfittraincanvas.setHeight(90);
-    fabric.loadSVGFromURL('http://rol.fo/files/train.svg', function(objects, options) {
+    fabric.loadSVGFromURL('https://ccrma.stanford.edu/~kittyshi/memallocexplainer/figures/train-head.svg', function(objects, options) {
         var obj = fabric.util.groupSVGElements(objects, options);
         obj.set({
             left:0,
@@ -242,13 +238,18 @@ function firstfitupdateCargoBox() {
     // console.log(window.firstfitwheel2, right)
 }
 
+function cargoFits() {
+    var capacity = window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar];
+    return capacity >= window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
+}
+
 function firstfitupdateButtonStates(capacity, maxCapacity) {
     
     //PROPERLY TOGGLE BUTTONS AND STATES!
 
     //if should place, prevent next
-    if (capacity >= window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]) {
-        $('#first-fit-no-button').attr("disabled", true);
+    if (cargoFits()) {
+        $('#first-fit-no-button').attr("disabled", false);
         $('#first-fit-yes-button').attr("disabled", false);
 
         // $('#first-fit-no-button').removeClass("button-action");
@@ -287,13 +288,24 @@ function firstfitstageCompleted() {
 // }
 
 function firstfitNoClicked() {
-    $('#first-fit-message-box').html("");
 
-    if (window.firstfitcurrentState.currentCar < window.firstfitinitialGame.numCars) {
+    if (cargoFits()) { //place
+        console.log("it fits!!");
+        $('#first-fit-message-box').html("The cargo fits in this car!");
+        $('#first-fit-message-box').fadeIn("400", function() {
+            console.log("animation complete");
+            setTimeout(function() {
+                $('#first-fit-message-box').fadeOut("400",function() {
+                    console.log("animation complete");
+                });
+            }, 700);
+        });
+
+    } else if (window.firstfitcurrentState.currentCar < window.firstfitinitialGame.numCars) { //keep moving
         window.firstfitcurrentState.currentCar += 1;
         window.firstfitcurrentState.clicks += 1;
         firstfitrefresh();
-    } else {
+    } else { //last car
         $('#first-fit-message-box').html("You're already at the last car!");
     }
 }

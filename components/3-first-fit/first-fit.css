@@ -145,13 +145,23 @@ span, div {
 }
 
 #first-fit-message-box {
-	background-color: yellow;
+	/*background-color: lightyellow;*/
 	white-space: nowrap;
 	display: inline;
-	margin-top: 15px;
+	/*margin-top: 15px;*/
 	/*padding: 3px;*/
 	/*display: inline-block;*/
-	font-size: 24px;
+	font-size: 16px;
+	padding: 3px 0;
+	font-style: italic;
+	display: none;
+	/*visibility: hidden;*/
+	/*opacity: 1;*/
+}
+
+#first-fit-message-container {
+	margin-top: 15px;
+	height: 22px;
 }
 
 
@@ -181,14 +191,14 @@ button {
 }
 
 #first-fit-game-container {
-	width: 75%;
+	width: 675px;
 	margin: 0 auto;
 	margin-top: 20px;
 	/*background-color: #42eef4;*/
 	border: 2px solid;
 	padding-bottom: 20px;
 	padding-top: 20px;
-	visibility: hidden;
+	/*visibility: hidden;*/
 }
 
 #first-fit-load-button {
