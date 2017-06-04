@@ -74,7 +74,7 @@ function firstfitinitWholeTrainGraphic() {
     window.firstfittraincanvas = new fabric.StaticCanvas('first-fit-train-display');
     window.firstfittraincanvas.setWidth(750);
     window.firstfittraincanvas.setHeight(90);
-    fabric.loadSVGFromURL('http://rol.fo/files/train.svg', function(objects, options) {
+    fabric.loadSVGFromURL('https://ccrma.stanford.edu/~kittyshi/memallocexplainer/figures/train-head.svg', function(objects, options) {
         var obj = fabric.util.groupSVGElements(objects, options);
         obj.set({
             left:0,
