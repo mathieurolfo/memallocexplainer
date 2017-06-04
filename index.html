@@ -321,23 +321,24 @@
 		<div class="centered">
 			Load this cargo:
 			<div id="seg-free-current-cargo-box" class="centered"></div>
+			<button id="seg-free-load-button" class="button" onclick="loadClickedSeg()">Load Cargo</button>
 		</div>
 
 		<div class="centered">
-			<table id="data" style="width:70%">
-			  <tr>
+			<table style="width:70%">
+			  <tr id="bucket4" onclick="selectBucket(4)">
 			    <td style='width: 20%;'><button type="button">Bucket 1-4</button></td>
-			    <td><canvas id="seg-free-bucket4-display"></canvas></td>
+			    <td><div id="seg-free-current-cargo-box" class="centered"></div><canvas id="seg-free-bucket4-display"></canvas></td>
 			  </tr>
-			  <tr>
+			  <tr id="bucket8" onclick="selectBucket(8)">
 			    <td>Bucket 5-8</td>
 			    <td><canvas id="seg-free-bucket8-display"></canvas></td>
 			  </tr>
-			  <tr>
+			  <tr id="bucket12" onclick="selectBucket(12)">
 			    <td>Bucket 9-12</td>
 			    <td><canvas id="seg-free-bucket12-display"></canvas></td>
 			  </tr>
-			  <tr>
+			  <tr id="bucket16" onclick="selectBucket(16)">
 			    <td>Bucket 13-16</td>
 			    <td><canvas id="seg-free-bucket16-display"></canvas></td>
 			  </tr>
@@ -347,6 +348,7 @@
 		<div class="centered">
 			Load this cargo:
 			<div id="seg-free-current-cargo-box" class="centered"></div>
+
 		</div>
 		<div class="centered">
 			<span id="seg-free-cargo-display-region">
