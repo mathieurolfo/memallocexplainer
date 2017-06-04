@@ -306,27 +306,32 @@
     </section>
 
 	<section id="play">
+		<div class="centered">
+			Load this cargo:
+			<div id="seg-free-current-cargo-box" class="centered"></div>
+		</div>
 
-		<table id="data" style="width:70%">
-		  <tr>
-		    <td style='width: 20%;'><button type="button">Bucket 1-4</button></td>
-		    <td></td>
-		  </tr>
-		  <tr>
-		    <td>Bucket 5-8</td>
-		    <td></td>
-		  </tr>
-		  <tr>
-		    <td>Bucket 9-12</td>
-		    <td></td>
-		  </tr>
-		  <tr>
-		    <td>Bucket 13-16</td>
-		    <td></td>
-		  </tr>
-		</table>
-
-
+		<div class="centered">
+			<table id="data" style="width:70%">
+			  <tr>
+			    <td style='width: 20%;'><button type="button">Bucket 1-4</button></td>
+			    <td><canvas id="seg-free-bucket4-display"></canvas></td>
+			  </tr>
+			  <tr>
+			    <td>Bucket 5-8</td>
+			    <td><canvas id="seg-free-bucket8-display"></canvas></td>
+			  </tr>
+			  <tr>
+			    <td>Bucket 9-12</td>
+			    <td><canvas id="seg-free-bucket12-display"></canvas></td>
+			  </tr>
+			  <tr>
+			    <td>Bucket 13-16</td>
+			    <td><canvas id="seg-free-bucket16-display"></canvas></td>
+			  </tr>
+			</table>
+		</div>
+<!-- 
 		<div class="centered">
 			Load this cargo:
 			<div id="seg-free-current-cargo-box" class="centered"></div>
@@ -369,7 +374,7 @@
 
 			</span>
 		</div>
-
+ -->
 		<div id="seg-free-train-display-region">
 			<div id="seg-free-click-counter">
 				<span >Train cars inspected: </span><span id="seg-free-clicks"></span>
