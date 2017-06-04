@@ -16,6 +16,12 @@ td, th {
 
 .highlight { background-color: blue; }
 
+
+tr.selected td {
+    background-color: #333;
+    color: #fff;    
+}
+
 tr:hover {
 	background: red
 }
@@ -112,7 +118,7 @@ tr:hover {
 
 #seg-free-train-display-region {
 	width: 815px;
-	height: 150px;
+	height: 300px;
 	/*background-color: green;
 	opacity: 0.5;*/
 	border: 1px solid;
