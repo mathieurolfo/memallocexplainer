@@ -60,10 +60,12 @@
 
 	<header id="header">
       <div class="jumbotron">
-        <div class="container">
+        <div class="container centered">
+        <h2 class="" align="">An Interactive Explanation of:</h2>
           <h1 class="display-3">Heap Allocation</h1>
-          <p class="lead" align="left">an interactive explanation</p>
-          <p>We will teach you heap allocation strategies</p>
+          
+          <p id="names" class="lead">SunMi Lee, Kitty Shi, and Mathieu Rolfo</p>
+          <!-- <p>We will teach you heap allocation strategies</p> -->
         </div>
       </div>
     </header>
@@ -72,7 +74,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                <h2>We will teach you heap allocation.</h2>
+                <!-- <p>We will teach you heap allocation.</p> -->
               </div>
             </div>
         </div>
@@ -117,6 +119,10 @@
         <div id="malloc-section-end">
         <div class="malloc-text centered">
         It simply won't fit on the train car. If there isn't a train car big enough for the cargo, we won't be able to load it on the train and lose out on our profit!
+	    </div>
+
+	    <div class="malloc-text centered">
+        Trains have multiple cars. If a piece of cargo doesn't fit on a certain car, you can check the next car. However, it is costly to check cars, so we want to try and inspect as few as possible. We will count the number of cars inspected when we load a given car. Also, every time we place a cargo, we resume inspecting cars from the first one.
 	    </div>
 
 	    <div class="malloc-text centered add-spacing">
@@ -204,6 +210,7 @@
 	The strategy we just tried out, placing the cargo in the first-fitting spot, has its strengths and weaknesses. On one hand, we are able to place a given piece of cargo pretty quickly: we placed the first two pieces of cargo after only looking at a single car! However, we couldn't make the best use of our train's available space: we had what is referred to as fragmentation. <br><br>Our final stats were <b>8 cars inspected</b> and <b>6/16 space utilization</b>: can we do better with a different strategy?
 
 	<br><br><br>Instead of placing cargo in the first-fitting spot, what if we place it in the <i>best-fitting</i> spot? This will minimize the amount of small, leftover spaces in each train car, which we call fragmentation.<br>
+
 	<button id="best-fit-start-button" class="centered malloc-load-button button button-3d button-pill" onclick="startBestFit()">Try Best Fit</button>
 	</div>
 	</section>
