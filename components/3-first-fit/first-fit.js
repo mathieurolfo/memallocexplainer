@@ -298,7 +298,7 @@ function firstfitNoClicked() {
                 $('#first-fit-message-box').fadeOut("400",function() {
                     console.log("animation complete");
                 });
-            }, 500);
+            }, 700);
         });
 
     } else if (window.firstfitcurrentState.currentCar < window.firstfitinitialGame.numCars) { //keep moving
