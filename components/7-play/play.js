@@ -698,7 +698,7 @@ function yesloadCargoSeg() {
 }
 
 function segfreestageCompleted() {
-    if (window.segfreeCurrentState.cargoLeft === 6) {return true;}
+    if (window.segfreeCurrentState.cargoLeft === 0) {return true;}
     return false;
 }
 
