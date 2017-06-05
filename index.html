@@ -333,7 +333,7 @@
 	<section id="play">
 		<div class="centered">
 			Load this cargo:
-			<div id="seg-free-current-cargo-box" class="centered"></div>
+			
 			<button id="seg-free-load-button" class="button" disabled onclick="yesloadCargoSeg()">Yes, load</button>
 			<button id="seg-free-no-button" class="button" disabled onclick="noloadCargoSeg()">No, next</button>
 		</div>
@@ -359,13 +359,15 @@
 			</table>
 		</div>
 		<div class="centered">
-			<div id="seg-free-train-display-region">
+			<div id="seg-free-train-display-region" class="centered">
 				<div id="seg-free-click-counter">
 					<span >Train cars inspected: </span><span id="seg-free-clicks"></span>
 				</div>
 				<div id="seg-free-util-counter">
 					<span >Total train space used: </span><span id="seg-free-utilization"></span>
 				</div>
+				<div id="seg-free-current-cargo-box"></div>
+				<div id="seg-free-cargo-outline"></div>
 				<canvas id="seg-free-train-display"></canvas>
 			</div>
 			<button id="seg-free-refresh-button" class="button" onclick="resetSimulationSeg()">Reset</button>

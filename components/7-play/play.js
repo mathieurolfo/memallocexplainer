@@ -280,6 +280,26 @@ function initFullTrain() {
         
         currLeft += carWidth + 10;
     }
+
+    resetCargo();
+
+}
+
+window.cargoLeftOffset = 80;
+window.cargoCurrLeft = 80;
+
+
+function resetCargo() {
+    console.log("placing cargo");
+    $('#seg-free-current-cargo-box').css("left", window.cargoLeftOffset+"px");
+    $('#seg-free-cargo-outline').css("left", window.cargoLeftOffset+"px");
+
+    console.log(window.segfreeCurrentState.currentCargoIndex);
+}
+
+function placeCargo() {
+   // $('#seg-free-current-cargo-box').css("left", window.cargoLeftOffset+"px");
+   // $('#seg-free-cargo-outline').css("left", window.cargoLeftOffset+"px");
 }
 
 function drawHoverTrain(bucketNum) {
@@ -413,6 +433,8 @@ function noloadCargoSeg() {
 		window.segfreeCurrentState.currentCar = window.segfreeCurrentState.currentCars[window.segfreeCurrentState.noIndex];
 		initSelectBucket();
 	}
+
+    moveCargo();
 }
 
 function yesloadCargoSeg() {
