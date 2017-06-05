@@ -311,7 +311,6 @@ function firstfitstageCompleted() {
 // }
 
 function firstfitNoClicked() {
-
     if (firstfitcargoFits()) { //place
         console.log("it fits!!");
         $('#first-fit-message-box').html("The cargo fits in this car!");
@@ -323,7 +322,6 @@ function firstfitNoClicked() {
                 });
             }, 700);
         });
-
     } else if (window.firstfitcurrentState.currentCar < window.firstfitinitialGame.numCars) { //keep moving
         window.firstfitcurrentState.currentCar += 1;
         window.firstfitcurrentState.clicks += 1;
@@ -346,21 +344,22 @@ function firstfitYesClicked() {
             window.firstfitcurrentState.currentCar = 1;
             window.firstfitcurrentState.clicks += 1;
             $('#first-fit-message-box').html("Cargo successfully loaded!")
-            
             setTimeout(firstfitrefresh, 500);
             ;
-        });
-
-       
+        });       
     } else {
-
         $('#first-fit-current-cargo-box').animate({"top": window.distanceToTrain},700,function() {
-        
             $('#first-fit-current-cargo-box').animate({"top": "0"}, 700);
-        
         });
-
-        $('#first-fit-message-box').html("That cargo doesn't fit in this car.")
+        $('#first-fit-message-box').html("That cargo doesn't fit in this car.");
+        $('#first-fit-message-box').fadeIn("400", function() {
+            console.log("animation complete");
+            setTimeout(function() {
+                $('#first-fit-message-box').fadeOut("400",function() {
+                    console.log("animation complete");
+                });
+            }, 700);
+        });
     }
 }
 

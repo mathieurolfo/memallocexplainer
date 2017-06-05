@@ -19,11 +19,13 @@ function bestfitinitializeParameters() {
     var currentCargoIndex = 1;
     var numCars = cars.length - 1;
     var currentCar = 1;
+    var finalCargoPlacements = [null, 3, 4, 2];
     window.bestfitinitialGame = {
         cargo: cargo,
         cars: cars,
         numCars: numCars,
-        totalSpace: totalSpace
+        totalSpace: totalSpace,
+        finalCargoPlacements: finalCargoPlacements
     };
     window.bestfitcurrentState = {
         cargoLeft: cargoLeft,
@@ -159,14 +161,15 @@ function bestfitrefresh() {
     $('#best-fit-clicks').html(window.bestfitcurrentState.clicks);
     $('#best-fit-utilization').html(window.bestfitcurrentState.utilization + " out of " + window.bestfitinitialGame.totalSpace)
 
-
-    
-
-    
+    if (window.bestfitcurrentState.currentCar === window.bestfitinitialGame.numCars) {
+        window.bestfitcurrentState.checkedLastCar = true;
+        console.log("at end of train");
+    }
     //bestfitupdateTrainCar();
+
+    bestfitupdateButtonStates(capacity, maxCapacity);
     bestfitupdateCargoBox();
     bestfitupdateWholeTrainCargo();
-    bestfitupdateButtonStates(capacity, maxCapacity);
 
     //should be done with promises: just notifies users after graphics rerendered if sim done
     setTimeout(function() {
@@ -267,33 +270,18 @@ function bestfitcargoFits() {
 }
 
 function bestfitupdateButtonStates(capacity, maxCapacity) {
-    
-    //PROPERLY TOGGLE BUTTONS AND STATES!
-
-    //if should place, prevent next
-    if (bestfitcargoFits()) {
-        $('#best-fit-no-button').attr("disabled", false);
-        $('#best-fit-yes-button').attr("disabled", false);
-
-        // $('#best-fit-no-button').removeClass("button-action");
-        // $('#best-fit-yes-button').addClass("button-action");
+    if (!window.bestfitcurrentState.checkedLastCar) {
+        $('#best-fit-no-button').html("No - Next Car");
     } else {
-        // $('#best-fit-no-button').addClass("button-action");
-        // $('#best-fit-yes-button').removeClass("button-action");
-        $('#best-fit-no-button').attr("disabled", false);
-        $('#best-fit-yes-button').attr("disabled", false);
+        $('#best-fit-no-button').html("No - Prev Car");
     }
+    //PROPERLY TOGGLE BUTTONS AND STATES!
+    console.log("updating text in button")
 
-
-    // if (window.bestfitcurrentState.currentCar === window.bestfitinitialGame.numCars) {
-    //     $('#best-fit-yes-button').addClass("disabled");
-    // } else {
-    //     $('#best-fit-right-button').removeClass("disabled");
-    // }
 }
 
 function bestfitstageCompleted() {
-    if (window.bestfitcurrentState.clicks === 8) {return true;}
+    //if (window.bestfitcurrentState.clicks === 8) {return true;}
     return false;
 }
 
@@ -312,31 +300,58 @@ function bestfitstageCompleted() {
 
 function bestfitNoClicked() {
 
-    if (bestfitcargoFits()) { //place
-        console.log("it fits!!");
-        $('#best-fit-message-box').html("The cargo fits in this car!");
+    // should be placing cargo
+    if (bestfitShouldLoadCargo()) {
+        $('#best-fit-message-box').html("The cargo fits best in this car!");
         $('#best-fit-message-box').fadeIn("400", function() {
-            console.log("animation complete");
             setTimeout(function() {
                 $('#best-fit-message-box').fadeOut("400",function() {
-                    console.log("animation complete");
                 });
             }, 700);
         });
-
-    } else if (window.bestfitcurrentState.currentCar < window.bestfitinitialGame.numCars) { //keep moving
+    } else if (!window.bestfitcurrentState.checkedLastCar) { //moving forward
         window.bestfitcurrentState.currentCar += 1;
-        window.bestfitcurrentState.clicks += 1;
-        bestfitrefresh();
-    } else { //last car
-        $('#best-fit-message-box').html("You're already at the last car!");
+    } else { //moving backwards
+        window.bestfitcurrentState.currentCar -= 1;
     }
+
+    //LET USER KNOW WE're GOING BACKWARDS
+    if (!bestfitShouldLoadCargo() && (window.bestfitcurrentState.currentCar == window.bestfitinitialGame.numCars)) {
+        $('#best-fit-message-box').html("Now that we've seen every car, we will backtrack to place the cargo!")
+        $('#best-fit-message-box').fadeIn("400", function() {
+            setTimeout(function() {
+                $('#best-fit-message-box').fadeOut("400",function() {
+                });
+            }, 1200);
+        });
+    }
+    window.bestfitcurrentState.clicks += 1;
+    bestfitrefresh();
+}
+
+function bestfitShouldLoadCargo() {
+    var currentCar = window.bestfitcurrentState.currentCar;
+    var i = window.bestfitcurrentState.currentCargoIndex
+    var cargoPlacement = window.bestfitinitialGame.finalCargoPlacements[i];
+    
+    return ((currentCar === cargoPlacement) && window.bestfitcurrentState.checkedLastCar);
 }
 
 function bestfitYesClicked() {
-    if (window.bestfitinitialGame.cargo[window.bestfitcurrentState.currentCargoIndex] <= window.bestfitcurrentState.remainingCapacity[window.bestfitcurrentState.currentCar]) {
-        //load the cargo
+    
+    var currentCar = window.bestfitcurrentState.currentCar;
+    var i = window.bestfitcurrentState.currentCargoIndex
+    var cargoPlacement = window.bestfitinitialGame.finalCargoPlacements[i];
+    
+    // //visited last car
+    // if (currentCar === window.bestfitinitialGame.numCars) {
+    //     window.bestfitcurrentState.checkedLastCar = true;
+    //     console.log("at end of train");
+    // }
 
+    //ready to place cargo
+    if (bestfitShouldLoadCargo()) {
+        $('#best-fit-no-button').html("No - Prev Car");
         $('#best-fit-current-cargo-box').animate({"top": window.distanceToTrain},700,function() {
         
             window.bestfitcurrentState.remainingCapacity[window.bestfitcurrentState.currentCar] -= window.bestfitinitialGame.cargo[window.bestfitcurrentState.currentCargoIndex]
@@ -345,24 +360,40 @@ function bestfitYesClicked() {
             window.bestfitcurrentState.cargoLeft -= 1
             window.bestfitcurrentState.currentCar = 1;
             window.bestfitcurrentState.clicks += 1;
+            window.bestfitcurrentState.checkedLastCar = false;
             $('#best-fit-message-box').html("Cargo successfully loaded!")
-            
             setTimeout(bestfitrefresh, 500);
-            ;
+            
         });
-
-       
-    } else {
-
+    } else if (!bestfitcargoFits()) { // too big
         $('#best-fit-current-cargo-box').animate({"top": window.distanceToTrain},700,function() {
-        
             $('#best-fit-current-cargo-box').animate({"top": "0"}, 700);
-        
         });
 
-        $('#best-fit-message-box').html("That cargo doesn't fit in this car.")
-    }
+        $('#best-fit-message-box').html("That cargo doesn't fit in this car!");
+        $('#best-fit-message-box').fadeIn("400", function() {
+            setTimeout(function() {
+                $('#best-fit-message-box').fadeOut("400",function() {
+                    console.log("animation complete");
+                });
+            }, 700);
+        });
+       
+    } else { //haven't checked every car
+        $('#best-fit-current-cargo-box').animate({"top": window.distanceToTrain},700,function() {
+            $('#best-fit-current-cargo-box').animate({"top": "0"}, 700);
+        });
+        $('#best-fit-message-box').html("You don't know if this is the best fit yet! First check every car!")
+        $('#best-fit-message-box').fadeIn("400", function() {
+            setTimeout(function() {
+                $('#best-fit-message-box').fadeOut("400",function() {
+                    console.log("animation complete");
+                });
+            }, 700);
+        });
+    }    
 }
+
 
 function bestfitresetSimulation() {
     // window.bestfitcarcanvas.clear();
@@ -502,14 +533,3 @@ function startbestfit() {
 //     }
 // }
 
-// function bestfitresetSimulation() {
-//     window.bestfitcarcanvas.clear();
-//     $('#best-fit-message-box').html("");
-//     bestfitinitializeParameters();
-//     bestfitinit();
-// }
-
-// function startbestfit() {
-//     $('#best-fit-game-container').css('visibility', 'visible');
-//     $('#best-fit-start-button').css('display', 'none');
-// }

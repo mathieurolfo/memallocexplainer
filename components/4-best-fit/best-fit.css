@@ -173,6 +173,7 @@ span, div {
 	padding: 3px 0;
 	font-style: italic;
 	display: none;
+	/*width: 100px;*/
 	/*visibility: hidden;*/
 	/*opacity: 1;*/
 }
