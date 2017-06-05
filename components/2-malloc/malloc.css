@@ -40,9 +40,16 @@
 	border: 2px solid;
 }
 
+#malloc-cargo-box-1 {
+	background-color: white;
+	/*width: 50px;*/
+	/*margin-right: 250px;*/
+}
+
 #malloc-cargo-box-2 {
 	width: 150px;
 	margin-right: 250px;
+	background-color: white;
 }
 
 #malloc {

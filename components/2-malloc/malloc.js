@@ -6,6 +6,7 @@ function demoLoadClicked1() {
 	if (!clicked) {
 		$('#malloc-cargo-box-1').animate({"bottom": "-=100"});
 		$('#malloc-demo-2').css("visibility", "visible");
+		$('#demo-load-button-1').addClass("disabled");
 		clicked = true;
 	}
 	

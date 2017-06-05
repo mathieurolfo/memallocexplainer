@@ -49,3 +49,7 @@ p {
 .desc-text {
   font-size: 18px;
 }
+
+#intro {
+  margin-top: 70px;
+}

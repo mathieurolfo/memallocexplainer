@@ -177,9 +177,7 @@ function bestfitrefresh() {
     }
     //bestfitupdateTrainCar();
 
-    bestfitupdateButtonStates(capacity, maxCapacity);
-    bestfitupdateCargoBox();
-    bestfitupdateWholeTrainCargo();
+   
 
     //should be done with promises: just notifies users after graphics rerendered if sim done
     if (bestfitstageCompleted()) {
@@ -188,13 +186,20 @@ function bestfitrefresh() {
         $('#best-fit-current-cargo-box').css("visibility", "hidden");
         $('#best-fit-cargo-outline').css("visibility", "hidden");
         $('#best-fit-arrow').css("visibility", "hidden");
-
+        $('#best-fit-no-button').addClass("disabled");
         setTimeout(function() {
             alert("Congrats! You've successfully loaded all of the cargo. Scroll down for a comparison of the two strategies.");
         }, 300);
         $('#best-fit-end-text').css("visibility", "visible");
 
+    } else{
+
+        bestfitupdateButtonStates(capacity, maxCapacity);
+        bestfitupdateCargoBox();
+        bestfitupdateWholeTrainCargo();
     }
+
+
 
     
 
