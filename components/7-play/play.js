@@ -93,7 +93,7 @@ function drawCar(thisCanvas, leftOffset, carSize, carWidth, wheelColor, yOffset,
     var numWheels = carSize / 4;
 
 
-    
+
     var car = new fabric.Rect({top: yOffset - wheelRadius+window.heightAdj, left: leftOffset, width: carWidth, height: 10, fill: wheelColor, stroke: 'black', strokeWidth: 2});
     if (thisCanvas === window.segfreetraincanvas) {
         var carName = "segfreetrain" + carIndex;
@@ -109,7 +109,7 @@ function drawCar(thisCanvas, leftOffset, carSize, carWidth, wheelColor, yOffset,
         thisCanvas.add(rw);
     }
 
-    
+
 
     var carLabel = '#' + carIndex
     var text = thisCanvas.add(new fabric.Text(carLabel, {
@@ -393,7 +393,7 @@ function initFullTrain() {
 	window.segfreetraincanvas = new fabric.StaticCanvas('seg-free-train-display');
     window.segfreetraincanvas.setWidth(1150);
     window.segfreetraincanvas.setHeight(190);
-    fabric.loadSVGFromURL('http://rol.fo/files/train.svg', function(objects, options) {
+    fabric.loadSVGFromURL('https://ccrma.stanford.edu/~kittyshi/memallocexplainer/figures/train-head.svg', function(objects, options) {
         var obj = fabric.util.groupSVGElements(objects, options);
         obj.set({
             left:0,
@@ -431,7 +431,7 @@ function initFullTrain() {
 
         var cargoWidth = (window.segfreeInitialGame.cars[j]-window.segfreeCurrentState.remainingCapacity[j])*25;
         if (cargoWidth > 0) {
-            window[loadedCargo] = new fabric.Rect({top: cargotop, left: currLeft, width: cargoWidth, height: 20, fill: 'white', stroke: 'black', strokeWidth: 2});  
+            window[loadedCargo] = new fabric.Rect({top: cargotop, left: currLeft, width: cargoWidth, height: 20, fill: 'white', stroke: 'black', strokeWidth: 2});
         } else {
             window[loadedCargo] = new fabric.Rect({top: cargotop, left: currLeft, width: cargoWidth, height: 20, fill: 'white'});
         }
@@ -482,7 +482,7 @@ function drawHoverTrain(bucketNum) {
 		window.segfreetraincanvas = new fabric.StaticCanvas('seg-free-train-display');
 	    window.segfreetraincanvas.setWidth(1150);
 	    window.segfreetraincanvas.setHeight(300);
-	    fabric.loadSVGFromURL('http://rol.fo/files/train.svg', function(objects, options) {
+	    fabric.loadSVGFromURL('https://ccrma.stanford.edu/~kittyshi/memallocexplainer/figures/train-head.svg', function(objects, options) {
 	        var obj = fabric.util.groupSVGElements(objects, options);
 	        obj.set({
 	            left:0,
