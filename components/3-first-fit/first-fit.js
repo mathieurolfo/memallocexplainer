@@ -33,6 +33,8 @@ function firstfitinitializeParameters() {
         clicks: 1,
         utilization: 0
     };
+    window.distanceToTrain = 135;
+    window.cargoHeight = 25;
 }
 
 function firstfitinit() {
@@ -129,7 +131,7 @@ function firstfitupdateWholeTrainCargo() {
         if (cargoWidth > 0) {
              window[loadedCargo] = new fabric.Rect({
                 top: 25, left: currLeft, width: cargoWidth, height: 25, fill: 'white',
-                stroke: 'black', strokeWidth: 2
+                stroke: 'black', strokeWidth: 3
             });
 
         } else {
@@ -232,10 +234,31 @@ function firstfitupdateCargoBox() {
     var cargoPosition = leftOffset + cargoWidth;
     $('#first-fit-current-cargo-box').css("left", cargoPosition+"px");
     $('#first-fit-current-cargo-box').css("top", "0px");
+    
+    //draw dotted cargo box
+    if (cargoFits()) {
+        $('#first-fit-cargo-outline').css("color", "green");
+    } else {
+        $('#first-fit-cargo-outline').css("color", "red");
+    }
+
+    $('#first-fit-cargo-outline').css("width", cargoSize);
+    $('#first-fit-cargo-outline').css("left", cargoPosition+"px");
+    $('#first-fit-cargo-outline').css("top", 110);
+
     var arrowPosition = -325 + leftOffset + (window[wheel2].left-window[wheel1].left)/2;
     $('#first-fit-arrow').css("left", arrowPosition+"px");
-    $('#first-fit-arrow').css("top", "50px");
+    $('#first-fit-arrow').css("top", "40px");
+    $('#first-fit-arrow').stop();
+    bounceArrow();
     // console.log(window.firstfitwheel2, right)
+}
+
+function bounceArrow() {
+
+    $('#first-fit-arrow').animate({"top": "+=8"}, 400, function() {
+        $('#first-fit-arrow').animate({"top": "-=8"}, 400, bounceArrow);
+    });
 }
 
 function cargoFits() {
@@ -314,7 +337,7 @@ function firstfitYesClicked() {
     if (window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex] <= window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar]) {
         //load the cargo
 
-        $('#first-fit-current-cargo-box').animate({"top": "110"},700,function() {
+        $('#first-fit-current-cargo-box').animate({"top": window.distanceToTrain},700,function() {
         
             window.firstfitcurrentState.remainingCapacity[window.firstfitcurrentState.currentCar] -= window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
             window.firstfitcurrentState.utilization += window.firstfitinitialGame.cargo[window.firstfitcurrentState.currentCargoIndex]
@@ -331,7 +354,7 @@ function firstfitYesClicked() {
        
     } else {
 
-        $('#first-fit-current-cargo-box').animate({"top": "110"},700,function() {
+        $('#first-fit-current-cargo-box').animate({"top": window.distanceToTrain},700,function() {
         
             $('#first-fit-current-cargo-box').animate({"top": "0"}, 700);
         

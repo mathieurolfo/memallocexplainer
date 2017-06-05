@@ -23,10 +23,11 @@ function TrainVisualization (draggableCarts, carts) {
   this.draggableCarts = draggableCarts
 }
 
-var CARGO_SIZE = 20
-var CARGO_SPACING_Y = 80
 var BUCKET_OFFSET_Y = 350
-var CARGO_HEIGHT = 20 // sync with 'height' in .draggable-cart
+var BUCKET_OFFSET_X = 180 + 130
+var CARGO_SIZE_X = 20
+var CARGO_SIZE_Y = 40 // sync with 'height' in .draggable-cart
+var CARGO_SPACING_Y = 80
 
 TrainVisualization.prototype.draw = function(domId) {
   var container = document.getElementById(domId);
@@ -36,10 +37,9 @@ TrainVisualization.prototype.draw = function(domId) {
     draggableCart.setAttribute("id", "draggable-cart-" + index);
     draggableCart.setAttribute("class", "draggable-cart drag-drop");
     draggableCart.setAttribute("capacity", cargo.capacity);
-    draggableCart.setAttribute("nextCart", "draggable-cart-" + (1+index));
     draggableCart.style.width = getCartWidthInPixel(cargo.capacity) + "px"
-    draggableCart.style.height = CARGO_HEIGHT + "px"
-    draggableCart.textContent = "cart #" + (1+index)//cargo.capacity
+    draggableCart.style.height = CARGO_SIZE_Y + "px"
+    draggableCart.textContent = "Size:" + cargo.capacity;
     draggableCart.style.visibility = "";
 
     interact(draggableCart)
@@ -64,31 +64,32 @@ TrainVisualization.prototype.draw = function(domId) {
       });
     container.appendChild(draggableCart);
 
+    // add a canvas, draw a cargo inside
     var canvasName = "canvas-" + index;
-    var t = new createNewCanvas(canvasName, draggableCart);
-    var carWidth = cargo.capacity * CARGO_SIZE;
+    var canvasObj = new createNewCanvas(canvasName, draggableCart);  // draggableCart is the parent div
+    var carWidth = cargo.capacity * CARGO_SIZE_X;
     var cargoWidth = 0;
-    t.setWidth(carWidth+15);
-    t.setHeight(20);
+    canvasObj.setWidth(carWidth+15);
+    canvasObj.setHeight(20);
     document.getElementById(canvasName).parentElement.style.position = 'static';
-    drawCarWithCargo(t, canvasName, carWidth, cargoWidth, 0);
+    drawCarWithCargo(canvasObj, canvasName, '#'+(1+index), carWidth, cargoWidth, 0);
   });
 
   var tmp = 0;
-  container.appendChild(document.createElement('br'));
   this.carts.forEach(function(cart, index){
     // create a dom element for the current cart
     var bucket = document.createElement("div");
     bucket.setAttribute("id", "bucket-" + index);
     bucket.setAttribute("class", "bucket");
     // size it
-    bucket.style.width = (getCartWidthInPixel(cart.maxCapacity)).toString() + "px";
+    bucket.style.width = "80%";//row: (getCartWidthInPixel(cart.maxCapacity)).toString() + "px";
+    bucket.style.height = "50px";//row: 350px;
     bucket.setAttribute("maxCapacity", cart.maxCapacity);
     bucket.setAttribute("cartLength", 0);
     bucket.setAttribute("numCarts", 0);
     bucket.setAttribute("xOffset", tmp);
     tmp += getCartWidthInPixel(cart.maxCapacity) + 5;
-    bucket.textContent = (parseInt(cart.maxCapacity)-3).toString() + "~" + cart.maxCapacity
+    bucket.textContent = "(Size: " + (parseInt(cart.maxCapacity)-3).toString() + "~" + cart.maxCapacity + ")";
     // make it a dropzone
     interact(bucket)
       .dropzone({
@@ -141,10 +142,10 @@ TrainVisualization.prototype.draw = function(domId) {
               var numCarts = parseInt(dropzoneElement.getAttribute("numCarts", 0));
               var cargoCapacity = parseInt(draggableElement.getAttribute("capacity", 0));
 
-              // var x = cartLength * CARGO_SIZE - draggableElement.offsetLeft;
-              // var y = dropzoneElement.offsetTop - draggableElement.offsetTop;
-              var y = BUCKET_OFFSET_Y + (numCarts) * CARGO_SPACING_Y - draggableElement.offsetTop;
-              var x = parseInt(dropzoneElement.getAttribute("xOffset"))- draggableElement.offsetLeft ;
+              var x = BUCKET_OFFSET_X + cartLength * (CARGO_SIZE_X) + numCarts * 20 - draggableElement.offsetLeft;
+              var y = dropzoneElement.offsetTop - draggableElement.offsetTop;
+              // var y = BUCKET_OFFSET_Y + (numCarts) * CARGO_SPACING_Y - draggableElement.offsetTop;
+              // var x = parseInt(dropzoneElement.getAttribute("xOffset"))- draggableElement.offsetLeft ;
               draggableElement.style.webkitTransform =
               draggableElement.style.transform =
                 'translate(' + x + 'px, ' + y + 'px)';
@@ -158,11 +159,6 @@ TrainVisualization.prototype.draw = function(domId) {
               dropzoneElement.setAttribute("numCarts", (1+numCarts).toString())
               event.relatedTarget.classList.remove('can-drop');
 
-              // make the next cart visible
-              if (document.getElementById(draggableElement.getAttribute("nextCart")) != null) {
-                document.getElementById(draggableElement.getAttribute("nextCart")).style.visibility = "";
-              }
-
             }
         },
         ondropdeactivate: function (event) {
@@ -172,14 +168,25 @@ TrainVisualization.prototype.draw = function(domId) {
         }
       });
     // insert it into train visualization DOM element
-    container.appendChild(bucket);
+  container.appendChild(document.createElement('br'));
+  container.appendChild(document.createElement('br'));
+  // add train head
+  var imageDiv = document.createElement("div");
+  imageDiv.setAttribute("class", "bucket-row-train-head");
+  var trainHead = document.createElement("img");
+  trainHead.setAttribute("src", "figures/train-head.svg");
+  trainHead.setAttribute("height", "100%");
+  imageDiv.appendChild(trainHead);
+  container.appendChild(imageDiv);
+  // append the drop zone
+  container.appendChild(bucket);
   });
 
 }
 
 
 function getCartWidthInPixel(numCart) {
-  return numCart * CARGO_SIZE + 15;
+  return numCart * CARGO_SIZE_X + 15;
 }
 function createNewCanvas(id, parentNode) {
   this.canvas = document.createElement('canvas');
@@ -187,20 +194,29 @@ function createNewCanvas(id, parentNode) {
   parentNode.appendChild(this.canvas);
   return new fabric.StaticCanvas(id)
 }
-function drawCarWithCargo(canvas, id, carWidth, cargoWidth, leftOffset) {
+function drawCarWithCargo(canvas, id, carLabel, carWidth, cargoWidth, leftOffset) {
   var wheel1 = id + "Wheel1";
   var wheel2 = id + "Wheel2";
   var car = id + "Car";
   var loadedCargo = id + "Cargo";
   var yOffset = 5;
-  window[wheel1] = new fabric.Circle({
-      top: yOffset, left: leftOffset+3, radius:5, fill: 'gray',
-      stroke: 'black', strokeWidth: 2
-  });
-  window[wheel2] = new fabric.Circle({top: yOffset, left: leftOffset+carWidth-10-3, radius:5, fill: 'gray',stroke: 'black', strokeWidth: 2});
-  window[car] = new fabric.Rect({top: yOffset-5, left: leftOffset, width: carWidth, height: 10, fill: 'gray', stroke: 'black', strokeWidth: 2});
-  canvas.add(window[car],window[wheel1], window[wheel2]);
-
+  var cartHeight = 10, wheelRadius = 5;
+  var numWheels = carWidth / CARGO_SIZE_X/4;
+  window[car] = new fabric.Rect({top: yOffset-wheelRadius, left: leftOffset, width: carWidth, height: cartHeight, fill: 'gray', stroke: 'black', strokeWidth: 2});
+  canvas.add(window[car]);
+  for(var i = 0; i < numWheels; i++){
+    var lw = new fabric.Circle({top: yOffset, left: leftOffset + 3 + wheelRadius*2*i, radius: wheelRadius, fill: 'gray', stroke: 'black', strokeWidth: 2});
+    canvas.add(lw);
+    var rw = new fabric.Circle({top: yOffset, left: leftOffset+carWidth-cartHeight-3-wheelRadius*2*i, radius: wheelRadius, fill: 'gray',stroke: 'black', strokeWidth: 2});
+    canvas.add(rw);
+  }
+  var text = canvas.add(new fabric.Text(carLabel, {
+      left: window[car].left + window[car].width/2 - cartHeight/2, //Take the block's position
+      top: window[car].top,
+      fontSize: cartHeight-1,
+      fontFamily: 'arial',
+      fill: 'white'
+  }));
   window[loadedCargo] = new fabric.Rect({top: yOffset-25, left: leftOffset, width: cargoWidth, height: 20, fill: 'red'});
   canvas.add(window[loadedCargo]);
 }
