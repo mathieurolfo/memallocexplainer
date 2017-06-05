@@ -9,12 +9,15 @@ table {
 }
 
 td, th {
-    border: 1px solid #dddddd;
+    /*border: 1px solid #dddddd;*/
     text-align: left;
     padding: 8px;
 }
 
-.highlight { background-color: blue; }
+.highlight { 
+	/*border: 2px solid black;*/
+	background-color: blue; 
+}
 
 
 tr.selected td {
@@ -23,7 +26,7 @@ tr.selected td {
 }
 
 tr:hover {
-	background: red
+	/*background: red;*/
 }
 
 #seg-free-header-text {

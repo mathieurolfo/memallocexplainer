@@ -341,29 +341,39 @@ function drawHoverTrain(bucketNum) {
 	}
 }
 
-$(document).ready(function(){
-    $("#bucket4").hover(function(){
-    	drawHoverTrain(4);
-    });
-});
+// $(document).ready(function(){
+//     $("#bucket4").hover(function(){
+//     	drawHoverTrain(4);
+//     });
+// });
 
-$(document).ready(function(){
-    $("#bucket8").hover(function(){
-    	drawHoverTrain(8);
-    });
-});
+// $(document).ready(function(){
+//     $("#bucket8").hover(function(){
+//     	drawHoverTrain(8);
+//     });
+// });
 
-$(document).ready(function(){
-    $("#bucket12").hover(function(){
-    	drawHoverTrain(12);
-    });
-});
+// $(document).ready(function(){
+//     $("#bucket12").hover(function(){
+//     	drawHoverTrain(12);
+//     });
+// });
 
-$(document).ready(function(){
-    $("#bucket16").hover(function(){
-    	drawHoverTrain(16);
-    });
-});
+// $(document).ready(function(){
+//     $("#bucket16").hover(function(){
+//     	drawHoverTrain(16);
+//     });
+// });
+
+function selectBucketHelper(bucketNum) {
+	for (var i = 4 ; i < 17; i+=4) {
+		if (i == bucketNum) {
+			document.getElementById("bucket"+i).classList.add("highlight");
+		} else {
+			document.getElementById("bucket"+i).classList.remove("highlight");
+		}
+	}
+}
 
 function selectBucket(bucketNum) {
 	if (document.getElementById("seg-free-load-button").disabled) {
@@ -372,6 +382,7 @@ function selectBucket(bucketNum) {
 	if (document.getElementById("seg-free-no-button").disabled) {
 		document.getElementById("seg-free-no-button").disabled = false;
 	}
+	selectBucketHelper(bucketNum);
 	window.segfreeCurrentState.bucketSelected = true;
 	window.segfreeCurrentState.currentBucket = bucketNum;
 	window.segfreeCurrentState.currentCars = window.segfreeCurrentState.carObjectMap[bucketNum];
