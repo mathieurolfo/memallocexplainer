@@ -71,12 +71,6 @@
   background-color: #d11;
 }
 
-.drop-done {
-  /*color: #29e;*/
-  /*background-color: #333;*/
-}
-
-
 #grid-snap {
   width: 80px;
   background-color: #29e;
@@ -99,8 +93,9 @@
 
 #train-drag-drop-example {
   width: 900px;
-  height: 500px;
+  height: 450px;
 }
+
 
 .train {
   /*background-color: #eee;*/

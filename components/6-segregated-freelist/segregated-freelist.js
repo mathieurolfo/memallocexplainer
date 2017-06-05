@@ -18,6 +18,20 @@ function dragMoveListener(event) {
 // this is used later in the resizing and gesture demos
 // window.dragMoveListener = dragMoveListener;
 
+function ResetTrain() {
+
+  this.draggableCarts.forEach(function(cart, index){
+    var obj = document.getElementById("draggable-cart-" + index);
+    interact(obj).draggable(true);
+    moveTo(obj, 0,0);
+  })
+  this.carts.forEach(function(cart, index){
+    var bucket = document.getElementById("bucket-" + index);
+    bucket.setAttribute("cartLength", 0);
+    bucket.setAttribute("numCarts", 0);
+  })
+}
+
 function TrainVisualization (draggableCarts, carts) {
   this.carts = carts;
   this.draggableCarts = draggableCarts
@@ -34,7 +48,8 @@ TrainVisualization.prototype.draw = function(domId) {
 
   this.draggableCarts.forEach(function(cargo, index){
     var draggableCart = document.createElement("div");
-    draggableCart.setAttribute("id", "draggable-cart-" + index);
+    var cartId = "draggable-cart-" + index;
+    draggableCart.setAttribute("id", cartId);
     draggableCart.setAttribute("class", "draggable-cart drag-drop");
     draggableCart.setAttribute("capacity", cargo.capacity);
     draggableCart.style.width = getCartWidthInPixel(cargo.capacity) + "px"
@@ -63,16 +78,21 @@ TrainVisualization.prototype.draw = function(domId) {
         }
       });
     container.appendChild(draggableCart);
+    // set the origin positions
+    var dcObj = document.getElementById(cartId).getBoundingClientRect();
+    draggableCart.setAttribute("origin-x", dcObj.left);
+    draggableCart.setAttribute("origin-y", dcObj.top);
 
     // add a canvas, draw a cargo inside
     var canvasName = "canvas-" + index;
     var canvasObj = new createNewCanvas(canvasName, draggableCart);  // draggableCart is the parent div
     var carWidth = cargo.capacity * CARGO_SIZE_X;
     var cargoWidth = 0;
+    var carLabel = '#'+(1+index);
     canvasObj.setWidth(carWidth+15);
     canvasObj.setHeight(20);
     document.getElementById(canvasName).parentElement.style.position = 'static';
-    drawCarWithCargo(canvasObj, canvasName, '#'+(1+index), carWidth, cargoWidth, 0);
+    drawCarWithCargo(canvasObj, canvasName, carLabel, carWidth, cargoWidth, 0);
   });
 
   var tmp = 0;
@@ -130,12 +150,8 @@ TrainVisualization.prototype.draw = function(domId) {
 
             if (draggableElement.classList.contains('no-drop')){
               // TODO: see if interact.js does this smarter somehow
-              draggableElement.style.webkitTransform =
-              draggableElement.style.transform =
-                'translate(' + 0 + 'px, ' + 0 + 'px)';
-              draggableElement.setAttribute('data-x', 0);
-              draggableElement.setAttribute('data-y', 0);
               // event.relatedTarget.textContent = "Can't load";
+              moveTo(draggableElement, 0, 0);
               event.relatedTarget.classList.remove('no-drop');
             } else if (draggableElement.classList.contains('can-drop')){
               var cartLength = parseInt(dropzoneElement.getAttribute("cartLength", 0));
@@ -146,14 +162,10 @@ TrainVisualization.prototype.draw = function(domId) {
               var y = dropzoneElement.offsetTop - draggableElement.offsetTop;
               // var y = BUCKET_OFFSET_Y + (numCarts) * CARGO_SPACING_Y - draggableElement.offsetTop;
               // var x = parseInt(dropzoneElement.getAttribute("xOffset"))- draggableElement.offsetLeft ;
-              draggableElement.style.webkitTransform =
-              draggableElement.style.transform =
-                'translate(' + x + 'px, ' + y + 'px)';
-              draggableElement.setAttribute('data-x', x);
-              draggableElement.setAttribute('data-y', y);
+              moveTo(draggableElement, x, y);
+
               // no more draggable
               interact(draggableElement).draggable(false);
-              event.relatedTarget.classList.add('drop-done');
 
               dropzoneElement.setAttribute("cartLength", (cargoCapacity+cartLength).toString())
               dropzoneElement.setAttribute("numCarts", (1+numCarts).toString())
@@ -184,6 +196,12 @@ TrainVisualization.prototype.draw = function(domId) {
 
 }
 
+function moveTo(obj, x, y) {
+  obj.style.webkitTransform = obj.style.transform =
+    'translate(' + x + 'px, ' + y + 'px)';
+  obj.setAttribute('data-x', x);
+  obj.setAttribute('data-y', y);
+}
 
 function getCartWidthInPixel(numCart) {
   return numCart * CARGO_SIZE_X + 15;
@@ -195,8 +213,6 @@ function createNewCanvas(id, parentNode) {
   return new fabric.StaticCanvas(id)
 }
 function drawCarWithCargo(canvas, id, carLabel, carWidth, cargoWidth, leftOffset) {
-  var wheel1 = id + "Wheel1";
-  var wheel2 = id + "Wheel2";
   var car = id + "Car";
   var loadedCargo = id + "Cargo";
   var yOffset = 5;
@@ -221,13 +237,12 @@ function drawCarWithCargo(canvas, id, carLabel, carWidth, cargoWidth, leftOffset
   canvas.add(window[loadedCargo]);
 }
 
-
-
 var draggableCarts = [
   {capacity: 4}, {capacity: 8}, {capacity: 16},
   {capacity: 10}, {capacity: 12}, {capacity: 4},
   {capacity: 2}, {capacity: 8}, {capacity: 4},  {capacity: 6}];
 var carts = [{maxCapacity: 4}, {maxCapacity: 8}, {maxCapacity: 12}, {maxCapacity: 16}];
+
 var train = new TrainVisualization(draggableCarts, carts);
 train.draw('train-drag-drop-example');
-document.getElementById("draggable-cart-0").style.visibility = "";
+
