@@ -361,37 +361,69 @@ function drawHoverTrain(bucketNum) {
 	}
 }
 
-$(document).ready(function(){
-    $("#bucket4").hover(function(){
-    	drawHoverTrain(4);
-    });
-});
+// $(document).ready(function(){
+//     $("#bucket4").hover(function(){
+//     	drawHoverTrain(4);
+//     });
+// });
 
-$(document).ready(function(){
-    $("#bucket8").hover(function(){
-    	drawHoverTrain(8);
-    });
-});
+// $(document).ready(function(){
+//     $("#bucket8").hover(function(){
+//     	drawHoverTrain(8);
+//     });
+// });
 
-$(document).ready(function(){
-    $("#bucket12").hover(function(){
-    	drawHoverTrain(12);
-    });
-});
+// $(document).ready(function(){
+//     $("#bucket12").hover(function(){
+//     	drawHoverTrain(12);
+//     });
+// });
 
-$(document).ready(function(){
-    $("#bucket16").hover(function(){
-    	drawHoverTrain(16);
-    });
-});
+// $(document).ready(function(){
+//     $("#bucket16").hover(function(){
+//     	drawHoverTrain(16);
+//     });
+// });
+
+function selectBucketHelper(bucketNum) {
+	if (bucketNum == 0) {
+		for (var i = 4 ; i < 17; i+=4) {
+			document.getElementById("bucket"+i).classList.remove("highlight");
+			document.getElementById("button"+i).disabled = false;
+		}
+	} else {
+		for (var i = 4 ; i < 17; i+=4) {
+			if (i == bucketNum) {
+				document.getElementById("bucket"+i).classList.add("highlight");
+			} else {
+				document.getElementById("bucket"+i).classList.remove("highlight");
+				document.getElementById("button"+i).disabled = true;
+		}
+	}
+	}
+}
 
 function selectBucket(bucketNum) {
+	var diff = bucketNum - window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex];
+	if (diff > 3 || diff < 0) {
+		$('#seg-free-message-box').html("That cargo doesn't fit in this bucket.");
+		$('#seg-free-message-box').fadeIn("400", function() {
+            setTimeout(function() {
+                $('#seg-free-message-box').fadeOut("400",function() {
+                    console.log("animation complete");
+                });
+            }, 700);
+        });
+		return;
+	}
 	if (document.getElementById("seg-free-load-button").disabled) {
 		document.getElementById("seg-free-load-button").disabled = false;
 	}
 	if (document.getElementById("seg-free-no-button").disabled) {
 		document.getElementById("seg-free-no-button").disabled = false;
 	}
+	selectBucketHelper(bucketNum);
+
 	window.segfreeCurrentState.bucketSelected = true;
 	window.segfreeCurrentState.currentBucket = bucketNum;
 	window.segfreeCurrentState.currentCars = window.segfreeCurrentState.carObjectMap[bucketNum];
@@ -411,22 +443,19 @@ function selectBucket(bucketNum) {
 	initFullTrain();
 }
 
-function grayoutBucket() {
-
-}
-
 function noloadCargoSeg() {
-	if (window.segfreeCurrentState.noIndex >= window.segfreeCurrentState.currentCars.length - 1) {
-		window.segfreeCurrentState.currentBucket = 0;
-		window.segfreeCurrentState.currentCars = null;
-		window.segfreeCurrentState.currentCar = null;
-		window.segfreeCurrentState.currentCarIndex = 0;
+	if (window.segfreeCurrentState.noIndex >= window.segfreecurrentStateate.currentCars.length - 1) {
+		// window.segfreeCurrentState.currentBucket = 0;
+		// window.segfreeCurrentState.currentCars = null;
+		// window.segfreeCurrentState.currentCar = null;
+		// window.segfreeCurrentState.currentCarIndex = 0;
 		window.segfreeCurrentState.noIndex = 1;
-		grayoutBucket();
 		window.segfreeCurrentState.bucketSelected = false;
+		// selectBucketHelper(window.segfreeCurrentState.currentBucket);
+		selectBucket(window.segfreeCurrentState.currentBucket);
 		initBucket();
-		document.getElementById("seg-free-load-button").disabled = true;
-		document.getElementById("seg-free-no-button").disabled = true;
+		// document.getElementById("seg-free-load-button").disabled = true;
+		// document.getElementById("seg-free-no-button").disabled = true;
 	} else {
 		window.segfreeCurrentState.noIndex = window.segfreeCurrentState.noIndex + 1;
 		window.segfreeCurrentState.currentCarIndex = window.segfreeCurrentState.currentCars[window.segfreeCurrentState.noIndex]["index"];
@@ -454,6 +483,7 @@ function yesloadCargoSeg() {
         window.segfreeCurrentState.bucketSelected = false;
 		document.getElementById("seg-free-load-button").disabled = true;
 		document.getElementById("seg-free-no-button").disabled = true;
+		selectBucketHelper(0);
         $('#seg-free-message-box').html("Cargo successfully loaded!")
         initFullTrain();
         initBucket();
