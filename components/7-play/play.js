@@ -92,7 +92,14 @@ function drawCar(thisCanvas, leftOffset, carSize, carWidth, wheelColor, yOffset,
     var wheelRadius = 5, wheelOffset = 3, cartHeight = 10;//, yOffset = 55;
     var numWheels = carSize / 4;
 
+
+    
     var car = new fabric.Rect({top: yOffset - wheelRadius+window.heightAdj, left: leftOffset, width: carWidth, height: 10, fill: wheelColor, stroke: 'black', strokeWidth: 2});
+    if (thisCanvas === window.segfreetraincanvas) {
+        var carName = "segfreetrain" + carIndex;
+        window[carName] = car;
+
+    }
     thisCanvas.add(car);
 
     for(var i = 0; i < numWheels; i++){
@@ -101,6 +108,9 @@ function drawCar(thisCanvas, leftOffset, carSize, carWidth, wheelColor, yOffset,
         var rw = new fabric.Circle({top: yOffset+window.heightAdj, left: leftOffset+carWidth-cartHeight- wheelOffset-wheelRadius*2*i, radius: wheelRadius, fill: wheelColor,stroke: 'black', strokeWidth: 2});
         thisCanvas.add(rw);
     }
+
+    
+
     var carLabel = '#' + carIndex
     var text = thisCanvas.add(new fabric.Text(carLabel, {
       left: car.left + car.width/2 - cartHeight/2, //Take the block's position
@@ -420,7 +430,11 @@ function initFullTrain() {
         drawCar(window.segfreetraincanvas, currLeft, window.segfreeInitialGame.cars[j], carWidth, wheelColor, 16+circletop, j)
 
         var cargoWidth = (window.segfreeInitialGame.cars[j]-window.segfreeCurrentState.remainingCapacity[j])*25;
-        window[loadedCargo] = new fabric.Rect({top: cargotop, left: currLeft, width: cargoWidth, height: 20, fill: 'red'});
+        if (cargoWidth > 0) {
+            window[loadedCargo] = new fabric.Rect({top: cargotop, left: currLeft, width: cargoWidth, height: 20, fill: 'white', stroke: 'black', strokeWidth: 2});  
+        } else {
+            window[loadedCargo] = new fabric.Rect({top: cargotop, left: currLeft, width: cargoWidth, height: 20, fill: 'white'});
+        }
         window.segfreetraincanvas.add(window[loadedCargo]);
 
         currLeft += carWidth + 10;
@@ -448,7 +462,7 @@ function resetCargo() {
 function moveCargo() {
    $('#seg-free-cargo-outline').css("visibility", "visible");
    console.log("car index", window.segfreeCurrentState.currentCarIndex);
-   var carName = "segfreetrain" + window.segfreeCurrentState.currentCarIndex
+   var carName = "segfreetrain" + window.segfreeCurrentState.currentCarIndex;
    // console.log(window[carName].top)
    // $('#seg-free-current-cargo-box').css("left", window.adjust+window[carName].left+"px");
    // $('#seg-free-current-cargo-box').css("top", -window.adjust+window[carName].top+"px");
