@@ -182,17 +182,21 @@ function bestfitrefresh() {
     bestfitupdateWholeTrainCargo();
 
     //should be done with promises: just notifies users after graphics rerendered if sim done
-    setTimeout(function() {
-        if (bestfitstageCompleted()) {
-        //TODO: clear up the display
-            alert("Oh no! It seems that there isn't anywhere for you to put the last cargo on the train. \
-It would have fit on the second car, but we filled that with smaller cargos. Scroll down for more explanation.");
+    if (bestfitstageCompleted()) {
+    //TODO: clear up the display
         $('#best-fit-game-container').css("opacity", "0.25");
+        $('#best-fit-current-cargo-box').css("visibility", "hidden");
+        $('#best-fit-cargo-outline').css("visibility", "hidden");
+        $('#best-fit-arrow').css("visibility", "hidden");
 
+        setTimeout(function() {
+            alert("Congrats! You've successfully loaded all of the cargo. Scroll down for a comparison of the two strategies.");
+        }, 300);
         $('#best-fit-end-text').css("visibility", "visible");
-        }
 
-    }, 300);
+    }
+
+    
 
 }
 
@@ -291,7 +295,9 @@ function bestfitupdateButtonStates(capacity, maxCapacity) {
 }
 
 function bestfitstageCompleted() {
-    //if (window.bestfitcurrentState.clicks === 8) {return true;}
+    if (window.bestfitcurrentState.cargoLeft == 0) {
+        return true;
+    }
     return false;
 }
 
@@ -318,6 +324,7 @@ function bestfitNoClicked() {
                 $('#best-fit-message-box').fadeOut("400",function() {
                 });
             }, 1200);
+
         });
     } else if (!window.bestfitcurrentState.checkedLastCar) { //moving forward
         window.bestfitcurrentState.currentCar += 1;
@@ -330,16 +337,18 @@ function bestfitNoClicked() {
                 }, 1200);
             });
         }
+        window.bestfitcurrentState.clicks += 1;
 
     } else { //moving backwards
         window.bestfitcurrentState.currentCar -= 1;
+        window.bestfitcurrentState.clicks += 1;
     }
 
     // //LET USER KNOW WE're GOING BACKWARDS
     // if (!bestfitShouldLoadCargo() && (window.bestfitcurrentState.currentCar == window.bestfitinitialGame.numCars)) {
 
     // }
-    window.bestfitcurrentState.clicks += 1;
+    
     bestfitrefresh();
 }
 
