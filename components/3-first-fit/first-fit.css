@@ -47,7 +47,25 @@ span, div {
 	line-height: 45px;*/
 	/*background-color: red;*/
 	color: black;
-	border: 2px solid;
+	border: 3px solid;
+	z-index: 30;
+}
+
+#first-fit-cargo-outline {
+	position: relative;
+	/*margin-left: auto;
+	margin-right: 320px;*/
+	left: 250px;
+
+	
+	width: 500px;
+	height: 25px;
+	/*box-shadow: 5px;
+
+	line-height: 45px;*/
+	/*background-color: red;*/
+	color: green;
+	border: 3px dashed;
 }
 
 .cargo-box {
