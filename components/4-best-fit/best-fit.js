@@ -311,20 +311,24 @@ function bestfitNoClicked() {
         });
     } else if (!window.bestfitcurrentState.checkedLastCar) { //moving forward
         window.bestfitcurrentState.currentCar += 1;
+        if((window.bestfitcurrentState.currentCargoIndex != 2) && (window.bestfitcurrentState.currentCar == window.bestfitinitialGame.numCars)) {
+            $('#best-fit-message-box').html("Now that we've seen every car, we will backtrack to place the cargo!")
+            $('#best-fit-message-box').fadeIn("400", function() {
+                setTimeout(function() {
+                    $('#best-fit-message-box').fadeOut("400",function() {
+                    });
+                }, 1200);
+            });
+        }
+
     } else { //moving backwards
         window.bestfitcurrentState.currentCar -= 1;
     }
 
-    //LET USER KNOW WE're GOING BACKWARDS
-    if (!bestfitShouldLoadCargo() && (window.bestfitcurrentState.currentCar == window.bestfitinitialGame.numCars)) {
-        $('#best-fit-message-box').html("Now that we've seen every car, we will backtrack to place the cargo!")
-        $('#best-fit-message-box').fadeIn("400", function() {
-            setTimeout(function() {
-                $('#best-fit-message-box').fadeOut("400",function() {
-                });
-            }, 1200);
-        });
-    }
+    // //LET USER KNOW WE're GOING BACKWARDS
+    // if (!bestfitShouldLoadCargo() && (window.bestfitcurrentState.currentCar == window.bestfitinitialGame.numCars)) {
+        
+    // }
     window.bestfitcurrentState.clicks += 1;
     bestfitrefresh();
 }
