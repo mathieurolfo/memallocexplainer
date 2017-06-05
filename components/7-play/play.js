@@ -449,9 +449,9 @@ function moveCargo() {
    $('#seg-free-cargo-outline').css("visibility", "visible");
    console.log("car index", window.segfreeCurrentState.currentCarIndex);
    var carName = "segfreetrain" + window.segfreeCurrentState.currentCarIndex
-   console.log(window[carName].top)
-   $('#seg-free-current-cargo-box').css("left", window.adjust+window[carName].left+"px");
-   $('#seg-free-current-cargo-box').css("top", -window.adjust+window[carName].top+"px");
+   // console.log(window[carName].top)
+   // $('#seg-free-current-cargo-box').css("left", window.adjust+window[carName].left+"px");
+   // $('#seg-free-current-cargo-box').css("top", -window.adjust+window[carName].top+"px");
    // $('#seg-free-current-cargo-box').css("left", window.cargoLeftOffset+"px");
    $('#seg-free-cargo-outline').css("left", window.adjust+window[carName].left+"px");
    $('#seg-free-cargo-outline').css("top", window[carName].top+"px");
