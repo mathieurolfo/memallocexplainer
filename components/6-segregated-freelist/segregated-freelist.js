@@ -24,7 +24,7 @@ function TrainVisualization (draggableCarts, carts) {
 }
 
 var BUCKET_OFFSET_Y = 350
-var BUCKET_OFFSET_X = 180
+var BUCKET_OFFSET_X = 180 + 130
 var CARGO_SIZE_X = 20
 var CARGO_SIZE_Y = 40 // sync with 'height' in .draggable-cart
 var CARGO_SPACING_Y = 80
@@ -64,14 +64,15 @@ TrainVisualization.prototype.draw = function(domId) {
       });
     container.appendChild(draggableCart);
 
+    // add a canvas, draw a cargo inside
     var canvasName = "canvas-" + index;
-    var t = new createNewCanvas(canvasName, draggableCart);
+    var canvasObj = new createNewCanvas(canvasName, draggableCart);  // draggableCart is the parent div
     var carWidth = cargo.capacity * CARGO_SIZE_X;
     var cargoWidth = 0;
-    t.setWidth(carWidth+15);
-    t.setHeight(20);
+    canvasObj.setWidth(carWidth+15);
+    canvasObj.setHeight(20);
     document.getElementById(canvasName).parentElement.style.position = 'static';
-    drawCarWithCargo(t, canvasName, index, carWidth, cargoWidth, 0);
+    drawCarWithCargo(canvasObj, canvasName, '#'+(1+index), carWidth, cargoWidth, 0);
   });
 
   var tmp = 0;
@@ -199,16 +200,17 @@ function drawCarWithCargo(canvas, id, carLabel, carWidth, cargoWidth, leftOffset
   var car = id + "Car";
   var loadedCargo = id + "Cargo";
   var yOffset = 5;
-  var cartHeight = 10, wheelSize = 5;
-
-  window[wheel1] = new fabric.Circle({
-      top: yOffset, left: leftOffset+3, radius: wheelSize, fill: 'gray',
-      stroke: 'black', strokeWidth: 2
-  });
-  window[wheel2] = new fabric.Circle({top: yOffset, left: leftOffset+carWidth-cartHeight-3, radius: wheelSize, fill: 'gray',stroke: 'black', strokeWidth: 2});
-  window[car] = new fabric.Rect({top: yOffset-wheelSize, left: leftOffset, width: carWidth, height: cartHeight, fill: 'gray', stroke: 'black', strokeWidth: 2});
-  canvas.add(window[car], window[wheel1], window[wheel2]);
-  var text = canvas.add(new fabric.Text('#'+(1+carLabel), {
+  var cartHeight = 10, wheelRadius = 5;
+  var numWheels = carWidth / CARGO_SIZE_X/4;
+  window[car] = new fabric.Rect({top: yOffset-wheelRadius, left: leftOffset, width: carWidth, height: cartHeight, fill: 'gray', stroke: 'black', strokeWidth: 2});
+  canvas.add(window[car]);
+  for(var i = 0; i < numWheels; i++){
+    var lw = new fabric.Circle({top: yOffset, left: leftOffset + 3 + wheelRadius*2*i, radius: wheelRadius, fill: 'gray', stroke: 'black', strokeWidth: 2});
+    canvas.add(lw);
+    var rw = new fabric.Circle({top: yOffset, left: leftOffset+carWidth-cartHeight-3-wheelRadius*2*i, radius: wheelRadius, fill: 'gray',stroke: 'black', strokeWidth: 2});
+    canvas.add(rw);
+  }
+  var text = canvas.add(new fabric.Text(carLabel, {
       left: window[car].left + window[car].width/2 - cartHeight/2, //Take the block's position
       top: window[car].top,
       fontSize: cartHeight-1,
