@@ -320,14 +320,15 @@
 		<div class="centered">
 			Load this cargo:
 			<div id="seg-free-current-cargo-box" class="centered"></div>
-			<button id="seg-free-load-button" class="button" onclick="loadClickedSeg()">Load Cargo</button>
+			<button id="seg-free-load-button" class="button" onclick="yesloadCargoSeg()">Yes, load</button>
+			<button id="seg-free-no-button" class="button" onclick="noloadCargoSeg()">No, next</button>
 		</div>
 
 		<div class="centered">
 			<table style="width:70%">
 			  <tr id="bucket4" onclick="selectBucket(4)">
-			    <td style='width: 20%;'><button type="button">Bucket 1-4</button></td>
-			    <td><div id="seg-free-current-cargo-box" class="centered"></div><canvas id="seg-free-bucket4-display"></canvas></td>
+			    <td style='width: 20%;'>Bucket 1-4</td>
+			    <td><canvas id="seg-free-bucket4-display"></canvas></td>
 			  </tr>
 			  <tr id="bucket8" onclick="selectBucket(8)">
 			    <td>Bucket 5-8</td>
