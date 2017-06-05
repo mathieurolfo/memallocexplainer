@@ -175,6 +175,7 @@ TrainVisualization.prototype.draw = function(domId) {
               if (window.nPlaced == 10) {
                 alert("You've constructed the free list! Now you can put it into use.")
                 $('#seg-free-game-container').css("opacity", "0.25");
+                $('#play').css("visibility", "visible")
               }
             }
         },
