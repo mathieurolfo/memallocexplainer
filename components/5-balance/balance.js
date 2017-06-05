@@ -16,7 +16,7 @@ function balanceInit() {
   var imageDiv = document.createElement("div");
   var imgObj = document.createElement("img");
   imgObj.setAttribute("src", "figures/compare-firstfit.png");
-  imgObj.setAttribute("height", "145px");
+  imgObj.setAttribute("height", "120px");
   imageDiv.appendChild(imgObj);
   imageDiv.appendChild(textNode('Cost: 8'));
   imageDiv.appendChild(document.createElement('br'));
@@ -25,7 +25,7 @@ function balanceInit() {
 
   imgObj = document.createElement("img");
   imgObj.setAttribute("src", "figures/compare-bestfit.png");
-  imgObj.setAttribute("height", "145px");
+  imgObj.setAttribute("height", "120px");
   imageDiv.appendChild(imgObj);
   imageDiv.appendChild(textNode('Cost: 12'));
   imageDiv.appendChild(document.createElement('br'));
