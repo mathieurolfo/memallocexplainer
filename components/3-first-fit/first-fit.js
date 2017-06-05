@@ -78,7 +78,7 @@ function firstfitinitWholeTrainGraphic() {
             left:0,
             top: 20,
         })
-        obj.scaleToHeight(45);
+        obj.scaleToHeight(40);
         window.firstfittraincanvas.add(obj);
     });
     window.firstfitleftOffset = 60;
