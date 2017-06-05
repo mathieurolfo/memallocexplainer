@@ -88,7 +88,7 @@ function initSelectBucket() {
 
 window.heightAdj = -16
 
-function drawCar(thisCanvas, leftOffset, carSize, carWidth, wheelColor, yOffset) {
+function drawCar(thisCanvas, leftOffset, carSize, carWidth, wheelColor, yOffset, carIndex) {
     var wheelRadius = 5, wheelOffset = 3, cartHeight = 10;//, yOffset = 55;
     var numWheels = carSize / 4;
 
@@ -101,6 +101,14 @@ function drawCar(thisCanvas, leftOffset, carSize, carWidth, wheelColor, yOffset)
         var rw = new fabric.Circle({top: yOffset+window.heightAdj, left: leftOffset+carWidth-cartHeight- wheelOffset-wheelRadius*2*i, radius: wheelRadius, fill: wheelColor,stroke: 'black', strokeWidth: 2});
         thisCanvas.add(rw);
     }
+    var carLabel = '#' + carIndex
+    var text = thisCanvas.add(new fabric.Text(carLabel, {
+      left: car.left + car.width/2 - cartHeight/2, //Take the block's position
+      top: car.top,
+      fontSize: cartHeight+1,
+      fontFamily: 'arial',
+      fill: 'white'
+    }));
 }
 
 
@@ -157,7 +165,7 @@ function initBucket4() {
 	     //    });
 	     //    window[wheel2] = new fabric.Circle({top: 55+window.heightAdj, left: currLeft+carWidth-10-3, radius:5, fill: 'gray',stroke: 'black', strokeWidth: 2});
 	     //    window[car] = new fabric.Rect({top: 50+window.heightAdj, left: currLeft, width: carWidth, height: 10, fill: 'gray', stroke: 'black', strokeWidth: 2});
-    	
+
 
 
     		// window[wheel1] = new fabric.Circle({
@@ -169,7 +177,7 @@ function initBucket4() {
 
         }
         // window.segfreebucket4canvas.add(window[car],window[wheel1], window[wheel2], );
-        drawCar(window.segfreebucket4canvas, currLeft, currCar["size"], carWidth, wheelColor, 55)
+        drawCar(window.segfreebucket4canvas, currLeft, currCar["size"], carWidth, wheelColor, 55, currCar['index'])
         currLeft += carWidth + 10;
     }
 }
@@ -240,7 +248,7 @@ function initBucket8() {
 
     	}
         // window.segfreebucket8canvas.add(window[car],window[wheel1], window[wheel2]);
-        drawCar(window.segfreebucket8canvas, currLeft, currCar["size"], carWidth, wheelColor, 55)
+        drawCar(window.segfreebucket8canvas, currLeft, currCar["size"], carWidth, wheelColor, 55, currCar['index'])
         currLeft += carWidth + 10;
     }
 }
@@ -292,7 +300,7 @@ function initBucket12() {
         // window[car] = new fabric.Rect({top: 50, left: currLeft, width: carWidth, height: 10, fill: 'gray', stroke: 'black', strokeWidth: 2});
         // window.segfreebucket12canvas.add(window[car],window[wheel1], window[wheel2]);
         var wheelColor = 'gray'
-        drawCar(window.segfreebucket12canvas, currLeft, currCar["size"], carWidth, wheelColor, 55)
+        drawCar(window.segfreebucket12canvas, currLeft, currCar["size"], carWidth, wheelColor, 55, currCar['index'])
 
 
         currLeft += carWidth + 10;
@@ -348,7 +356,7 @@ function initBucket16() {
         // window[car] = new fabric.Rect({top: 50, left: currLeft, width: carWidth, height: 10, fill: 'gray', stroke: 'black', strokeWidth: 2});
         // window.segfreebucket16canvas.add(window[car],window[wheel1], window[wheel2]);
         var wheelColor = 'gray'
-        drawCar(window.segfreebucket16canvas, currLeft, currCar["size"], carWidth, wheelColor, 55)
+        drawCar(window.segfreebucket16canvas, currLeft, currCar["size"], carWidth, wheelColor, 55, currCar['index'])
 
 
         currLeft += carWidth + 10;
@@ -399,17 +407,16 @@ function initFullTrain() {
         	rectop += 90;
         	cargotop += 90;
         }
-        window[wheel1] = new fabric.Circle({
-            top: circletop, left: currLeft+3, radius:5, fill: 'gray',
-            stroke: 'black', strokeWidth: 2
-        });
-        window[wheel2] = new fabric.Circle({top: circletop, left: currLeft+carWidth-10-3, radius:5, fill: 'gray',stroke: 'black', strokeWidth: 2});
-        window[car] = new fabric.Rect({top: rectop, left: currLeft, width: carWidth, height: 10, fill: 'gray', stroke: 'black', strokeWidth: 2});
-        window.segfreetraincanvas.add(window[car],window[wheel1], window[wheel2]);
+        // window[wheel1] = new fabric.Circle({
+        //     top: circletop, left: currLeft+3, radius:5, fill: 'gray',
+        //     stroke: 'black', strokeWidth: 2
+        // });
+        // window[wheel2] = new fabric.Circle({top: circletop, left: currLeft+carWidth-10-3, radius:5, fill: 'gray',stroke: 'black', strokeWidth: 2});
+        // window[car] = new fabric.Rect({top: rectop, left: currLeft, width: carWidth, height: 10, fill: 'gray', stroke: 'black', strokeWidth: 2});
+        // window.segfreetraincanvas.add(window[car],window[wheel1], window[wheel2]);
 
-       // var wheelColor = 'gray'
-        //drawCar(window.segfreetraincanvas, currLeft, currCar["size"], carWidth, wheelColor, circletop)
-
+        var wheelColor = 'gray'
+        drawCar(window.segfreetraincanvas, currLeft, window.segfreeInitialGame.cars[j], carWidth, wheelColor, 16+circletop, j)
 
         var cargoWidth = (window.segfreeInitialGame.cars[j]-window.segfreeCurrentState.remainingCapacity[j])*25;
         window[loadedCargo] = new fabric.Rect({top: cargotop, left: currLeft, width: cargoWidth, height: 20, fill: 'red'});
