@@ -8,37 +8,8 @@
   bottom:0;
 }
 
-#car-2 {
-  position: absolute;
-  bottom: 0;
-  height: 20px;
-}
-
-#car-3 {
-  position: absolute;
-  bottom: 0;
-  height: 20px;
-}
-
-
-#cargo-1 {
-  height: 80px;
-  width: 120px;
-}
-
-
 #inner-dropzone {
   height: 100px;
-  background-color: #fff;
-}
-
-#inner-dropzone-1 {
-  width: 90px;
-  background-color: #fff;
-}
-
-#inner-dropzone-2 {
-  width: 135px;
   background-color: #fff;
 }
 
@@ -70,10 +41,10 @@
   width: 40px;
   max-width: 4000px;
   /*height:40px ;*/
-  padding: 2em 0.5em;
+  /*padding: 2em 0.5em;*/
 
   color: #fff;
-  background-color: #29e;
+  /*background-color: #29e;*/
   border: solid 2px #fff;
 
   -webkit-transform: translate(0px, 0px);
@@ -102,7 +73,7 @@
 
 .drop-done {
   /*color: #29e;*/
-  background-color: #333;
+  /*background-color: #333;*/
 }
 
 
@@ -132,20 +103,23 @@
 }
 
 .train {
-  background-color: #eee;
+  /*background-color: #eee;*/
 }
 
 .bucket {
+  color: #29e;
   display: inline-block;
-  background-color: rgb(225, 225, 225);
-  height: 350px;
+  /*background-color: rgb(225, 225, 225);*/
   margin-right: 5px;
-
 }
 
+.bucket-row-train-head {
+  display: inline-block;
+  height: 60px;
+}
 .draggable-cart {
   display: inline-block;
-  background-color: #eee;
+  /*background-color: #eee;*/
   color: #29e;
   /*background-color: #dde;*/
   height: 25px;
