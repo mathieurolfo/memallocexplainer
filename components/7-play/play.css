@@ -73,8 +73,9 @@ tr:hover {
 	/*margin-left: auto;
 	margin-right: 320px;*/
 	left: 0px;
-
 	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
 	width: 0px;
 	height: 25px;
 	/*box-shadow: 5px;
@@ -84,6 +85,9 @@ tr:hover {
 	color: black;
 	border: 3px solid;
 	z-index: 30;
+	text-align: center;
+	align-content: center;
+	align-items: center;
 }
 
 #seg-free-current-cargo-box-static {
@@ -92,6 +96,9 @@ tr:hover {
 	margin-right: 320px;*/
 	left: 0px;
 
+	margin-left: 20px;
+	margin-right: 20px;
+	display: inline-block;
 	margin-top: 20px;
 	width: 0px;
 	height: 25px;
@@ -181,7 +188,7 @@ tr:hover {
 	height: 450px;
 	/*background-color: green;
 	opacity: 0.5;*/
-	border: 1px solid;
+	/*border: 1px solid;*/
 	/*margin: 5px;*/
 }
 
@@ -224,13 +231,17 @@ tr:hover {
 }
 
 #seg-free-message-box {
-	background-color: yellow;
-	white-space: nowrap;
-	display: inline;
+	/*background-color: yellow;*/
+	/*white-space: nowrap;*/
+	/*display: inline-block;*/
 	margin-top: 15px;
 	/*padding: 3px;*/
 	/*display: inline-block;*/
+	/*margin-right: 10px;*/
 	font-size: 24px;
+	font-style: italic;
+	/*width: 100px;*/
+
 }
 
 #seg-free-load-button {
@@ -242,11 +253,13 @@ tr:hover {
 #seg-free-click-counter {
 	margin-top: 10px;
 	margin-left: 10px;
+	font-size: 24px;
 }
 
 #seg-free-util-counter {
 	margin-top: 10px;
 	margin-left: 10px;
+	font-size: 24px;
 }
 
 button {
@@ -262,6 +275,9 @@ button {
 	background-color: lightblue;
 }
 
+#seg-free-top-container {
+	/*margin-left: -250px;*/
+}
 
 #seg-free-end-text {
 	width: 600px;
@@ -318,3 +334,5 @@ button {
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
 
+
+h3 {font-family: 'Source Sans Pro'}

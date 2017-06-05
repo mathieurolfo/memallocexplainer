@@ -334,16 +334,19 @@
 <!-- //////////////////////// SEGREGATED FREE LIST LOADING ///////////////////// -->
 
 	<section id="play">
-		<div class="centered">
-
-			Load this cargo:
-			<div id="seg-free-current-cargo-box-static" class="centered"></div>
-
-			<div id="seg-free-message-box"></div>
-
-			<button id="seg-free-load-button" class="button button-3d button-pill" disabled onclick="yesloadCargoSeg()">Yes, load</button>
-			<button id="seg-free-no-button" class="button button-3d button-pill" disabled onclick="noloadCargoSeg()">No, next</button>
+		<h3 class="centered">Place each cargo by searching through the correct bucket list!</h3>
 		
+		<div id="seg-free-top-container" class="centered">
+			<!-- <span>Select a bucket for</span> -->
+			
+			<span id="seg-free-current-cargo-box-static"></span>
+			
+			<button id="seg-free-load-button" class="button button-3d button-pill" disabled onclick="yesloadCargoSeg()">Yes - Load</button>
+			<button id="seg-free-no-button" class="button button-3d button-pill" disabled onclick="noloadCargoSeg()">No - Next Car</button>
+
+		</div>
+		<div style="height: 50px">
+		<div id="seg-free-message-box" class="centered">Select a bucket list</div>
 		</div>
 
 		<div align='center'>
@@ -371,17 +374,23 @@
 		
 		<div class="centered">
 			<div id="seg-free-train-display-region">
-				<div id="seg-free-click-counter">
-					<span >Train cars inspected: </span><span id="seg-free-clicks"></span>
-				</div>
-				<div id="seg-free-util-counter">
-					<span >Total train space used: </span><span id="seg-free-utilization"></span>
-				</div>
+				
 				<div id="seg-free-current-cargo-box"></div>
 				<div id="seg-free-cargo-outline"></div>
 				<canvas id="seg-free-train-display"></canvas>
+			
+			<div class="centered">
+			<span id="seg-free-click-counter">
+				<span >Train cars inspected: </span><span id="seg-free-clicks"></span>
+			</span>
+			<span id="seg-free-util-counter">
+				<span >Total train space used: </span><span id="seg-free-utilization"></span>
+			</span>
 			</div>
-			<button id="seg-free-refresh-button" class="button" onclick="resetSimulationSeg()">Reset</button>
+				<div
+				<button id="seg-free-refresh-button" class="button" onclick="resetSimulationSeg()">Reset</button>
+				</div>
+			</div>
 		</div>
 
 		<div id="seg-free-end-text" class="centered" name="seg-free-segue">

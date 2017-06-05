@@ -363,11 +363,12 @@ function showCargoBoxSeg() {
     cargoSize *= 24
     $('#seg-free-current-cargo-box').css("width", cargoSize);
     $('#seg-free-current-cargo-box-static').css("width", cargoSize);
+
     $('#seg-free-cargo-outline').css("width", cargoSize);
     $('#seg-free-current-cargo-box').html(window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex]);
-    $('#seg-free-current-cargo-box').css("display", "block");
+    $('#seg-free-current-cargo-box').css("display", "none");
     $('#seg-free-current-cargo-box-static').html(window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex]);
-    $('#seg-free-current-cargo-box-static').css("display", "block");
+    //$('#seg-free-current-cargo-box-static').css("display", "block");
 }
 
 function initFullTrain() {
