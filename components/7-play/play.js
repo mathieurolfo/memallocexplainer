@@ -591,6 +591,7 @@ function selectBucket(bucketNum) {
         });
 		return;
 	}
+    $('#seg-free-message-box').html("");
 	if (document.getElementById("seg-free-load-button").disabled) {
 		document.getElementById("seg-free-load-button").disabled = false;
 	}
@@ -671,8 +672,15 @@ function yesloadCargoSeg() {
         initBucket();
         showCargoBoxSeg();
         if (segfreestageCompleted()) {
-        	console.log("END");
+        	
+            $('#play').css("opacity", "0.25");
+            $('#seg-free-current-cargo-box').css("visibility", "hidden");
+            $('#seg-free-cargo-outline').css("visibility", "hidden");
+            $('#final-clicks').html(window.segfreeCurrentState.clicks);
+            $('#final-util').html(window.segfreeCurrentState.utilization + " out of " + window.segfreeInitialGame.totalSpace);
+
         	$('#seg-free-end-text').css("visibility", "visible");
+            alert("Awesome! You've finished the segment.")
         }
     } else {
         $('#seg-free-message-box').html("That cargo doesn't fit in this car.")
@@ -681,7 +689,7 @@ function yesloadCargoSeg() {
 }
 
 function segfreestageCompleted() {
-    if (window.segfreeCurrentState.utilization === 52) {return true;}
+    if (window.segfreeCurrentState.cargoLeft === 0) {return true;}
     return false;
 }
 
