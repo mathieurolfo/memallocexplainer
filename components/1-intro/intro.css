@@ -1,3 +1,19 @@
+.text {
+  width: 800px;
+  text-align: left;
+}
+
+h2 {
+  width: 800px;
+  text-align: left;
+}
+
+p {
+  font-size: 18px;
+  width: 800px;
+  text-align: left;
+}
+
 #figure-head {
   margin-top: 0px;
   margin-left: 0px;

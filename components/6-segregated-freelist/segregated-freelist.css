@@ -86,7 +86,7 @@
    font-size: 30px;
   /*margin-left: auto;
   margin-right: auto;*/
-  text-align: center;
+  /*text-align: center;*/
   margin-top: 20px;
   margin-bottom: 10px;
   /*width: 800px;*/
@@ -95,13 +95,13 @@
 
 #freelist-description-text {
   font-size: 18px;
-  text-align: center;
+  /*text-align: center;*/
   margin-top: 20px;
   margin-bottom: 15px;
   /*margin-left: 100px;*/
   /*width: 600px;*/
-  padding-left: 150px;
-  padding-right: 150px;
+  /*padding-left: 150px;*/
+  /*padding-right: 150px;*/
 }
 
 #segregated-freelist{

@@ -6,20 +6,20 @@ span, div {
 	font-size: 30px;
 	/*margin-left: auto;
 	margin-right: auto;*/
-	text-align: center;
+	/*text-align: cxenter;*/
 	margin-top: 20px;
 	margin-bottom: 10px;
 	/*width: 800px;*/
 }
 
 #first-fit-description-text {
-	text-align: center;
+	/*text-align: center;*/
 	margin-top: 20px;
 	margin-bottom: 20px;
 	/*margin-left: 100px;*/
 	/*width: 600px;*/
-	padding-left: 150px;
-	padding-right: 150px;
+	/*padding-left: 150px;*/
+	/*padding-right: 150px;*/
 }
 
 #first-fit-cargo-display-region {
@@ -240,7 +240,7 @@ button {
 
 
 #first-fit-end-text {
-	width: 600px;
+	width: 800px;
 	/*margin-left: 100px;*/
 	margin-top: 30px;
 	margin-bottom: 30px;

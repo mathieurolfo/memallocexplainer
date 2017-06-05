@@ -33,8 +33,8 @@ function balanceInit() {
   imageDiv.appendChild(document.createElement('br'));
 
   // text
-  var textDiv = document.createElement('div');
-  textDiv.setAttribute('class', 'balance-text')
+  var textDiv = document.createElement('p');
+  textDiv.setAttribute('class', 'text')
   textDiv.innerHTML = "In first fit, we have low cost but more wasted space.<br>"
   textDiv.innerHTML += "In best fit, we have high cost but less wasted space.<br>"
   textDiv.innerHTML += "Because for the first fit, we are able to place a piece of cargo more quickly, but we’re not careful about where we place it."
