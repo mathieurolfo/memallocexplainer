@@ -81,15 +81,33 @@
   margin: 5%;
 }
 
-#free-list-text {
-  width: 600px;
-  margin-left: 100px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  height: 100px;
-  font-size: 20px;
+
+#freelist-header-text {
+   font-size: 30px;
+  /*margin-left: auto;
+  margin-right: auto;*/
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  /*width: 800px;*/
 }
 
+
+#freelist-description-text {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  /*margin-left: 100px;*/
+  /*width: 600px;*/
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+#segregated-freelist{
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
 
 #train-drag-drop-example {
   width: 900px;
@@ -105,7 +123,7 @@
 .bucket {
   color: #29e;
   display: inline-block;
-  /*background-color: rgb(225, 225, 225);*/
+  background-color: rgb(219,217,217);
   margin-right: 5px;
 }
 

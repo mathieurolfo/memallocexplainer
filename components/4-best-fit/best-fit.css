@@ -47,7 +47,25 @@ span, div {
 	line-height: 45px;*/
 	/*background-color: red;*/
 	color: black;
-	border: 2px solid;
+	border: 3px solid;
+	z-index: 30;
+}
+
+#best-fit-cargo-outline {
+	position: relative;
+	/*margin-left: auto;
+	margin-right: 320px;*/
+	left: 250px;
+
+	
+	width: 500px;
+	height: 25px;
+	/*box-shadow: 5px;
+
+	line-height: 45px;*/
+	/*background-color: red;*/
+	color: green;
+	border: 3px dashed;
 }
 
 .cargo-box {
@@ -108,8 +126,8 @@ span, div {
 
 #best-fit-train-display {
 	margin-left: 20px;
-	width: 700px;
-	height: 150px;
+	/*width: 700px;*/
+	/*height: 150px;*/
 }
 
 #best-fit-car-display {
@@ -145,13 +163,24 @@ span, div {
 }
 
 #best-fit-message-box {
-	background-color: yellow;
+	/*background-color: lightyellow;*/
 	white-space: nowrap;
 	display: inline;
-	margin-top: 15px;
+	/*margin-top: 15px;*/
 	/*padding: 3px;*/
 	/*display: inline-block;*/
-	font-size: 24px;
+	font-size: 16px;
+	padding: 3px 0;
+	font-style: italic;
+	display: none;
+	/*width: 100px;*/
+	/*visibility: hidden;*/
+	/*opacity: 1;*/
+}
+
+#best-fit-message-container {
+	margin-top: 15px;
+	height: 22px;
 }
 
 
@@ -173,8 +202,15 @@ button {
 
 }
 
+#best-fit-arrow {
+	position: relative;
+	width: 30px;
+	left: 0px;
+	/*height: 30px;*/
+}
+
 #best-fit-game-container {
-	width: 70%;
+	width: 675px;
 	margin: 0 auto;
 	margin-top: 20px;
 	/*background-color: #42eef4;*/
@@ -206,7 +242,7 @@ button {
 
 #best-fit-end-text {
 	width: 600px;
-	/*margin-left: 100px;*/
+	/*margin-left: 100px;*/a
 	margin-top: 30px;
 	margin-bottom: 30px;
 	height: 400px;

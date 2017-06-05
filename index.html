@@ -220,42 +220,40 @@
 	</div>
 	</section>
 	<!--  best fit -->
-     <section id="best-fit">
-     <div class="centered">
-		<!-- <div id="first-fit-header-text">Load the train by placing cargo in the first space it fits!</div>
-		<div id="first-fit-description-text" >
+    <section id="best-fit">
+    
+    <div class="centered">
+		<div id="best-fit-header-text">Load the train by placing cargo in the best fitting space!</div>
+		<div id="best-fit-description-text" >
 		The cargo is located on the left of the screen. You will have three pieces of cargo to place, and you can only see the size of the current piece of cargo. Browse through the train using the left and right arrows until you find a spot where the cargo fits. You can see your current speed and space usage at the bottom of the window.
 		</div>
-		<button id="first-fit-start-button" class=" malloc-load-button button button-3d button-pill" onclick="startFirstFit()">Got it!</button>
-	</div> -->
+		<button id="best-fit-start-button" class=" malloc-load-button button button-3d button-pill" onclick="startbestfit()">Got it!</button>
+	</div>
 
-	<div><div id="best-fit-game-container" class="centered">
-		<!-- <span id="first-fit-cargo-display-region"> -->
+    <div><div id="best-fit-game-container" class="centered">
+		<!-- <span id="best-fit-cargo-display-region"> -->
 
-			<!-- <div id="first-fit-cargo-display-header" class="display-header"></div> -->
-			<!-- <div id="first-fit-current-cargo-size"></div> -->
+			<!-- <div id="best-fit-cargo-display-header" class="display-header"></div> -->
+			<!-- <div id="best-fit-current-cargo-size"></div> -->
 
-			<!-- <div id="first-fit-cargo2" class="cargo-box centered">?</div>
-			<div id="first-fit-cargo3" class="cargo-box centered">?</div> -->
+			<!-- <div id="best-fit-cargo2" class="cargo-box centered">?</div>
+			<div id="best-fit-cargo3" class="cargo-box centered">?</div> -->
 		<!-- </span> -->
-		<!-- <span id="first-fit-current-car-region"> -->
-			<!-- <div id="first-fit-car-display-header" class="display-header"></div> -->
+		<!-- <span id="best-fit-current-car-region"> -->
+			<!-- <div id="best-fit-car-display-header" class="display-header"></div> -->
 			<!-- <button id="button" onclick="buttonClicked()">place load</button> -->
-			<!-- <div id="first-fit-car-display"> -->
-				<!-- <button id="first-fit-left-button" class="button button-3d button-circle" onclick="firstfitleftClicked()"><</button> -->
+			<!-- <div id="best-fit-car-display"> -->
+				<!-- <button id="best-fit-left-button" class="button button-3d button-circle" onclick="bestfitleftClicked()"><</button> -->
 
-				<!-- <button id="first-fit-right-button" class="button button-3d button-circle" onclick="firstfitrightClicked()">></button> -->
+				<!-- <button id="best-fit-right-button" class="button button-3d button-circle" onclick="bestfitrightClicked()">></button> -->
 		<!-- 	</div>
 		</span>
  -->
 		<div>
-		<h4>Is this the best-fitting car for this cargo?</h4>
+		<h4>Does this cargo fit in this car?</h4>
 		</div>
-		<div id="best-fit-current-cargo-box" ></div>
 
-		<canvas id="best-fit-current-train"></canvas>
 
-		<div id="best-fit-car-display-header" class="display-header"></div>
 		<div id="best-fit-button-area">
 			<div id="best-fit-yes-area">
 					<button id="best-fit-yes-button" class="button button-3d button-pill" onclick="bestfitYesClicked()">Yes - Load</button>
@@ -266,9 +264,16 @@
 				<div>
 			</div>
 		</div>
+		<div id="best-fit-message-container" class="centered">
+		<div id="best-fit-message-box">The cargo fits in this car!</div>
+		</div>
+
+		<div id="best-fit-current-cargo-box" ></div>
+		<div id="best-fit-cargo-outline" ></div>
+		<img class="" id="best-fit-arrow" src="figures/arrow.png"></img>
 
 		<div id="best-fit-train-display-region" >
-			<h5 class="centered"> Overview of the whole train:</h5>
+			<!-- <h5 class="centered"> Overview of the whole train:</h5> -->
 			<canvas id="best-fit-train-display"></canvas>
 		</div>
 
@@ -280,13 +285,17 @@
 		</div>
 
 		<!-- <div class="centered">
-			<div id="first-fit-car-capacity">hi</div>
+			<div id="best-fit-car-capacity">hi</div>
 
-				<div id="first-fit-message-box" ></div>
+				
 			</div>
 		</div> -->
 
 		<button id="best-fit-refresh-button" class="button" onclick="bestfitresetSimulation()">Refresh this Game</button>
+		<!-- <div id="best-fit-car-display-header" class="display-header"></div>
+		<canvas id="best-fit-current-train"></canvas> -->
+	</div></div>
+
 
     </section>
 
@@ -296,14 +305,11 @@
 
 	<section id="segregated-freelist">
         <div class="container" >
-            <div class="row">
-              <h5>Now let's create a cheat sheet! </h5>
-              <div id="free-list-text" name="free-list-segue">
-    Can you sort it into different bucket list by looking at each cart once? <br>Try drag the carts into different size list!
-                </div>
-              <p></p>
-
+            <div id="freelist-header-text">Now let's think about a strategy to make it fast while using more spaces.</div>
+            <div id="freelist-description-text" >
+            Before loading the trains, let's actually inspect all trains and write down the size of the cars into a cheat sheet that we can refer to later.
             </div>
+
             <div class="row">
                 <div class="train" id="train-drag-drop-example" >
                 </div>
@@ -409,7 +415,7 @@
 
 			</span>
 		</div>
- -->	
+ -->
 	</section>
 
 	<section id="conclusion">
