@@ -399,6 +399,7 @@ function initFullTrain() {
             left:0,
             top: 20,
         })
+        obj.scaleToHeight(40);
         window.segfreetraincanvas.add(obj);
     });
     window.segfreeleftOffset = 60;
