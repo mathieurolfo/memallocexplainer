@@ -217,7 +217,7 @@ button {
 	border: 2px solid;
 	padding-bottom: 20px;
 	padding-top: 20px;
-	/*visibility: hidden;*/
+	visibility: hidden;
 }
 
 #best-fit-load-button {
