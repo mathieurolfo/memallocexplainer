@@ -19,6 +19,13 @@ td, th {
 	background-color: blue; 
 }
 
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
 
 tr.selected td {
     background-color: #333;

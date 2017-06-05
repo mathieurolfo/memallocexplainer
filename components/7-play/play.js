@@ -366,16 +366,36 @@ function drawHoverTrain(bucketNum) {
 // });
 
 function selectBucketHelper(bucketNum) {
-	for (var i = 4 ; i < 17; i+=4) {
-		if (i == bucketNum) {
-			document.getElementById("bucket"+i).classList.add("highlight");
-		} else {
+	if (bucketNum == 0) {
+		for (var i = 4 ; i < 17; i+=4) {
 			document.getElementById("bucket"+i).classList.remove("highlight");
+			document.getElementById("button"+i).disabled = false;
 		}
+	} else {
+		for (var i = 4 ; i < 17; i+=4) {
+			if (i == bucketNum) {
+				document.getElementById("bucket"+i).classList.add("highlight");
+			} else {
+				document.getElementById("bucket"+i).classList.remove("highlight");
+				document.getElementById("button"+i).disabled = true;
+		}
+	}
 	}
 }
 
 function selectBucket(bucketNum) {
+	var diff = bucketNum - window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex];
+	if (diff > 3 || diff < 0) {
+		$('#seg-free-message-box').html("That cargo doesn't fit in this bucket.");
+		$('#seg-free-message-box').fadeIn("400", function() {
+            setTimeout(function() {
+                $('#seg-free-message-box').fadeOut("400",function() {
+                    console.log("animation complete");
+                });
+            }, 700);
+        });
+		return;
+	}
 	if (document.getElementById("seg-free-load-button").disabled) {
 		document.getElementById("seg-free-load-button").disabled = false;
 	}
@@ -383,6 +403,7 @@ function selectBucket(bucketNum) {
 		document.getElementById("seg-free-no-button").disabled = false;
 	}
 	selectBucketHelper(bucketNum);
+
 	window.segfreeCurrentState.bucketSelected = true;
 	window.segfreeCurrentState.currentBucket = bucketNum;
 	window.segfreeCurrentState.currentCars = window.segfreeCurrentState.carObjectMap[bucketNum];
@@ -402,22 +423,19 @@ function selectBucket(bucketNum) {
 	initFullTrain();
 }
 
-function grayoutBucket() {
-
-}
-
 function noloadCargoSeg() {
-	if (window.segfreeCurrentState.noIndex >= window.segfreeCurrentState.currentCars.length - 1) {
-		window.segfreeCurrentState.currentBucket = 0;
-		window.segfreeCurrentState.currentCars = null;
-		window.segfreeCurrentState.currentCar = null;
-		window.segfreeCurrentState.currentCarIndex = 0;
+	if (window.segfreeCurrentState.noIndex >= window.segfreecurrentStateate.currentCars.length - 1) {
+		// window.segfreeCurrentState.currentBucket = 0;
+		// window.segfreeCurrentState.currentCars = null;
+		// window.segfreeCurrentState.currentCar = null;
+		// window.segfreeCurrentState.currentCarIndex = 0;
 		window.segfreeCurrentState.noIndex = 1;
-		grayoutBucket();
 		window.segfreeCurrentState.bucketSelected = false;
+		// selectBucketHelper(window.segfreeCurrentState.currentBucket);
+		selectBucket(window.segfreeCurrentState.currentBucket);
 		initBucket();
-		document.getElementById("seg-free-load-button").disabled = true;
-		document.getElementById("seg-free-no-button").disabled = true;
+		// document.getElementById("seg-free-load-button").disabled = true;
+		// document.getElementById("seg-free-no-button").disabled = true;
 	} else {
 		window.segfreeCurrentState.noIndex = window.segfreeCurrentState.noIndex + 1;
 		window.segfreeCurrentState.currentCarIndex = window.segfreeCurrentState.currentCars[window.segfreeCurrentState.noIndex]["index"];
@@ -443,6 +461,7 @@ function yesloadCargoSeg() {
         window.segfreeCurrentState.bucketSelected = false;
 		document.getElementById("seg-free-load-button").disabled = true;
 		document.getElementById("seg-free-no-button").disabled = true;
+		selectBucketHelper(0);
         $('#seg-free-message-box').html("Cargo successfully loaded!")
         initFullTrain();
         initBucket();
