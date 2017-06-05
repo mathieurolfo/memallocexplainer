@@ -124,15 +124,21 @@ function initBucket4() {
 	        });
 	        window[wheel2] = new fabric.Circle({top: 55, left: currLeft+carWidth-10-3, radius:5, fill: 'red',stroke: 'black', strokeWidth: 2});
 	        window[car] = new fabric.Rect({top: 50, left: currLeft, width: carWidth, height: 10, fill: 'red', stroke: 'black', strokeWidth: 2});
-    	} else {
+    	   
+            var cargoSize = window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex]*25
+            window[loadedCargo] = new fabric.Rect({top: 25, left: currLeft, width: cargoSize, height: 25, fill: 'white', stroke: 'green', strokeWidth: 2, strokeDashArray: [2,2]});
+            window.segfreebucket4canvas.add(window[loadedCargo]);
+        } else {
     		window[wheel1] = new fabric.Circle({
 	            top: 55, left: currLeft+3, radius:5, fill: 'gray',
 	            stroke: 'black', strokeWidth: 2
 	        });
 	        window[wheel2] = new fabric.Circle({top: 55, left: currLeft+carWidth-10-3, radius:5, fill: 'gray',stroke: 'black', strokeWidth: 2});
 	        window[car] = new fabric.Rect({top: 50, left: currLeft, width: carWidth, height: 10, fill: 'gray', stroke: 'black', strokeWidth: 2});
-    	}
-        window.segfreebucket4canvas.add(window[car],window[wheel1], window[wheel2]);
+    	
+
+        }
+        window.segfreebucket4canvas.add(window[car],window[wheel1], window[wheel2], );
         currLeft += carWidth + 10;
     }
 }
@@ -294,7 +300,8 @@ window.cargoCurrLeft = 80;
 function resetCargo() {
     console.log("placing cargo");
     $('#seg-free-current-cargo-box').css("left", window.cargoLeftOffset+"px");
-    
+    $('#seg-free-current-cargo-box').css("top", "0px");
+    $('#seg-free-cargo-outline').css("top", "0px");
     //$('#seg-free-cargo-outline').css("left", window.cargoLeftOffset+"px");
     $('#seg-free-cargo-outline').css("visibility", "hidden");
     console.log(window.segfreeCurrentState.currentCargoIndex);
