@@ -206,7 +206,7 @@
 			</div>
 		</div> -->
 
-		<button id="first-fit-refresh-button" class="button" onclick="firstfitresetSimulation()">Refresh this Game</button>
+		<button id="first-fit-refresh-button" class="button" onclick="firstfitresetSimulation()">Reset</button>
 		<!-- <div id="first-fit-car-display-header" class="display-header"></div>
 		<canvas id="first-fit-current-train"></canvas> -->
 	</div></div>
@@ -291,7 +291,7 @@
 			</div>
 		</div> -->
 
-		<button id="best-fit-refresh-button" class="button" onclick="bestfitresetSimulation()">Refresh this Game</button>
+		<button id="best-fit-refresh-button" class="button" onclick="bestfitresetSimulation()">Reset</button>
 		<!-- <div id="best-fit-car-display-header" class="display-header"></div>
 		<canvas id="best-fit-current-train"></canvas> -->
 	</div></div>
@@ -315,13 +315,13 @@
                 </div>
             </div>
             <div align='center'>
-                <button id="segregated-freelist-refresh-button" class="button" onclick="ResetTrain()">Refresh this Game</button>
+                <button id="segregated-freelist-refresh-button" class="button" onclick="ResetTrain()">Reset</button>
             </div>
-            <div class="row">
+   <!--          <div class="row">
                 <div class="col-md-12" align="center">
                 <h4>Drag the empty train into different categories of sizes!</h4>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </section>
@@ -332,31 +332,34 @@
 
 	<section id="play">
 		<div class="centered">
-			Load this cargo:
-			<div id="seg-free-current-cargo-box" class="centered"></div>
-			<button id="seg-free-load-button" class="button" disabled onclick="yesloadCargoSeg()">Yes, load</button>
-			<button id="seg-free-no-button" class="button" disabled onclick="noloadCargoSeg()">No, next</button>
+		<!-- 	Load this cargo:
+			<div id="seg-free-current-cargo-box" class="centered"></div> -->
+			<div id="seg-free-message-box"></div>
 		</div>
 
-		<div class="centered">
+		<div align='center'>
 			<table style="width:60%">
-			  <tr id="bucket4" onclick="selectBucket(4)">
-			    <td style='width: 20%;'>Bucket 1-4</td>
+			  <tr id="bucket4">
+			    <td style='width: 20%;'><button id="button4" onclick="selectBucket(4)">Bucket 1-4</button></td>
 			    <td><canvas id="seg-free-bucket4-display"></canvas></td>
 			  </tr>
-			  <tr id="bucket8" onclick="selectBucket(8)">
-			    <td>Bucket 5-8</td>
+			  <tr id="bucket8">
+			    <td><button id="button8" onclick="selectBucket(8)">Bucket 5-8</button></td>
 			    <td><canvas id="seg-free-bucket8-display"></canvas></td>
 			  </tr>
-			  <tr id="bucket12" onclick="selectBucket(12)">
-			    <td>Bucket 9-12</td>
+			  <tr id="bucket12">
+			    <td><button id="button12" onclick="selectBucket(12)">Bucket 9-12</button></td>
 			    <td><canvas id="seg-free-bucket12-display"></canvas></td>
 			  </tr>
-			  <tr id="bucket16" onclick="selectBucket(16)">
-			    <td>Bucket 13-16</td>
+			  <tr id="bucket16">
+			    <td><button id="button16" onclick="selectBucket(16)">Bucket 13-16</button></td>
 			    <td><canvas id="seg-free-bucket16-display"></canvas></td>
 			  </tr>
 			</table>
+		</div>
+		<div class="centered">
+			<button id="seg-free-load-button" class="button" disabled onclick="yesloadCargoSeg()">Yes, load</button>
+			<button id="seg-free-no-button" class="button" disabled onclick="noloadCargoSeg()">No, next</button>
 		</div>
 		<div class="centered">
 			<div id="seg-free-train-display-region">
