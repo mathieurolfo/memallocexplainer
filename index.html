@@ -389,9 +389,26 @@
 
 	<section id="conclusion">
 		<div align="center">
-		<p id="seg-free-end-text" name="seg-free-segue">
-			Nice! You managed to load the cargo by inspecting <span id="final-clicks"></span> train car and utilizing <span id="final-util"></span> spaces in the train. See how this balances the time cost and space cost of the earlier strategies for a more optimal result?
-		</p>
+		<h2 class="text">Conclusions</h2>
+
+		<div id="seg-free-end-text" >
+			<p class="text">Nice! You managed to load the cargo by inspecting <span id="final-clicks"></span> train car and utilizing <span id="final-util"></span> spaces in the train. See how this balances the time cost and space cost of the earlier strategies for a more optimal result? And notice that the segregated free list can be used alongside first-fit and best-fit, which will give you different time and space outcomes. 
+			</p>
+
+			<p class="text">
+			This brings us to some of the key takeways of this interactive explanation. <br>
+			1) Time efficiency (number of cars inspected) and space efficiency (train space used) is the fundamental tradeoff in dynamic memory allocation. <br> 
+			2) Some solutions strongly favor one over the other (first-fit and best fit), and some strategies can help make improvements to both (segregated free list).	<br>
+			3) This tradeoff applies to real-world problems outside of memory allocation! <br>
+			</p>
+
+			<p class="text">
+			Thanks for playing! We hope you've learned a little about memory allocation and the key tradeoffs, and a couple strategies for solving the problem. Can you think of any other strategies? There are quite a few! 
+			</p>
+		</div>
+		<img id="final-train" src="figures/compare-bestfit.png" style="height: 120px"></img>
+
+		
 		</div>
 	</section>
 

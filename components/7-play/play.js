@@ -681,6 +681,15 @@ function yesloadCargoSeg() {
 
         	$('#seg-free-end-text').css("visibility", "visible");
             alert("Awesome! You've finished the segment.")
+            
+            
+            setTimeout(function() {
+                $('#final-train').animate({'margin-left': '-=2000'}, 20000, function(){
+
+                });
+
+
+            }, 5000);
         }
     } else {
         $('#seg-free-message-box').html("That cargo doesn't fit in this car.")
@@ -689,7 +698,7 @@ function yesloadCargoSeg() {
 }
 
 function segfreestageCompleted() {
-    if (window.segfreeCurrentState.cargoLeft === 0) {return true;}
+    if (window.segfreeCurrentState.cargoLeft === 6) {return true;}
     return false;
 }
 
