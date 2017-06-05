@@ -1,3 +1,7 @@
+function startsegfree () {
+  $('#seg-free-game-container').css("visibility", "visible");
+}
+
 function dragMoveListener(event) {
     var target = event.target;
     // keep the dragged position in the data-x/data-y attributes
@@ -26,6 +30,8 @@ function TrainVisualization (draggableCarts, carts) {
   this.carts = carts;
   this.draggableCarts = draggableCarts
 }
+
+window.nPlaced = 0;
 
 var BUCKET_OFFSET_Y = 350
 var BUCKET_OFFSET_X = 180 + 50
@@ -165,7 +171,11 @@ TrainVisualization.prototype.draw = function(domId) {
               dropzoneElement.setAttribute("cartLength", (cargoCapacity + cartLength).toString())
               dropzoneElement.setAttribute("numCarts", (numCarts + 1).toString())
               event.relatedTarget.classList.remove('can-drop');
-
+              window.nPlaced += 1;
+              if (window.nPlaced == 10) {
+                alert("You've constructed the free list! Now you can put it into use.")
+                $('#seg-free-game-container').css("opacity", "0.25");
+              }
             }
         },
         ondropdeactivate: function (event) {

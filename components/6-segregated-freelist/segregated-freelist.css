@@ -1,3 +1,12 @@
+#seg-free-game-container {
+  visibility: hidden;
+  margin-bottom: 60px;
+}
+
+#seg-free-start-button {
+  margin-bottom: 30px;
+}
+
 #outer-dropzone {
   height: 140px;
 }

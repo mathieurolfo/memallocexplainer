@@ -279,19 +279,33 @@
 	<section id="segregated-freelist">
 		<div align='center'>
 			<h2 class='text' id="freelist-header-text">Now let's think about a totally different strategy!</h2>
+			<p class="text">
+				For both first-fit and best-fit, we were doing a linear pass through all of the cars each time we placed a piece of cargo. You may have noticed this is an inefficient strategy, and it is! What if, before we start loading cargo, we make lists of cars with similar sizes, and write down their indices in a list? Then, when we want to place a cargo, we can go to the appropriate list? We will find a car that fits much faster this way.
+			</p>
 	        <p id="freelist-description-text" >
-	        Before loading the trains, let's actually inspect all trains and write down the size of the cars into a cheat sheet that we can refer to later.
+	        Since we are creating a list of free spaces, segregated by size, this is called a <i>segregated free list</i>. 
 	        </p>
+	        <button id="seg-free-start-button" class="button button-3d button-pill" onclick="startsegfree()">Create the list!</button>
     	</div>
-        <div class="container" >
+        <div id="seg-free-game-container" class="container">
+        	<div align="center" >
+        	<h2 class='text' id="freelist-header-text">Drag the train cars to the correct train in the list! </h2>
+
+        	<p class="text">
+				We have buckets grouped by size. Drag cars of size 1-4 to the first row, 5-8 to the second row, and so on, which represents writing car indices in our list.
+			</p>
+
+            
+            </div>
             <div class="row">
                 <div class="train" id="train-drag-drop-example" >
                 </div>
             </div>
-            <div align='center'>
-                <button id="segregated-freelist-refresh-button" class="button" onclick="ResetTrain()">Reset</button>
-            </div>
         </div>
+
+       <!--  <div align='center'>
+                <button id="segregated-freelist-refresh-button" class="button" onclick="ResetTrain()">Reset</button>
+            </div> -->
     </section>
 
 

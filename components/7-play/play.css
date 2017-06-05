@@ -40,6 +40,10 @@ tr:hover {
 	/*background: red;*/
 }
 
+#play {
+	margin-top: 30px;
+}
+
 #seg-free-header-text {
 	font-size: 30px;
 	/*margin-left: auto;
