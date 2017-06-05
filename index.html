@@ -63,7 +63,7 @@
         <div class="container centered">
         <h2 class="" align="">An Interactive Explanation of:</h2>
           <h1 class="display-3">Heap Allocation</h1>
-          
+
           <p id="names" class="lead">SunMi Lee, Kitty Shi, and Mathieu Rolfo</p>
           <!-- <p>We will teach you heap allocation strategies</p> -->
         </div>
@@ -202,7 +202,7 @@
 		<!-- <div class="centered">
 			<div id="first-fit-car-capacity">hi</div>
 
-				
+
 			</div>
 		</div> -->
 
@@ -317,6 +317,9 @@
                 <div class="train" id="train-drag-drop-example" >
                 </div>
             </div>
+            <div align='center'>
+                <button id="segregated-freelist-refresh-button" class="button" onclick="ResetTrain()">Refresh this Game</button>
+            </div>
             <div class="row">
                 <div class="col-md-12" align="center">
                 <h4>Drag the empty train into different categories of sizes!</h4>
@@ -326,18 +329,23 @@
         </div>
     </section>
 
+
+
+<!-- //////////////////////// SEGREGATED FREE LIST LOADING ///////////////////// -->
+
 	<section id="play">
 		<div class="centered">
 			Load this cargo:
 			<div id="seg-free-current-cargo-box" class="centered"></div>
-			<button id="seg-free-load-button" class="button" onclick="loadClickedSeg()">Load Cargo</button>
+			<button id="seg-free-load-button" class="button" disabled onclick="yesloadCargoSeg()">Yes, load</button>
+			<button id="seg-free-no-button" class="button" disabled onclick="noloadCargoSeg()">No, next</button>
 		</div>
 
 		<div class="centered">
-			<table style="width:70%">
+			<table style="width:60%">
 			  <tr id="bucket4" onclick="selectBucket(4)">
-			    <td style='width: 20%;'><button type="button">Bucket 1-4</button></td>
-			    <td><div id="seg-free-current-cargo-box" class="centered"></div><canvas id="seg-free-bucket4-display"></canvas></td>
+			    <td style='width: 20%;'>Bucket 1-4</td>
+			    <td><canvas id="seg-free-bucket4-display"></canvas></td>
 			  </tr>
 			  <tr id="bucket8" onclick="selectBucket(8)">
 			    <td>Bucket 5-8</td>
@@ -353,7 +361,20 @@
 			  </tr>
 			</table>
 		</div>
-<!-- 
+		<div class="centered">
+			<div id="seg-free-train-display-region">
+				<div id="seg-free-click-counter">
+					<span >Train cars inspected: </span><span id="seg-free-clicks"></span>
+				</div>
+				<div id="seg-free-util-counter">
+					<span >Total train space used: </span><span id="seg-free-utilization"></span>
+				</div>
+				<canvas id="seg-free-train-display"></canvas>
+			</div>
+			<button id="seg-free-refresh-button" class="button" onclick="resetSimulationSeg()">Reset</button>
+		</div>
+
+		<!--
 		<div class="centered">
 			Load this cargo:
 			<div id="seg-free-current-cargo-box" class="centered"></div>
@@ -397,17 +418,7 @@
 
 			</span>
 		</div>
- -->
-		<div id="seg-free-train-display-region">
-			<div id="seg-free-click-counter">
-				<span >Train cars inspected: </span><span id="seg-free-clicks"></span>
-			</div>
-			<div id="seg-free-util-counter">
-				<span >Total train space used: </span><span id="seg-free-utilization"></span>
-			</div>
-			<canvas id="seg-free-train-display"></canvas>
-		</div>
-		<button id="seg-free-refresh-button" class="button" onclick="resetSimulationSeg()">Refresh this Game</button>
+ -->	
 	</section>
 
 	<section id="conclusion">
