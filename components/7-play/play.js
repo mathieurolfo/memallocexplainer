@@ -97,7 +97,7 @@ function initBucket4() {
         var wheel1 = "segfreewheel1car" + j;
         var wheel2 = "segfreewheel2car" + j;
         var car = "segfreecar" + j;
-        var loadedCargo = "segfreecargo" + j;
+        var loadedCargo = "segfreecargo4" + j;
         var carWidth = currCar["size"]*25;
      //    if (currCar["used"]) {
      //    	window[wheel1] = new fabric.Circle({
@@ -116,7 +116,13 @@ function initBucket4() {
 	        window[car] = new fabric.Rect({top: 50, left: currLeft, width: carWidth, height: 10, fill: 'red', stroke: 'black', strokeWidth: 2});
     	   
             var cargoSize = window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex]*25
-            window[loadedCargo] = new fabric.Rect({top: 25, left: currLeft, width: cargoSize, height: 25, fill: 'white', stroke: 'green', strokeWidth: 2, strokeDashArray: [2,2]});
+            if (cargoFits()) {
+                window[loadedCargo] = new fabric.Rect({top: 25, left: currLeft, width: cargoSize, height: 25, fill: 'lightblue', stroke: 'green', strokeWidth: 3, strokeDashArray: [3,3]});
+            } else {
+                window[loadedCargo] = new fabric.Rect({top: 25, left: currLeft, width: cargoSize, height: 25, fill: 'lightblue', stroke: 'red', strokeWidth: 3, strokeDashArray: [3,3]});
+            }
+            
+            
             window.segfreebucket4canvas.add(window[loadedCargo]);
         } else {
     		window[wheel1] = new fabric.Circle({
@@ -145,7 +151,7 @@ function initBucket8() {
         var wheel1 = "segfreewheel1car" + j;
         var wheel2 = "segfreewheel2car" + j;
         var car = "segfreecar" + j;
-        var loadedCargo = "segfreecargo" + j;
+        var loadedCargo = "segfreecargo8" + j;
         var carWidth = currCar["size"]*25;
      //    if (currCar["used"]) {
      //    	window[wheel1] = new fabric.Circle({
@@ -162,7 +168,17 @@ function initBucket8() {
 	        });
 	        window[wheel2] = new fabric.Circle({top: 55, left: currLeft+carWidth-10-3, radius:5, fill: 'red',stroke: 'black', strokeWidth: 2});
 	        window[car] = new fabric.Rect({top: 50, left: currLeft, width: carWidth, height: 10, fill: 'red', stroke: 'black', strokeWidth: 2});
-    	} else {
+    	    var cargoSize = window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex]*25
+            if (cargoFits()) {
+                window[loadedCargo] = new fabric.Rect({top: 25, left: currLeft, width: cargoSize, height: 25, fill: 'lightblue', stroke: 'green', strokeWidth: 3, strokeDashArray: [3,3]});
+            } else {
+                window[loadedCargo] = new fabric.Rect({top: 25, left: currLeft, width: cargoSize, height: 25, fill: 'lightblue', stroke: 'red', strokeWidth: 3, strokeDashArray: [3,3]});
+            }
+            
+            
+            window.segfreebucket8canvas.add(window[loadedCargo]);
+
+        } else {
     		window[wheel1] = new fabric.Circle({
 	            top: 55, left: currLeft+3, radius:5, fill: 'gray',
 	            stroke: 'black', strokeWidth: 2
@@ -187,16 +203,30 @@ function initBucket12() {
         var wheel1 = "segfreewheel1car" + j;
         var wheel2 = "segfreewheel2car" + j;
         var car = "segfreecar" + j;
-        var loadedCargo = "segfreecargo" + j;
+        var loadedCargo = "segfreecargo8" + j;
         var carWidth = currCar["size"]*25;
         window[wheel1] = new fabric.Circle({
             top: 55, left: currLeft+3, radius:5, fill: 'gray',
             stroke: 'black', strokeWidth: 2
         });
+
+        if (currCar["index"] == window.segfreeCurrentState.currentCarIndex) {
+            var cargoSize = window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex]*25
+            if (cargoFits()) {
+                window[loadedCargo] = new fabric.Rect({top: 25, left: currLeft, width: cargoSize, height: 25, fill: 'lightblue', stroke: 'green', strokeWidth: 3, strokeDashArray: [3,3]});
+            } else {
+                window[loadedCargo] = new fabric.Rect({top: 25, left: currLeft, width: cargoSize, height: 25, fill: 'lightblue', stroke: 'red', strokeWidth: 3, strokeDashArray: [3,3]});
+            }
+            
+            
+            window.segfreebucket12canvas.add(window[loadedCargo]);
+
+        }
         window[wheel2] = new fabric.Circle({top: 55, left: currLeft+carWidth-10-3, radius:5, fill: 'gray',stroke: 'black', strokeWidth: 2});
         window[car] = new fabric.Rect({top: 50, left: currLeft, width: carWidth, height: 10, fill: 'gray', stroke: 'black', strokeWidth: 2});
         window.segfreebucket12canvas.add(window[car],window[wheel1], window[wheel2]);
         currLeft += carWidth + 10;
+        
     }
 }
 
@@ -212,16 +242,32 @@ function initBucket16() {
         var wheel1 = "segfreewheel1car" + j;
         var wheel2 = "segfreewheel2car" + j;
         var car = "segfreecar" + j;
-        var loadedCargo = "segfreecargo" + j;
+        var loadedCargo = "segfreecargo16" + j;
         var carWidth = currCar["size"]*25;
         window[wheel1] = new fabric.Circle({
             top: 55, left: currLeft+3, radius:5, fill: 'gray',
             stroke: 'black', strokeWidth: 2
         });
+
+        if (currCar["index"] == window.segfreeCurrentState.currentCarIndex) {
+            var cargoSize = window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex]*25
+            if (cargoFits()) {
+                window[loadedCargo] = new fabric.Rect({top: 25, left: currLeft, width: cargoSize, height: 25, fill: 'lightblue', stroke: 'green', strokeWidth: 3, strokeDashArray: [3,3]});
+            } else {
+                window[loadedCargo] = new fabric.Rect({top: 25, left: currLeft, width: cargoSize, height: 25, fill: 'lightblue', stroke: 'red', strokeWidth: 3, strokeDashArray: [3,3]});
+            }
+            
+            
+            window.segfreebucket16canvas.add(window[loadedCargo]);
+
+        }
+
         window[wheel2] = new fabric.Circle({top: 55, left: currLeft+carWidth-10-3, radius:5, fill: 'gray',stroke: 'black', strokeWidth: 2});
         window[car] = new fabric.Rect({top: 50, left: currLeft, width: carWidth, height: 10, fill: 'gray', stroke: 'black', strokeWidth: 2});
         window.segfreebucket16canvas.add(window[car],window[wheel1], window[wheel2]);
         currLeft += carWidth + 10;
+
+
     }
 }
 
@@ -230,9 +276,12 @@ function showCargoBoxSeg() {
     var cargoSize = window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex]
     cargoSize *= 24
     $('#seg-free-current-cargo-box').css("width", cargoSize);
+    $('#seg-free-current-cargo-box-static').css("width", cargoSize);
     $('#seg-free-cargo-outline').css("width", cargoSize);
     $('#seg-free-current-cargo-box').html(window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex]);
     $('#seg-free-current-cargo-box').css("display", "block");
+    $('#seg-free-current-cargo-box-static').html(window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex]);
+    $('#seg-free-current-cargo-box-static').css("display", "block");
 }
 
 function initFullTrain() {
