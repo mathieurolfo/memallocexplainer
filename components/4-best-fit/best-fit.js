@@ -307,7 +307,7 @@ function bestfitNoClicked() {
             setTimeout(function() {
                 $('#best-fit-message-box').fadeOut("400",function() {
                 });
-            }, 700);
+            }, 1200);
         });
     } else if (!window.bestfitcurrentState.checkedLastCar) { //moving forward
         window.bestfitcurrentState.currentCar += 1;
@@ -393,7 +393,7 @@ function bestfitYesClicked() {
                 $('#best-fit-message-box').fadeOut("400",function() {
                     console.log("animation complete");
                 });
-            }, 700);
+            }, 1200);
         });
     }    
 }
