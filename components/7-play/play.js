@@ -444,7 +444,7 @@ function selectBucket(bucketNum) {
 }
 
 function noloadCargoSeg() {
-	if (window.segfreeCurrentState.noIndex >= window.segfreecurrentStateate.currentCars.length - 1) {
+	if (window.segfreeCurrentState.noIndex >= window.segfreecurrentState.currentCars.length - 1) {
 		// window.segfreeCurrentState.currentBucket = 0;
 		// window.segfreeCurrentState.currentCars = null;
 		// window.segfreeCurrentState.currentCar = null;
