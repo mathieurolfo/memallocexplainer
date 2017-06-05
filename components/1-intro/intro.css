@@ -8,6 +8,11 @@ h2 {
   text-align: left;
 }
 
+#title-subheader {
+  text-align: center;
+  width: auto;
+}
+
 p {
   font-size: 18px;
   width: 800px;
@@ -37,6 +42,8 @@ p {
 
 #names {
   margin-top: 60px;
+  text-align: center;
+  width: auto;
 }
 
 .desc-text {
