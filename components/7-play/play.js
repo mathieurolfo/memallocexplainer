@@ -233,6 +233,7 @@ function showCargoBoxSeg() {
     var cargoSize = window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex]
     cargoSize *= 24
     $('#seg-free-current-cargo-box').css("width", cargoSize);
+    $('#seg-free-cargo-outline').css("width", cargoSize);
     $('#seg-free-current-cargo-box').html(window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex]);
     $('#seg-free-current-cargo-box').css("display", "block");
 }
@@ -262,9 +263,9 @@ function initFullTrain() {
         var carWidth = window.segfreeInitialGame.cars[j]*25;
         if (currLeft + carWidth > 1200) {
         	currLeft = 10;
-        	circletop += 70;
-        	rectop += 70;
-        	cargotop += 70;
+        	circletop += 100;
+        	rectop += 100;
+        	cargotop += 100;
         }
         window[wheel1] = new fabric.Circle({
             top: circletop, left: currLeft+3, radius:5, fill: 'gray',
@@ -286,20 +287,35 @@ function initFullTrain() {
 }
 
 window.cargoLeftOffset = 80;
+window.adjust = 20
 window.cargoCurrLeft = 80;
 
 
 function resetCargo() {
     console.log("placing cargo");
     $('#seg-free-current-cargo-box').css("left", window.cargoLeftOffset+"px");
-    $('#seg-free-cargo-outline').css("left", window.cargoLeftOffset+"px");
+    
+    //$('#seg-free-cargo-outline').css("left", window.cargoLeftOffset+"px");
+    $('#seg-free-cargo-outline').css("visibility", "hidden");
     console.log(window.segfreeCurrentState.currentCargoIndex);
 }
 
-function placeCargo() {
-   console.log(window.segfreeCurrentState.currentCargoIndex);
+function moveCargo() {
+   $('#seg-free-cargo-outline').css("visibility", "visible");
+   console.log("car index", window.segfreeCurrentState.currentCarIndex);
+   var carName = "segfreetrain" + window.segfreeCurrentState.currentCarIndex
+   console.log(window[carName].top)
+   $('#seg-free-current-cargo-box').css("left", window.adjust+window[carName].left+"px");
+   $('#seg-free-current-cargo-box').css("top", -window.adjust+window[carName].top+"px");
    // $('#seg-free-current-cargo-box').css("left", window.cargoLeftOffset+"px");
-   // $('#seg-free-cargo-outline').css("left", window.cargoLeftOffset+"px");
+   $('#seg-free-cargo-outline').css("left", window.adjust+window[carName].left+"px");
+   $('#seg-free-cargo-outline').css("top", window[carName].top+"px");
+
+   if (cargoFits()) {
+        $('#seg-free-cargo-outline').css("color", "green");
+   } else {
+        $('#seg-free-cargo-outline').css("color", "red");
+   }
 }
 
 function drawHoverTrain(bucketNum) {
@@ -354,36 +370,15 @@ function drawHoverTrain(bucketNum) {
 
 	        var cargoWidth = (window.segfreeInitialGame.cars[j]-window.segfreeCurrentState.remainingCapacity[j])*25;
 	        window[loadedCargo] = new fabric.Rect({top: cargotop, left: currLeft, width: cargoWidth, height: 20, fill: 'red'});
-	        window.segfreetraincanvas.add(window[loadedCargo]);
+	        
+            window.segfreetraincanvas.add(window[loadedCargo]);
 	        
 	        currLeft += carWidth + 10;
 	    }
 	}
 }
 
-// $(document).ready(function(){
-//     $("#bucket4").hover(function(){
-//     	drawHoverTrain(4);
-//     });
-// });
 
-// $(document).ready(function(){
-//     $("#bucket8").hover(function(){
-//     	drawHoverTrain(8);
-//     });
-// });
-
-// $(document).ready(function(){
-//     $("#bucket12").hover(function(){
-//     	drawHoverTrain(12);
-//     });
-// });
-
-// $(document).ready(function(){
-//     $("#bucket16").hover(function(){
-//     	drawHoverTrain(16);
-//     });
-// });
 
 function selectBucketHelper(bucketNum) {
 	if (bucketNum == 0) {
@@ -439,12 +434,14 @@ function selectBucket(bucketNum) {
 	} else {
 		window.segfreeCurrentState.currentCarIndex = window.segfreeCurrentState.currentCar["index"];
 	}
+    
 	initBucket();
 	initFullTrain();
+    moveCargo();
 }
 
 function noloadCargoSeg() {
-	if (window.segfreeCurrentState.noIndex >= window.segfreecurrentState.currentCars.length - 1) {
+	if (window.segfreeCurrentState.noIndex >= window.segfreeCurrentState.currentCars.length - 1) {
 		// window.segfreeCurrentState.currentBucket = 0;
 		// window.segfreeCurrentState.currentCars = null;
 		// window.segfreeCurrentState.currentCar = null;
@@ -464,6 +461,10 @@ function noloadCargoSeg() {
 	}
 
     moveCargo();
+}
+
+function cargoFits() {
+    return !window.segfreeCurrentState.currentCar["used"] && window.segfreeInitialGame.cargo[window.segfreeCurrentState.currentCargoIndex] <= window.segfreeCurrentState.remainingCapacity[window.segfreeCurrentState.currentCarIndex];
 }
 
 function yesloadCargoSeg() {
@@ -717,3 +718,27 @@ function yesloadCargoSeg() {
 //   initializeParametersSeg();
 //   init();
 // }
+
+// $(document).ready(function(){
+//     $("#bucket4").hover(function(){
+//      drawHoverTrain(4);
+//     });
+// });
+
+// $(document).ready(function(){
+//     $("#bucket8").hover(function(){
+//      drawHoverTrain(8);
+//     });
+// });
+
+// $(document).ready(function(){
+//     $("#bucket12").hover(function(){
+//      drawHoverTrain(12);
+//     });
+// });
+
+// $(document).ready(function(){
+//     $("#bucket16").hover(function(){
+//      drawHoverTrain(16);
+//     });
+// });

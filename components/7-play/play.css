@@ -98,6 +98,7 @@ tr:hover {
 	/*background-color: red;*/
 	color: green;
 	border: 3px dashed;
+	z-index: 20;
 }
 	
 
