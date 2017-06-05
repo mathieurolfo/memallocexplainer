@@ -332,26 +332,33 @@
 
 	<section id="play">
 		<div class="centered">
+<<<<<<< HEAD
 
+=======
+			Load this cargo:
+			<div id="seg-free-current-cargo-box" class="centered"></div>
+>>>>>>> e38a62319efbc06ea09cafd18fcc1c9e3bb92a34
 			<div id="seg-free-message-box"></div>
 		</div>
 
 		<div align='center'>
 			<table style="width:60%">
 			  <tr id="bucket4">
-			    <td style='width: 20%;'><button id="button4" onclick="selectBucket(4)">Bucket 1-4</button></td>
+			    <td style='width: 20%;'>
+			    	<button id="button4" style="left: 10px;" class="button button-3d button-pill" onclick="selectBucket(4)">Size: 1-4</button>
+			    </td>
 			    <td><canvas id="seg-free-bucket4-display"></canvas></td>
 			  </tr>
 			  <tr id="bucket8">
-			    <td><button id="button8" onclick="selectBucket(8)">Bucket 5-8</button></td>
+			    <td><button id="button8" style="left: 10px;" class="button button-3d button-pill" onclick="selectBucket(8)">Size: 5-8</button></td>
 			    <td><canvas id="seg-free-bucket8-display"></canvas></td>
 			  </tr>
 			  <tr id="bucket12">
-			    <td><button id="button12" onclick="selectBucket(12)">Bucket 9-12</button></td>
+			    <td><button id="button12" style="left: 10px;" class="button button-3d button-pill" onclick="selectBucket(12)">Size: 9-12</button></td>
 			    <td><canvas id="seg-free-bucket12-display"></canvas></td>
 			  </tr>
 			  <tr id="bucket16">
-			    <td><button id="button16" onclick="selectBucket(16)">Bucket 13-16</button></td>
+			    <td><button id="button16" style="left: 10px;" class="button button-3d button-pill" onclick="selectBucket(16)">Size: 13-16</button></td>
 			    <td><canvas id="seg-free-bucket16-display"></canvas></td>
 			  </tr>
 			</table>
@@ -373,6 +380,10 @@
 				<canvas id="seg-free-train-display"></canvas>
 			</div>
 			<button id="seg-free-refresh-button" class="button" onclick="resetSimulationSeg()">Reset</button>
+		</div>
+
+		<div id="seg-free-end-text" class="centered" name="seg-free-segue">
+			The strategy we just tried out, placing the cargo in the first-fitting sp
 		</div>
 
 		<!--
