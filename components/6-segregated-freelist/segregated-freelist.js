@@ -28,8 +28,8 @@ function TrainVisualization (draggableCarts, carts) {
 }
 
 var BUCKET_OFFSET_Y = 350
-var BUCKET_OFFSET_X = 180 + 130
-var CARGO_SIZE_X = 20
+var BUCKET_OFFSET_X = 180 + 50
+var CARGO_SIZE_X = 25
 var CARGO_SIZE_Y = 40 // sync with 'height' in .draggable-cart
 var CARGO_SPACING_Y = 80
 
@@ -153,7 +153,7 @@ TrainVisualization.prototype.draw = function(domId) {
               var numCarts = parseInt(dropzoneElement.getAttribute("numCarts", 0));
               var cargoCapacity = parseInt(draggableElement.getAttribute("capacity", 0));
 
-              var x = BUCKET_OFFSET_X + cartLength * (CARGO_SIZE_X) + numCarts * 20 - draggableElement.offsetLeft;
+              var x = BUCKET_OFFSET_X + cartLength * (CARGO_SIZE_X) + numCarts * CARGO_SIZE_X  - draggableElement.offsetLeft;
               var y = dropzoneElement.offsetTop - draggableElement.offsetTop;
               // var y = BUCKET_OFFSET_Y + (numCarts) * CARGO_SPACING_Y - draggableElement.offsetTop;
               // var x = parseInt(dropzoneElement.getAttribute("xOffset"))- draggableElement.offsetLeft ;
@@ -236,6 +236,9 @@ var draggableCarts = [
   {capacity: 4}, {capacity: 8}, {capacity: 16},
   {capacity: 10}, {capacity: 12}, {capacity: 4},
   {capacity: 2}, {capacity: 8}, {capacity: 4},  {capacity: 6}];
+// var draggableCarts =
+//   {capacity: 1}, {capacity: 8}, {capacity: 5},
+//   {capacity: 2}];
 var carts = [{maxCapacity: 4}, {maxCapacity: 8}, {maxCapacity: 12}, {maxCapacity: 16}];
 
 var train = new TrainVisualization(draggableCarts, carts);
