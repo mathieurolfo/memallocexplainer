@@ -293,11 +293,11 @@ function resetCargo() {
     console.log("placing cargo");
     $('#seg-free-current-cargo-box').css("left", window.cargoLeftOffset+"px");
     $('#seg-free-cargo-outline').css("left", window.cargoLeftOffset+"px");
-
     console.log(window.segfreeCurrentState.currentCargoIndex);
 }
 
 function placeCargo() {
+   console.log(window.segfreeCurrentState.currentCargoIndex);
    // $('#seg-free-current-cargo-box').css("left", window.cargoLeftOffset+"px");
    // $('#seg-free-cargo-outline').css("left", window.cargoLeftOffset+"px");
 }
