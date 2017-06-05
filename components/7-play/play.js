@@ -63,6 +63,7 @@ function initializeParametersSeg() {
         currentCars: null,
         currentBucket: currentBucket,
         noIndex: noIndex,
+        bucketSelected: false,
         remainingCapacity: remainingCapacity,
         currentCargoIndex: currentCargoIndex,
         clicks: 1,
@@ -238,8 +239,8 @@ function showCargoBoxSeg() {
 
 function initFullTrain() {
 	window.segfreetraincanvas = new fabric.StaticCanvas('seg-free-train-display');
-    window.segfreetraincanvas.setWidth(750);
-    window.segfreetraincanvas.setHeight(300);
+    window.segfreetraincanvas.setWidth(1150);
+    window.segfreetraincanvas.setHeight(200);
     fabric.loadSVGFromURL('http://rol.fo/files/train.svg', function(objects, options) {
         var obj = fabric.util.groupSVGElements(objects, options);
         obj.set({
@@ -259,11 +260,11 @@ function initFullTrain() {
         var car = "segfreetrain" + j;
         var loadedCargo = "segfreecargo" + j;
         var carWidth = window.segfreeInitialGame.cars[j]*25;
-        if (currLeft + carWidth > 800) {
+        if (currLeft + carWidth > 1200) {
         	currLeft = 10;
         	circletop += 70;
         	rectop += 70;
-        	cargotop += 70
+        	cargotop += 70;
         }
         window[wheel1] = new fabric.Circle({
             top: circletop, left: currLeft+3, radius:5, fill: 'gray',
@@ -282,85 +283,96 @@ function initFullTrain() {
 }
 
 function drawHoverTrain(bucketNum) {
-	window.segfreetraincanvas = new fabric.StaticCanvas('seg-free-train-display');
-    window.segfreetraincanvas.setWidth(750);
-    window.segfreetraincanvas.setHeight(300);
-    fabric.loadSVGFromURL('http://rol.fo/files/train.svg', function(objects, options) {
-        var obj = fabric.util.groupSVGElements(objects, options);
-        obj.set({
-            left:0,
-            top: 20,
-        })
-        window.segfreetraincanvas.add(obj);
-    });
-    window.segfreeleftOffset = 60;
-    var currLeft = window.segfreeleftOffset;
-    var circletop = 55;
-    var rectop = 50;
+	if (!window.segfreeCurrentState.bucketSelected) {
+		window.segfreetraincanvas = new fabric.StaticCanvas('seg-free-train-display');
+	    window.segfreetraincanvas.setWidth(1150);
+	    window.segfreetraincanvas.setHeight(300);
+	    fabric.loadSVGFromURL('http://rol.fo/files/train.svg', function(objects, options) {
+	        var obj = fabric.util.groupSVGElements(objects, options);
+	        obj.set({
+	            left:0,
+	            top: 20,
+	        })
+	        window.segfreetraincanvas.add(obj);
+	    });
+	    window.segfreeleftOffset = 60;
+	    var currLeft = window.segfreeleftOffset;
+	    var circletop = 55;
+	    var rectop = 50;
+	    var cargotop = 30;
 
-    var bucketCarIndices = window.segfreeInitialGame.carIndexMap[bucketNum];
-    for (var j = 1; j<window.segfreeInitialGame.cars.length; j++) {
-        var wheel1 = "segfreewheel1train" + j;
-        var wheel2 = "segfreewheel2train" + j;
-        var car = "segfreetrain" + j;
-        var loadedCargo = "segfreecargo" + j;
-        var carWidth = window.segfreeInitialGame.cars[j]*25;
-        if (currLeft + carWidth > 800) {
-        	currLeft = 10;
-        	circletop += 70;
-        	rectop += 70;
-        }
-        if (bucketCarIndices.indexOf(j) > 0) {
-        	window[wheel1] = new fabric.Circle({
-	            top: circletop, left: currLeft+3, radius:5, fill: 'red',
-	            stroke: 'black', strokeWidth: 2
-	        });
-	        window[wheel2] = new fabric.Circle({top: circletop, left: currLeft+carWidth-10-3, radius:5, fill: 'red',stroke: 'black', strokeWidth: 2});
-	        window[car] = new fabric.Rect({top: rectop, left: currLeft, width: carWidth, height: 10, fill: 'red', stroke: 'black', strokeWidth: 2});
-        } else {
-        	window[wheel1] = new fabric.Circle({
-	            top: circletop, left: currLeft+3, radius:5, fill: 'gray',
-	            stroke: 'black', strokeWidth: 2
-	        });
-	        window[wheel2] = new fabric.Circle({top: circletop, left: currLeft+carWidth-10-3, radius:5, fill: 'gray',stroke: 'black', strokeWidth: 2});
-	        window[car] = new fabric.Rect({top: rectop, left: currLeft, width: carWidth, height: 10, fill: 'gray', stroke: 'black', strokeWidth: 2});
-        }
-        
-        window.segfreetraincanvas.add(window[car],window[wheel1], window[wheel2]);
+	    var bucketCarIndices = window.segfreeInitialGame.carIndexMap[bucketNum];
+	    for (var j = 1; j<window.segfreeInitialGame.cars.length; j++) {
+	        var wheel1 = "segfreewheel1train" + j;
+	        var wheel2 = "segfreewheel2train" + j;
+	        var car = "segfreetrain" + j;
+	        var loadedCargo = "segfreecargo" + j;
+	        var carWidth = window.segfreeInitialGame.cars[j]*25;
+	        if (currLeft + carWidth > 1200) {
+	        	currLeft = 10;
+	        	circletop += 70;
+	        	rectop += 70;
+	        	cargotop += 70;
+	        }
+	        if (bucketCarIndices.indexOf(j) > 0) {
+	        	window[wheel1] = new fabric.Circle({
+		            top: circletop, left: currLeft+3, radius:5, fill: 'red',
+		            stroke: 'black', strokeWidth: 2
+		        });
+		        window[wheel2] = new fabric.Circle({top: circletop, left: currLeft+carWidth-10-3, radius:5, fill: 'red',stroke: 'black', strokeWidth: 2});
+		        window[car] = new fabric.Rect({top: rectop, left: currLeft, width: carWidth, height: 10, fill: 'red', stroke: 'black', strokeWidth: 2});
+	        } else {
+	        	window[wheel1] = new fabric.Circle({
+		            top: circletop, left: currLeft+3, radius:5, fill: 'gray',
+		            stroke: 'black', strokeWidth: 2
+		        });
+		        window[wheel2] = new fabric.Circle({top: circletop, left: currLeft+carWidth-10-3, radius:5, fill: 'gray',stroke: 'black', strokeWidth: 2});
+		        window[car] = new fabric.Rect({top: rectop, left: currLeft, width: carWidth, height: 10, fill: 'gray', stroke: 'black', strokeWidth: 2});
+	        }
+	        
+	        window.segfreetraincanvas.add(window[car],window[wheel1], window[wheel2]);
 
-        var cargoWidth = (window.segfreeInitialGame.cars[j]-window.firstfitcurrentState.remainingCapacity[j])*25;
-        window[loadedCargo] = new fabric.Rect({top: 30, left: currLeft, width: cargoWidth, height: 20, fill: 'white'});
-        window.segfreetraincanvas.add(window[loadedCargo]);
-        
-        currLeft += carWidth + 10;
-    }
+	        var cargoWidth = (window.segfreeInitialGame.cars[j]-window.segfreeCurrentState.remainingCapacity[j])*25;
+	        window[loadedCargo] = new fabric.Rect({top: cargotop, left: currLeft, width: cargoWidth, height: 20, fill: 'red'});
+	        window.segfreetraincanvas.add(window[loadedCargo]);
+	        
+	        currLeft += carWidth + 10;
+	    }
+	}
 }
 
-// $(document).ready(function(){
-//     $("#bucket4").hover(function(){
-//     	drawHoverTrain(4);
-//     });
-// });
+$(document).ready(function(){
+    $("#bucket4").hover(function(){
+    	drawHoverTrain(4);
+    });
+});
 
-// $(document).ready(function(){
-//     $("#bucket8").hover(function(){
-//     	drawHoverTrain(8);
-//     });
-// });
+$(document).ready(function(){
+    $("#bucket8").hover(function(){
+    	drawHoverTrain(8);
+    });
+});
 
-// $(document).ready(function(){
-//     $("#bucket12").hover(function(){
-//     	drawHoverTrain(12);
-//     });
-// });
+$(document).ready(function(){
+    $("#bucket12").hover(function(){
+    	drawHoverTrain(12);
+    });
+});
 
-// $(document).ready(function(){
-//     $("#bucket16").hover(function(){
-//     	drawHoverTrain(16);
-//     });
-// });
+$(document).ready(function(){
+    $("#bucket16").hover(function(){
+    	drawHoverTrain(16);
+    });
+});
 
 function selectBucket(bucketNum) {
+	if (document.getElementById("seg-free-load-button").disabled) {
+		document.getElementById("seg-free-load-button").disabled = false;
+	}
+	if (document.getElementById("seg-free-no-button").disabled) {
+		document.getElementById("seg-free-no-button").disabled = false;
+	}
+	window.segfreeCurrentState.bucketSelected = true;
 	window.segfreeCurrentState.currentBucket = bucketNum;
 	window.segfreeCurrentState.currentCars = window.segfreeCurrentState.carObjectMap[bucketNum];
 	window.segfreeCurrentState.noIndex = 1;
@@ -376,6 +388,7 @@ function selectBucket(bucketNum) {
 		window.segfreeCurrentState.currentCarIndex = window.segfreeCurrentState.currentCar["index"];
 	}
 	initBucket();
+	initFullTrain();
 }
 
 function grayoutBucket() {
@@ -390,6 +403,10 @@ function noloadCargoSeg() {
 		window.segfreeCurrentState.currentCarIndex = 0;
 		window.segfreeCurrentState.noIndex = 1;
 		grayoutBucket();
+		window.segfreeCurrentState.bucketSelected = false;
+		initBucket();
+		document.getElementById("seg-free-load-button").disabled = true;
+		document.getElementById("seg-free-no-button").disabled = true;
 	} else {
 		window.segfreeCurrentState.noIndex = window.segfreeCurrentState.noIndex + 1;
 		window.segfreeCurrentState.currentCarIndex = window.segfreeCurrentState.currentCars[window.segfreeCurrentState.noIndex]["index"];
@@ -412,6 +429,9 @@ function yesloadCargoSeg() {
 		window.segfreeCurrentState.noIndex = 1;
 		window.segfreeCurrentState.currentBucket = 0;
         window.segfreeCurrentState.clicks += 1;
+        window.segfreeCurrentState.bucketSelected = false;
+		document.getElementById("seg-free-load-button").disabled = true;
+		document.getElementById("seg-free-no-button").disabled = true;
         $('#seg-free-message-box').html("Cargo successfully loaded!")
         initFullTrain();
         initBucket();

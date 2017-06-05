@@ -317,16 +317,20 @@
         </div>
     </section>
 
+
+
+<!-- //////////////////////// SEGREGATED FREE LIST LOADING ///////////////////// -->
+
 	<section id="play">
 		<div class="centered">
 			Load this cargo:
 			<div id="seg-free-current-cargo-box" class="centered"></div>
-			<button id="seg-free-load-button" class="button" onclick="yesloadCargoSeg()">Yes, load</button>
-			<button id="seg-free-no-button" class="button" onclick="noloadCargoSeg()">No, next</button>
+			<button id="seg-free-load-button" class="button" disabled onclick="yesloadCargoSeg()">Yes, load</button>
+			<button id="seg-free-no-button" class="button" disabled onclick="noloadCargoSeg()">No, next</button>
 		</div>
 
 		<div class="centered">
-			<table style="width:70%">
+			<table style="width:60%">
 			  <tr id="bucket4" onclick="selectBucket(4)">
 			    <td style='width: 20%;'>Bucket 1-4</td>
 			    <td><canvas id="seg-free-bucket4-display"></canvas></td>
@@ -345,7 +349,20 @@
 			  </tr>
 			</table>
 		</div>
-<!--
+		<div class="centered">
+			<div id="seg-free-train-display-region">
+				<div id="seg-free-click-counter">
+					<span >Train cars inspected: </span><span id="seg-free-clicks"></span>
+				</div>
+				<div id="seg-free-util-counter">
+					<span >Total train space used: </span><span id="seg-free-utilization"></span>
+				</div>
+				<canvas id="seg-free-train-display"></canvas>
+			</div>
+			<button id="seg-free-refresh-button" class="button" onclick="resetSimulationSeg()">Reset</button>
+		</div>
+
+		<!--
 		<div class="centered">
 			Load this cargo:
 			<div id="seg-free-current-cargo-box" class="centered"></div>
@@ -389,17 +406,7 @@
 
 			</span>
 		</div>
- -->
-		<div id="seg-free-train-display-region">
-			<div id="seg-free-click-counter">
-				<span >Train cars inspected: </span><span id="seg-free-clicks"></span>
-			</div>
-			<div id="seg-free-util-counter">
-				<span >Total train space used: </span><span id="seg-free-utilization"></span>
-			</div>
-			<canvas id="seg-free-train-display"></canvas>
-		</div>
-		<button id="seg-free-refresh-button" class="button" onclick="resetSimulationSeg()">Refresh this Game</button>
+ -->	
 	</section>
 
 	<section id="conclusion">
